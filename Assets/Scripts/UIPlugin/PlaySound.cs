@@ -4,7 +4,14 @@ using UnityEngine.EventSystems;
 public class PlaySound : MonoBehaviour,IPointerClickHandler
 {
     public AudioClip clip;      //要播放的声音
-    public AudioSource source;  //播放声音的源头
+   
+    AudioSource source;  //播放声音的源头
+
+    void Start()
+    {
+        //初始化声音播放源
+        source = GameObject.FindGameObjectWithTag(Tags.MainCamera).GetComponent<AudioSource>();
+    }
 
     /// <summary>
     /// 鼠标点击之后,audioSource播放声音
