@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StartMenuController : MonoBehaviour
@@ -12,10 +13,15 @@ public class StartMenuController : MonoBehaviour
     public Transform ServerGridVerticalCell1;
     public Transform ServerGridVerticalCell2;
 
-    public GameObject ServerItemRed;
-    public GameObject ServerItemGreen;
+    public GameObject ServerSelectedButton; //已选择的服务器Button
+    public GameObject ServerShowButton;     //显示服务器的按钮
+    public GameObject UserNameButton;       //显示用户名称的按钮
+
+    //Prefabs
+    public GameObject ServerItem;
 
     bool haveInitServerList = false;    //是不是已经加载过服务器了
+    ServerProperty curServerInfo;       //已选择的服务器
 
     void Start()
     {
@@ -41,7 +47,7 @@ public class StartMenuController : MonoBehaviour
         //TODO
     }
 
-    public void OnLoginButtonClick()
+    public void OnLoginButtonClick(Text text)
     {
         //1.验证用户名和密码
         //TODO
@@ -50,6 +56,8 @@ public class StartMenuController : MonoBehaviour
         //返回开始界面
         LoginPanel.SetActive(false);
         StartPanel.SetActive(true);
+        //设定用户名称
+        UserNameButton.GetComponentInChildren<Text>().text = text.text;
 
         //3.验证失败
         //TODO
@@ -105,10 +113,23 @@ public class StartMenuController : MonoBehaviour
     public void OnServerButtonClick(GameObject sender)
     {
         //1.记录
-        //TODO
-        //2.跳转
+        curServerInfo = sender.GetComponent<ServerProperty>();
+        Image curImage = sender.GetComponent<Image>();
+
+        //2.设置已选择的服务器
+        ServerProperty serverButtonSelectedSP = ServerSelectedButton.GetComponent<ServerProperty>();
+        serverButtonSelectedSP.Set(curServerInfo.ip, curServerInfo.name, curServerInfo.count);
+
+    }
+
+    public void OnServerSelectedButtonClick()
+    {
+        //1.跳转
         ServerPanel.SetActive(false);
         StartPanel.SetActive(true);
+
+        //2.设置开始面板上的服务器名称
+        ServerShowButton.GetComponentInChildren<Text>().text = curServerInfo.name;
     }
 
     IEnumerator InitServerListDelay()
@@ -137,30 +158,20 @@ public class StartMenuController : MonoBehaviour
             string ip = "127.0.0.1";
             string name = (i + 1).ToString() + "区 马达加斯加";
             int count = Random.Range(0, 100);
-            GameObject ServerItem;
-            if (count > 50)
-            {
-                //火爆
-                ServerItem = GameObject.Instantiate(ServerItemRed) as GameObject;
-
-            }
-            else
-            {
-                //流程
-                ServerItem = GameObject.Instantiate(ServerItemGreen) as GameObject;
-            }
+            GameObject curServerItem = GameObject.Instantiate(ServerItem) as GameObject;
 
             if (i % 2 == 0)
             {
-                ServerItem.transform.parent = ServerGridVerticalCell1;
+                curServerItem.transform.parent = ServerGridVerticalCell1;
             }
             else
             {
-                ServerItem.transform.parent = ServerGridVerticalCell2;
+                curServerItem.transform.parent = ServerGridVerticalCell2;
             }
 
-            ServerProperty sp = ServerItem.GetComponent<ServerProperty>();
-            sp.Set(ip, name);
+            //设置名称和ip
+            ServerProperty sp = curServerItem.GetComponent<ServerProperty>();
+            sp.Set(ip, name, count);
         }
     }
 }
