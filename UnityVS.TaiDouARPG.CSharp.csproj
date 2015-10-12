@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIMoveAuto.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIScalePanel.cs" />
   </ItemGroup>
   <ItemGroup>
