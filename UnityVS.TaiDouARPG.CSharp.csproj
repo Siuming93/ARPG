@@ -58,10 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
+    <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Player\UIRotate.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
   </ItemGroup>
   <ItemGroup>

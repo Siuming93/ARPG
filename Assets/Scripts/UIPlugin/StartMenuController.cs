@@ -47,12 +47,9 @@ public class StartMenuController : MonoBehaviour
 
         //2.进入角色选择页面
 
-        //设定移动的距离
+        //设定移动的目标
         //float distance = StartMoveOut.transform.position.x - CharcterMoveIn.transform.position.x;
-
-        float target = Screen.width / 2;
-        StartMoveOut.Target = Screen.width + target;
-        CharcterMoveIn.Target = target;
+        CharcterMoveIn.Target = StartMoveOut.transform.position.x;
 
         StartMoveOut.SetActive(true);
         CharcterMoveIn.SetActive(true);
