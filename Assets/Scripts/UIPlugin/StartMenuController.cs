@@ -5,10 +5,12 @@ using System.Collections;
 public class StartMenuController : MonoBehaviour
 {
 
-    public UIScalePanel StartPanel;
-    public UIScalePanel LoginPanel;
-    public UIScalePanel RegisterPanel;
-    public UIScalePanel ServerPanel;
+    public UIScale StartScale;
+    public UIScale LoginScale;
+    public UIScale RegisterScale;
+    public UIScale ServerScale;
+    public UIMove CharcterMoveIn;
+    public UIMove StartMoveOut;
 
     public Transform ServerGridVerticalCell1;
     public Transform ServerGridVerticalCell2;
@@ -31,8 +33,8 @@ public class StartMenuController : MonoBehaviour
     public void OnUserNameButtonClick()
     {
         //1.跳转
-        StartPanel.SetActive(false);
-        LoginPanel.SetActive(true);
+        StartScale.SetActive(false);
+        LoginScale.SetActive(true);
     }
 
     /// <summary>
@@ -44,7 +46,16 @@ public class StartMenuController : MonoBehaviour
         //TODO
 
         //2.进入角色选择页面
-        //TODO
+
+        //设定移动的距离
+        //float distance = StartMoveOut.transform.position.x - CharcterMoveIn.transform.position.x;
+
+        float target = Screen.width / 2;
+        StartMoveOut.Target = Screen.width + target;
+        CharcterMoveIn.Target = target;
+
+        StartMoveOut.SetActive(true);
+        CharcterMoveIn.SetActive(true);
     }
 
     public void OnLoginButtonClick(Text text)
@@ -54,8 +65,8 @@ public class StartMenuController : MonoBehaviour
 
         //2.验证成功
         //返回开始界面
-        LoginPanel.SetActive(false);
-        StartPanel.SetActive(true);
+        LoginScale.SetActive(false);
+        StartScale.SetActive(true);
         //设定用户名称
         UserNameButton.GetComponentInChildren<Text>().text = text.text;
 
@@ -66,22 +77,22 @@ public class StartMenuController : MonoBehaviour
     public void OnLoginPanelCloseButtonClick()
     {
         //1.跳转
-        LoginPanel.SetActive(false);
-        StartPanel.SetActive(true);
+        LoginScale.SetActive(false);
+        StartScale.SetActive(true);
     }
 
     public void OnRegisterShowButtonClick()
     {
         //1.跳转
-        LoginPanel.SetActive(false);
-        RegisterPanel.SetActive(true);
+        LoginScale.SetActive(false);
+        RegisterScale.SetActive(true);
     }
 
     public void OnRegisterCloseButtonClick()
     {
         //1.跳转
-        RegisterPanel.SetActive(false);
-        LoginPanel.SetActive(true);
+        RegisterScale.SetActive(false);
+        LoginScale.SetActive(true);
     }
 
     public void OnRegisterButtonClick()
@@ -96,15 +107,15 @@ public class StartMenuController : MonoBehaviour
         //登陆TOD
 
         //4.跳转至开始界面
-        RegisterPanel.SetActive(false);
-        StartPanel.SetActive(true);
+        RegisterScale.SetActive(false);
+        StartScale.SetActive(true);
     }
 
     public void OnServerShowButtonClikc()
     {
         //1.跳转
-        StartPanel.SetActive(false);
-        ServerPanel.SetActive(true);
+        StartScale.SetActive(false);
+        ServerScale.SetActive(true);
     }
 
     /// <summary>
@@ -125,25 +136,11 @@ public class StartMenuController : MonoBehaviour
     public void OnServerSelectedButtonClick()
     {
         //1.跳转
-        ServerPanel.SetActive(false);
-        StartPanel.SetActive(true);
+        ServerScale.SetActive(false);
+        StartScale.SetActive(true);
 
         //2.设置开始面板上的服务器名称
         ServerShowButton.GetComponentInChildren<Text>().text = curServerInfo.name;
-    }
-
-    IEnumerator InitServerListDelay()
-    {
-        while (true)
-        {
-            if (ServerPanel.isPlaying)
-                yield return null;
-            else
-            {
-                InitServerList();
-                break;
-            }
-        }
     }
 
     public void InitServerList()

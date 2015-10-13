@@ -61,8 +61,8 @@
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
-    <Compile Include="Assets\Scripts\UIPlugin\UIMoveAuto.cs" />
-    <Compile Include="Assets\Scripts\UIPlugin\UIScalePanel.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />
