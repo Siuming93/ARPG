@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
 
-public class UIScalePanel : MonoBehaviour
+public class UIScale : MonoBehaviour
 {
     //持续的时间
     public float Duration = 0.4f;
@@ -18,7 +18,7 @@ public class UIScalePanel : MonoBehaviour
     {
         if (value)
         {
-            //将原panel缩小
+            //先将原panel缩小
             RectTransform rectTrans = this.GetComponent<RectTransform>();
             rectTrans.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
@@ -28,23 +28,22 @@ public class UIScalePanel : MonoBehaviour
             //线性放大
             scale = rectTrans.DOScale(new Vector3(1f, 1f, 1f), Duration);
             scale.SetEase(Ease.Linear);
-            scale.onPlay = OnPlay;
-            scale.onKill = OnKill;
         }
         else
         {
-            this.gameObject.SetActive(false);
+            //将原panel线性缩小
+            RectTransform rectTrans = this.GetComponent<RectTransform>();
+            scale = rectTrans.DOScale(new Vector3(0.4f, 0.4f, 0.4f), Duration / 2f);
+            scale.SetEase(Ease.Linear);
+            scale.onKill = OnKill;
         }
     }
 
     void OnKill()
     {
-        isPlaying = false;
+        //激活
+        this.gameObject.SetActive(false);
     }
 
-    void OnPlay()
-    {
-        isPlaying = true;
-    }
 
 }
