@@ -59,12 +59,17 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
     <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
-    <Compile Include="Assets\Scripts\Player\UIRotate.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\PlayerBar.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\PlayerStatus.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
+    <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIGradient.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\UIRenderTexture.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
   </ItemGroup>
@@ -72,6 +77,7 @@
     <None Include="Assets\DOTween\DOTween.XML" />
     <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\DOTween\readme.txt" />
+    <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>
