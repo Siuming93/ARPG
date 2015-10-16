@@ -7,41 +7,58 @@ public class UIScale : MonoBehaviour
 {
     //持续的时间
     public float Duration = 0.4f;
+    public Vector3 Target;
 
-    //是不是还在播放
-    public bool isPlaying;
+    /// <summary>
+    /// 将scale设定为目标值
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="duration"></param>
+    public void Scale(Vector3 target,float duration)
+    {
+        transform.DOScale(target, duration);
+    }
 
-    Tweener scale;
+    /// <summary>
+    /// 将scale设定为已经设定过的目标值
+    /// </summary>
+    public void Scale()
+    {
+        transform.DOScale(Target, Duration);
+    }
 
-    //UI刚刚进入的时候要播放缩放
+    /// <summary>
+    /// UI缩放激活或者关闭
+    /// </summary>
+    /// <param name="value"></param>
     public void SetActive(bool value)
     {
+        Tweener scale;
         if (value)
         {
-            //先将原panel缩小
+            //1.先将原panel缩小
             RectTransform rectTrans = this.GetComponent<RectTransform>();
             rectTrans.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-
-            //激活
+            //2.激活
             this.gameObject.SetActive(true);
-
-            //线性放大
+            //3.线性放大
             scale = rectTrans.DOScale(new Vector3(1f, 1f, 1f), Duration);
             scale.SetEase(Ease.Linear);
         }
         else
         {
-            //将原panel线性缩小
+            //1.将原panel线性缩小
             RectTransform rectTrans = this.GetComponent<RectTransform>();
             scale = rectTrans.DOScale(new Vector3(0.4f, 0.4f, 0.4f), Duration / 2f);
             scale.SetEase(Ease.Linear);
-            scale.onKill = OnKill;
+            //2.结束的关闭
+            scale.onKill = SetActiveFalse;
         }
     }
 
-    void OnKill()
+    //将gamaObject的Active设置为false;
+    void SetActiveFalse()
     {
-        //激活
         this.gameObject.SetActive(false);
     }
 

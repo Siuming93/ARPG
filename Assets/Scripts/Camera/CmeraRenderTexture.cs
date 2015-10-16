@@ -4,16 +4,15 @@ using System.Collections;
 
 public class CmeraRenderTexture : MonoBehaviour
 {
-    public RawImage targetImage;
-
     private RenderTexture rtt;
 
-    void Start()
+    /// <summary>
+    /// 将相机渲染到renderTexture上
+    /// </summary>
+    void Awake()
     {
-        rtt = new RenderTexture(512, 512, 1);
-
+        //设定rtt的depth为24bit;
+        rtt = new RenderTexture(1024, 768, 24);
         camera.targetTexture = rtt;
-
-        targetImage.texture = camera.targetTexture;
     }
 }
