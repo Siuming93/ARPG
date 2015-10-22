@@ -59,6 +59,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
     <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Inventory.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\InventoryItem.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\InventoryManger.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\KnapsackItem.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\KnapscakCharcter.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\KnapscakUISprite.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PlayerBar.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
@@ -78,6 +85,7 @@
     <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\DOTween\readme.txt" />
     <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
+    <None Include="Assets\Scripts\MainMenu\InventoryInfoList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>
