@@ -22,8 +22,8 @@ public class InventoryManger : MonoBehaviour
     void Awake()
     {
         _instrance = this;
-        ReadInventroyInfo();
-        ReadInventroyItem();
+        //ReadInventroyInfo();
+        //ReadInventroyItem();
     }
 
     /// <summary>
