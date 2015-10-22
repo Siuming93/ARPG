@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BottomBar.cs" />
     <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
     <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Inventory.cs" />
@@ -68,6 +69,9 @@
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PlayerBar.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PlayerStatus.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Task\Task.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Task\TaskManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Task\TaskUI.cs" />
     <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\NewBehaviourScript.cs" />
@@ -79,6 +83,7 @@
     <Compile Include="Assets\Scripts\UIPlugin\UIRenderTexture.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
+    <Compile Include="Assets\TaskItemUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />
@@ -86,6 +91,7 @@
     <None Include="Assets\DOTween\readme.txt" />
     <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
     <None Include="Assets\Scripts\MainMenu\InventoryInfoList.txt" />
+    <None Include="Assets\Scripts\MainMenu\Task\TaskInfoList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>
