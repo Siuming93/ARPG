@@ -57,9 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BottomBar.cs" />
     <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
     <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\BottomBar.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Inventory.cs" />
     <Compile Include="Assets\Scripts\MainMenu\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\MainMenu\InventoryManger.cs" />
@@ -70,10 +70,14 @@
     <Compile Include="Assets\Scripts\MainMenu\PlayerBar.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Task\Task.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Task\TaskItemUI.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Task\TaskManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Task\TaskUI.cs" />
     <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerNavigation.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
@@ -83,7 +87,6 @@
     <Compile Include="Assets\Scripts\UIPlugin\UIRenderTexture.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
-    <Compile Include="Assets\TaskItemUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />
