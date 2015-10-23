@@ -12,14 +12,13 @@ public class TaskUI : MonoBehaviour
 
     void Start()
     {
-        InitTaskListUI();
         closeButton.onClick.AddListener(OnCloseButtonClick);
     }
 
     /// <summary>
     /// 初始化任务列表
     /// </summary>
-    void InitTaskListUI()
+    public void InitTaskListUI()
     {
         Dictionary<int, Task> taskDic = TaskManager.Instance.TaskDic;
 
