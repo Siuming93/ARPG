@@ -74,8 +74,10 @@
     <Compile Include="Assets\Scripts\MainMenu\Task\TaskManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\Task\TaskUI.cs" />
     <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
+    <Compile Include="Assets\Scripts\Manager\NPCManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerNavigation.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\NewBehaviourScript.cs" />
