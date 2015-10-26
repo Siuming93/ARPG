@@ -2,25 +2,20 @@
 using System.Collections;
 
 public class PlayerNavigation : MonoBehaviour
-{
-    public Vector3 targetPosition;
-
+{  
     private NavMeshAgent nav;
 
+    public float MinDistance;
     void Start()
     {
         nav = transform.GetComponent<NavMeshAgent>();
+        nav.stoppingDistance = MinDistance;
     }
 
-    void Update()
-    {
-        nav.destination = targetPosition;
-    }
 
-    void OnGizmos()
+    public void SetDestination(Vector3 targPos)
     {
-        if (gameObject.activeSelf)
-            Gizmos.DrawLine(transform.position, nav.desiredVelocity);
+        nav.destination = targPos;
     }
 
 }

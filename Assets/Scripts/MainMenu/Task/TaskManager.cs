@@ -6,7 +6,7 @@ public class TaskManager : MonoBehaviour
 {
     public TextAsset taskInfoList;
 
-    public Dictionary<int,Task> TaskDic=new Dictionary<int,Task>();
+    public Dictionary<int, Task> TaskDic = new Dictionary<int, Task>();
 
     private static TaskManager _instance;
 
@@ -14,6 +14,19 @@ public class TaskManager : MonoBehaviour
     {
         get { return _instance; }
     }
+
+    private PlayerNavigation _playerNavigation;
+
+    public PlayerNavigation mPlayerNavigation
+    {
+        get
+        {
+            if (_playerNavigation == null)
+                _playerNavigation = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerNavigation>();
+            return _playerNavigation;
+        }
+    }
+
 
     void Awake()
     {
@@ -27,7 +40,7 @@ public class TaskManager : MonoBehaviour
 
         for (int i = 0; i < taskArray.Length; i++)
         {
-            string[] infos=taskArray[i].Split('|');
+            string[] infos = taskArray[i].Split('|');
 
             Task task = new Task();
             task._id = int.Parse(infos[0]);
@@ -54,6 +67,12 @@ public class TaskManager : MonoBehaviour
 
             TaskDic.Add(task._id, task);
         }
+    }
+
+    public void Excute(Task task)
+    {
+        Vector3 targetPos = NPCManager.Instance.GetNpc(task._npcId).transform.position;
+        mPlayerNavigation.SetDestination(targetPos);
     }
 
 

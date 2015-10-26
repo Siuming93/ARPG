@@ -13,9 +13,12 @@ public class TaskItemUI : MonoBehaviour
     public Button button;
 
     private string AssetPath = "ItemPrefabs/";
+    private Task task;
 
     public void SetTask(Task task)
     {
+        this.task=task;
+
         nameText.text = task._name;
         descriptionText.text = task._description;
         coinText.text = task._coin.ToString();
@@ -27,7 +30,12 @@ public class TaskItemUI : MonoBehaviour
         GameObject typeSpritePre = Resources.Load<GameObject>(AssetPath + task._taskType.ToString());
         taskType.sprite = typeSpritePre.GetComponent<SpriteRenderer>().sprite;
 
-        
+        button.onClick.AddListener(OnButtonClick);
+    }
 
+    void OnButtonClick()
+    {
+        print("click");
+        TaskManager.Instance.Excute(task);
     }
 }

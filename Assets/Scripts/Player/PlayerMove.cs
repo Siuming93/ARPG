@@ -4,14 +4,7 @@ using System.Collections;
 public class PlayerMove : MonoBehaviour
 {
     public float Speed;
-   
 
-    private Animator animator;
-
-    void Start()
-    {
-        animator = transform.GetComponent<Animator>();
-    }
 
 
     void Update()
@@ -26,11 +19,10 @@ public class PlayerMove : MonoBehaviour
         {
             rigidbody.velocity = ve;
             transform.rotation = Quaternion.LookRotation(new Vector3(-v, 0f, h));
-            animator.SetBool("IsMove", true);
         }
         else
         {
-            animator.SetBool("IsMove", false);
+            rigidbody.velocity = Vector3.zero;
         }
 
 
