@@ -7,17 +7,19 @@ using System.Collections;
 public class PlayerAnimator : MonoBehaviour
 {
     public float sensitive;
+
+    private NavMeshAgent nav;
     private Animator animator;
 
     void Start()
     {
+        nav = transform.GetComponent<NavMeshAgent>();
         animator = transform.GetComponent<Animator>();
     }
 
     void Update()
     {
-        print(rigidbody.velocity);
-        if (rigidbody.velocity.magnitude > sensitive)
+        if (nav.enabled || rigidbody.velocity.magnitude > sensitive)
             animator.SetBool("IsMove", true);
         else
             animator.SetBool("IsMove", false);

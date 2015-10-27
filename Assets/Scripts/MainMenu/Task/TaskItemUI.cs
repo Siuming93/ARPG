@@ -35,7 +35,6 @@ public class TaskItemUI : MonoBehaviour
 
     void OnButtonClick()
     {
-        print("click");
         TaskManager.Instance.Excute(task);
     }
 }

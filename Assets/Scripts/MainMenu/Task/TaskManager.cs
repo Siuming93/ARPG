@@ -5,8 +5,12 @@ using System.Collections.Generic;
 public class TaskManager : MonoBehaviour
 {
     public TextAsset taskInfoList;
+    public Transform TranscriptEnterTransform;
+    public UIScale NpcTalkPanelScale;
 
     public Dictionary<int, Task> TaskDic = new Dictionary<int, Task>();
+
+    private Task curTask;
 
     private static TaskManager _instance;
 
@@ -64,6 +68,7 @@ public class TaskManager : MonoBehaviour
             task._talkContent = infos[7];
             task._npcId = int.Parse(infos[8]);
             task._transcriptId = int.Parse(infos[9]);
+            task._taskState = TaskState.UnStarted;
 
             TaskDic.Add(task._id, task);
         }
@@ -71,9 +76,24 @@ public class TaskManager : MonoBehaviour
 
     public void Excute(Task task)
     {
+        curTask = task;
         Vector3 targetPos = NPCManager.Instance.GetNpc(task._npcId).transform.position;
         mPlayerNavigation.SetDestination(targetPos);
     }
 
+    public void OnArriveDestination()
+    {
+        switch (curTask._taskState)
+        {
+            case TaskState.UnStarted:
+                curTask._taskState = TaskState.Accepted;
+                NpcTalkPanelScale.SetActive(true);
+                break;
+            case TaskState.Accepted:
+                mPlayerNavigation.SetDestination(TranscriptEnterTransform.position);
+                NpcTalkPanelScale.SetActive(false);
+                break;
+        }
+    }
 
 }
