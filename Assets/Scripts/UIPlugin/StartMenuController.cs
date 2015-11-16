@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class StartMenuController : MonoBehaviour
 {
+    public static StartMenuController Instance { get; private set; }
 
     public UIScale StartScale;
     public UIScale LoginScale;
@@ -14,33 +14,40 @@ public class StartMenuController : MonoBehaviour
     public UIMove StartMove;
     public UIMove CharcterChnageMove;
 
+    public LoginController LoginController;
+
+    public InputField UsernameInputField;
+    public InputField PasswordInputField;
+
     public Text Name;
     public Text Level;
-    public Text newName;
+    public Text NewName;
 
     public Transform ServerGridVerticalCell1;
     public Transform ServerGridVerticalCell2;
-    public Transform CharcterSelectedParent;//当前选中的角色模型的父GameObject
+    public Transform CharcterSelectedParent; //当前选中的角色模型的父GameObject
 
     public GameObject ServerSelectedButton; //已选择的服务器Button
-    public GameObject ServerShowButton;     //显示服务器的按钮
-    public GameObject UserNameButton;       //显示用户名称的按钮
+    public GameObject ServerShowButton; //显示服务器的按钮
+    public GameObject UserNameButton; //显示用户名称的按钮
 
-
-    public GameObject[] charcterArray;
+    public GameObject[] CharcterArray;
 
     //Prefabs
     public GameObject ServerItem;
 
-    bool haveInitServerList = false;    //是不是已经加载过服务器了
-    ServerProperty curServerInfo;       //已选择的服务器
-    UIScale ChoiceCharcterUIScale;
-    int index;                          //创建角色时所选中的角色的索引
+    private ServerProperty _curServerInfo; //已选择的服务器
+    private UIScale _choiceCharcterUiScale;
+    private int _index; //创建角色时所选中的角色的索引
 
-
-    void Start()
+    private void Awake()
     {
-        InitServerList();
+        Instance = this;
+    }
+
+
+    private void Start()
+    {
     }
 
     /// <summary>
@@ -55,11 +62,13 @@ public class StartMenuController : MonoBehaviour
 
         //3.将选中的角色替换掉
         Destroy(CharcterSelectedParent.GetComponentInChildren<Animation>().gameObject);
-        GameObject newCharcter = GameObject.Instantiate(charcterArray[index], CharcterSelectedParent.position, CharcterSelectedParent.rotation) as GameObject;
+        var newCharcter =
+            Instantiate(CharcterArray[_index], CharcterSelectedParent.position,
+                CharcterSelectedParent.rotation) as GameObject;
         newCharcter.transform.parent = CharcterSelectedParent;
 
         //4.更新角色信息
-        Name.text = newName.text;
+        Name.text = NewName.text;
         Level.text = "Lv.1";
 
         //5.跳转回去
@@ -95,22 +104,19 @@ public class StartMenuController : MonoBehaviour
     /// <summary>
     /// 选中的角色要放大显示
     /// </summary>
-    /// <param name="selectedUI"></param>
-    public void OnChoiceCharcterClick(GameObject selectedUI)
+    /// <param name="selectedUi"></param>
+    public void OnChoiceCharcterClick(GameObject selectedUi)
     {
-        if (ChoiceCharcterUIScale != null)
+        if (_choiceCharcterUiScale != null)
         {
-            ChoiceCharcterUIScale.Scale(new Vector3(1f, 1f, 1f), 0.5f);
+            _choiceCharcterUiScale.Scale(new Vector3(1f, 1f, 1f), 0.5f);
         }
 
-        if (selectedUI.name.Contains("Boy"))
-            index = 0;
-        else
-            index = 1;
+        _index = selectedUi.name.Contains("Boy") ? 0 : 1;
 
-        UIScale selectedUIScale = selectedUI.GetComponent<UIScale>();
-        selectedUIScale.Scale(new Vector3(1.4f, 1.4f, 1.4f), 0.5f);
-        ChoiceCharcterUIScale = selectedUIScale;
+        var selectedUiScale = selectedUi.GetComponent<UIScale>();
+        selectedUiScale.Scale(new Vector3(1.4f, 1.4f, 1.4f), 0.5f);
+        _choiceCharcterUiScale = selectedUiScale;
     }
 
     /// <summary>
@@ -149,7 +155,27 @@ public class StartMenuController : MonoBehaviour
     public void OnLoginButtonClick(Text text)
     {
         //1.验证用户名和密码
+        LoginController.LoginRequest(UsernameInputField.text, PasswordInputField.text);
+
+        //3.验证失败
         //TODO
+    }
+
+    /// <summary>
+    ///  验证成功,返回开始界面
+    /// </summary>
+    public void OnLoginSuccess()
+    {
+        LoginScale.SetActive(false);
+        StartScale.SetActive(true);
+        //设定用户名称
+        UserNameButton.GetComponentInChildren<Text>().text = UsernameInputField.text;
+    }
+
+    public void OnLoginButtonClick(Text text, Text text2)
+    {
+        //1.验证用户名和密码
+        //LoginController.LoginRequest();
 
         //2.验证成功
         //返回开始界面
@@ -227,14 +253,13 @@ public class StartMenuController : MonoBehaviour
     public void OnServerButtonClick(GameObject sender)
     {
         //1.记录
-        curServerInfo = sender.GetComponent<ServerProperty>();
-        Image curImage = sender.GetComponent<Image>();
+        _curServerInfo = sender.GetComponent<ServerProperty>();
+        var curImage = sender.GetComponent<Image>();
 
         //2.设置已选择的服务器
         ServerSelectedButton.SetActive(true);
-        ServerProperty serverButtonSelectedSP = ServerSelectedButton.GetComponent<ServerProperty>();
-        serverButtonSelectedSP.Set(curServerInfo.ip, curServerInfo.name, curServerInfo.count);
-
+        var serverButtonSelectedSp = ServerSelectedButton.GetComponent<ServerProperty>();
+        serverButtonSelectedSp.Set(_curServerInfo.Ip, _curServerInfo.Name, _curServerInfo.Count);
     }
 
     /// <summary>
@@ -247,38 +272,6 @@ public class StartMenuController : MonoBehaviour
         StartScale.SetActive(true);
 
         //2.设置开始面板上的服务器名称
-        ServerShowButton.GetComponentInChildren<Text>().text = curServerInfo.name;
-    }
-
-    /// <summary>
-    /// 初始化服务器列表
-    /// </summary>
-    public void InitServerList()
-    {
-        if (haveInitServerList)
-            return;
-        //1.连接服务器, 获取列表信息
-        //TODO
-        //2.根据上面的信息初始化
-        for (int i = 0; i < 20; i++)
-        {
-            string ip = "127.0.0.1";
-            string name = (i + 1).ToString() + "区 马达加斯加";
-            int count = Random.Range(0, 100);
-            GameObject curServerItem = GameObject.Instantiate(ServerItem) as GameObject;
-
-            if (i % 2 == 0)
-            {
-                curServerItem.transform.parent = ServerGridVerticalCell1;
-            }
-            else
-            {
-                curServerItem.transform.parent = ServerGridVerticalCell2;
-            }
-
-            //设置名称和ip
-            ServerProperty sp = curServerItem.GetComponent<ServerProperty>();
-            sp.Set(ip, name, count);
-        }
+        ServerShowButton.GetComponentInChildren<Text>().text = _curServerInfo.Name;
     }
 }
