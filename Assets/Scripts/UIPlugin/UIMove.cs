@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
@@ -6,10 +7,11 @@ using DG.Tweening;
 public class UIMove : MonoBehaviour
 {
     public float Target;
-    public float Duration;
+    public float Duration = 0.4f;
     public Ease Ease;
     public int Loops;
     public bool IsActive;
+
 
     public void Start()
     {
@@ -62,6 +64,65 @@ public class UIMove : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    public void MoveOut(Direction direction, float duration = 0.4f)
+    {
+        //1.设定目标
+        Vector3 target;
+        Duration = duration;
+        switch (direction)
+        {
+            case Direction.Up:
+                target = new Vector3(transform.position.x, Screen.height*1.5f, transform.position.z);
+                break;
+            case Direction.Bottom:
+                target = new Vector3(transform.position.x, -Screen.height*0.5f, transform.position.z);
+                break;
+            case Direction.Left:
+                target = new Vector3(-Screen.width*0.5f, transform.position.y, transform.position.z);
+                break;
+            case Direction.Right:
+                target = new Vector3(Screen.width*1.5f, transform.position.y, transform.position.z);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("direction", direction, null);
+        }
+        //2.移动完成后关闭
+        this.transform.DOMove(target, Duration).SetEase(Ease).SetLoops(Loops).onKill = SetActiveFalse;
+    }
 
-    
+    public void MoveIn(Direction direction, float duration = 0.4f)
+    {
+        //1.挪到初始位置
+        Duration = duration;
+        switch (direction)
+        {
+            case Direction.Up:
+                transform.position = new Vector3(transform.position.x, Screen.height*1.5f, transform.position.z);
+                break;
+            case Direction.Bottom:
+                transform.position = new Vector3(transform.position.x, -Screen.height*0.5f, transform.position.z);
+                break;
+            case Direction.Left:
+                transform.position = new Vector3(-Screen.width*0.5f, transform.position.y, transform.position.z);
+                break;
+            case Direction.Right:
+                transform.position = new Vector3(Screen.width*1.5f, transform.position.y, transform.position.z);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("direction", direction, null);
+        }
+        //2.激活,自动移动
+        this.gameObject.SetActive(true);
+        this.transform.DOMove(new Vector3(Screen.width*0.5f, Screen.height*0.5f, transform.position.z), Duration)
+            .SetEase(Ease)
+            .SetLoops(Loops);
+    }
+}
+
+public enum Direction : byte
+{
+    Up,
+    Bottom,
+    Left,
+    Right
 }
