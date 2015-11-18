@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.6.8f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -103,7 +105,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerNavigation.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\MessageManger.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
-    <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
+    <Compile Include="Assets\Scripts\UIPlugin\ServerUiProperty.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIGradient.cs" />
     <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
