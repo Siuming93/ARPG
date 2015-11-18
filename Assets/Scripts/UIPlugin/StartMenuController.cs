@@ -15,9 +15,14 @@ public class StartMenuController : MonoBehaviour
     public UIMove CharcterChnageMove;
 
     public LoginController LoginController;
+    public RegisterController RegisterController;
 
     public InputField UsernameInputField;
     public InputField PasswordInputField;
+
+    public InputField RegisterUsernameInputField;
+    public InputField RegisterPasswordInputField;
+    public InputField RegisterPasswordConfirmInputField;
 
     public Text Name;
     public Text Level;
@@ -224,15 +229,38 @@ public class StartMenuController : MonoBehaviour
     public void OnRegisterButtonClick()
     {
         //1.本地校验，连接服务器校验
-        //TODO
+        if (RegisterUsernameInputField.text.Length < 3)
+        {
+            MessageManger.Instance.SetMessage("用户名不能少于三个字符");
+            return;
+        }
+
+        if (RegisterUsernameInputField.text.Length < 3)
+        {
+            MessageManger.Instance.SetMessage("密码不能少于三个字符");
+            return;
+        }
+
+        if (RegisterPasswordInputField.text != RegisterPasswordConfirmInputField.text)
+        {
+            MessageManger.Instance.SetMessage("两次输入密码不同");
+            return;
+        }
+
 
         //2.校验失败
-        //TODO
+        RegisterController.SendRegisterRequest(RegisterUsernameInputField.text, RegisterPasswordConfirmInputField.text);
 
         //3.校验成功
         //登陆TOD
+    }
 
-        //4.跳转至开始界面
+    /// <summary>
+    /// 注册成功后,和和登录一个操作
+    /// </summary>
+    public void OnRegisterSuccess()
+    {
+        //跳转至开始界面
         RegisterScale.SetActive(false);
         StartScale.SetActive(true);
     }
