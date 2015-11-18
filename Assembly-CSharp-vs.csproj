@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
      <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
+     <Compile Include="Assets\Scripts\Common\DelegateEventDeline.cs" />
      <Compile Include="Assets\Scripts\MainMenu\BottomBar.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Inventory.cs" />
      <Compile Include="Assets\Scripts\MainMenu\InventoryItem.cs" />
@@ -65,11 +66,17 @@
      <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
      <Compile Include="Assets\Scripts\Manager\NPCManager.cs" />
      <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\Photon\Controller\ControllerBase.cs" />
+     <Compile Include="Assets\Scripts\Photon\Controller\LoginController.cs" />
+     <Compile Include="Assets\Scripts\Photon\Controller\RegisterController.cs" />
+     <Compile Include="Assets\Scripts\Photon\Controller\RoleController.cs" />
+     <Compile Include="Assets\Scripts\Photon\Controller\ServerController.cs" />
+     <Compile Include="Assets\Scripts\Photon\PhotonEngine.cs" />
      <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerNavigation.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\UIPlugin\MessageManger.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\ServerProperty.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
@@ -90,6 +97,9 @@
  </Reference>
  <Reference Include="ARPGCommon">
  <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/ARPGCommon.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
  <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/Photon3Unity3D.dll</HintPath>
