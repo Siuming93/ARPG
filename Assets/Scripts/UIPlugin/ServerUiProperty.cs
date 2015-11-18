@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ServerProperty : MonoBehaviour
+public class ServerUiProperty : MonoBehaviour
 {
     public Text Text;
     public Image Image;
@@ -20,11 +20,11 @@ public class ServerProperty : MonoBehaviour
         this.Count = count;
 
         Text.text = name;
-        Image.sprite = count > 50 ? ServerItemSpriteRed : ServerItemSpriteGreen;
+        Image.sprite = Count > 50 ? ServerItemSpriteRed : ServerItemSpriteGreen;
     }
 
     public void SelectButtonClick()
     {
-        transform.root.SendMessage("OnServerButtonClick", this.gameObject);
+        StartMenuController.Instance.OnServerButtonClick(this);
     }
 }
