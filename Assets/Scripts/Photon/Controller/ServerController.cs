@@ -54,8 +54,9 @@ public class ServerController : ControllerBase
             curServerItem.transform.parent = i%2 == 0 ? ServerGridVerticalCell1 : ServerGridVerticalCell2;
 
             //设置名称和ip
-            var sp = curServerItem.GetComponent<ServerProperty>();
+            var sp = curServerItem.GetComponent<ServerUiProperty>();
             sp.Set(ip, serverName, count);
+            StartMenuController.Instance.OnServerButtonClick(sp);
         }
     }
 
