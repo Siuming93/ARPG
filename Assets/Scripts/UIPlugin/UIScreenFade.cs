@@ -40,5 +40,6 @@ public class UIScreenFade : MonoBehaviour
         }
 
         Image.color = _targetColor;
+        gameObject.SetActive(false);
     }
 }

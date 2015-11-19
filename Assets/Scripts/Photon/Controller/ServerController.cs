@@ -16,9 +16,9 @@ public class ServerController : ControllerBase
         GetServerListRequest();
     }
 
-    public override void OnDestory()
+    public override void OnDestroy()
     {
-        base.OnDestory();
+        base.OnDestroy();
         PhotonEngine.Instance.OnConnectToServer -= GetServerListRequest;
     }
 
