@@ -40,6 +40,8 @@ public class StartMenuController : MonoBehaviour
     //开始面板的两个按钮
     public Text ServerShowButtonText; //显示服务器的按钮
     public Text UserNameButtonText; //显示用户名称的按钮
+    //加载场景的进度条
+    public LoadProgressBar LoadProgressBar;
 
     /// <summary>
     /// 从创建角色返回选择角色的按钮
@@ -52,6 +54,8 @@ public class StartMenuController : MonoBehaviour
     private ServerUiProperty _curServerUiInfo; //已选择的服务器
     private UIScale _choiceCharcterUiScale;
     private int _index = -1; //创建角色时所选中的角色的索引
+    //选择的角色
+    public Role curRole { get; private set; }
 
     private void Awake()
     {
@@ -63,32 +67,61 @@ public class StartMenuController : MonoBehaviour
     {
         RoleController.OnAddRole += OnAddRole;
         RoleController.OnGetRole += OnGetRole;
+        RoleController.OnSelectRole += OnSelectRole;
     }
 
     private void Destory()
     {
         RoleController.OnAddRole -= OnAddRole;
         RoleController.OnGetRole -= OnGetRole;
+        RoleController.OnSelectRole -= OnSelectRole;
     }
 
     public void OnAddRole(Role role)
     {
+        //1.设定角色
+        curRole = role;
+        //2.向服务器发送选择了当前角色的请求
+        RoleController.SelectRole(curRole);
     }
 
     public void OnGetRole(List<Role> roles)
     {
         if (roles != null && roles.Count > 0)
         {
-            UpdateCharcterSelected(roles[0]);
+            //1.创建过角色
+            curRole = roles[0];
+            UpdateCharcterSelected(curRole);
             StartMove.MoveOut(Direction.Right);
             CharcterSelectMove.MoveIn(Direction.Left);
         }
         else
         {
+            //2.没有创建过角色
             BackToSelectCharcterGameObject.SetActive(false);
             StartMove.MoveOut(Direction.Right);
             CharcterChnageMove.MoveIn(Direction.Left);
         }
+    }
+
+    /// <summary>
+    /// 服务器响应了选择角色的请求
+    /// </summary>
+    public void OnSelectRole()
+    {
+        CharcterSelectMove.SetActiveFalse();
+        CharcterChnageMove.SetActiveFalse();
+        var operation = Application.LoadLevelAsync(Scenes.loadLevel);
+        LoadProgressBar.Show(operation);
+    }
+
+    /// <summary>
+    /// 选择完角色需要进入游戏时
+    /// </summary>
+    public void OnAfterSelectRole()
+    {
+        //1.向服务器发送选择了当前角色的请求
+        RoleController.SelectRole(curRole);
     }
 
     private void UpdateCharcterSelected(Role role)
@@ -124,16 +157,8 @@ public class StartMenuController : MonoBehaviour
             MessageManger.Instance.SetMessage("昵称不合法!");
             return;
         }
-        //2.连接服务器,验证昵称是否可用
-        //TODO
-        //2.选择了角色
-        //TODO
-
-        //3.将选中的角色替换掉
-        UpdateCharcterSelected(new Role {Name = "0", Level = 0, Isman = _index == 0});
-
-        //5.跳转回去
-        OnChangeCharcterBackButtonClick();
+        //2.连接服务器,验证昵称
+        RoleController.AddRole(new Role {Name = CharcterNameInputField.text, Level = 0, Isman = _index == 0});
     }
 
     /// <summary>
@@ -141,12 +166,8 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnChangeCharcterButtonClick()
     {
-        CharcterChnageMove.Target = CharcterSelectMove.transform.position.x;
-        CharcterChnageMove.Duration = CharcterSelectMove.Duration;
-        CharcterSelectMove.Target = -CharcterChnageMove.transform.position.x;
-
-        CharcterSelectMove.MoveAndSetActive(false);
-        CharcterChnageMove.MoveAndSetActive(true);
+        CharcterChnageMove.MoveIn(Direction.Right);
+        CharcterSelectMove.MoveOut(Direction.Left);
     }
 
     /// <summary>
@@ -154,18 +175,14 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnChangeCharcterBackButtonClick()
     {
-        CharcterSelectMove.Target = CharcterChnageMove.transform.position.x;
-        CharcterSelectMove.Duration = CharcterChnageMove.Duration;
-        CharcterChnageMove.Target = -CharcterSelectMove.transform.position.x;
-
-        CharcterChnageMove.MoveAndSetActive(false);
-        CharcterSelectMove.MoveAndSetActive(true);
+        CharcterSelectMove.MoveIn(Direction.Left);
+        CharcterChnageMove.MoveOut(Direction.Right);
     }
 
     /// <summary>
     /// 获得选中的模型id
     /// </summary>
-    /// <param name="selectedUi"></param>
+    /// <param name="id"></param>
     public void OnChoiceCharcterClick(int id)
     {
         _index = id;
@@ -200,11 +217,7 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnEnterGameClick()
     {
-        //1.连接服务器，验证用户名和服务器
-
-
-        //2.进入角色选择页面
-        //3.加载角色信息
+        //1.加载当前用户的角色信息
         RoleController.GetRole();
 
         //设定移动的目标
@@ -224,9 +237,6 @@ public class StartMenuController : MonoBehaviour
     {
         //1.验证用户名和密码
         LoginController.LoginRequest(UsernameInputField.text, PasswordInputField.text);
-
-        //3.验证失败
-        //TODO
     }
 
     /// <summary>
@@ -240,12 +250,6 @@ public class StartMenuController : MonoBehaviour
         LoginScale.SetActive(false);
         StartScale.SetActive(true);
         //3.选择服务器
-        //TODO
-    }
-
-    public void OnSelectServer()
-    {
-        //1.加载角色信息
         //TODO
     }
 
@@ -284,7 +288,7 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnRegisterButtonClick()
     {
-        //1.本地校验，连接服务器校验
+        //1.本地校验
         if (RegisterUsernameInputField.text.Length < 3)
         {
             MessageManger.Instance.SetMessage("用户名不能少于三个字符");
@@ -303,12 +307,8 @@ public class StartMenuController : MonoBehaviour
             return;
         }
 
-
-        //2.校验失败
+        //2.连接服务器校验
         RegisterController.SendRegisterRequest(RegisterUsernameInputField.text, RegisterPasswordConfirmInputField.text);
-
-        //3.校验成功
-        //登陆TOD
     }
 
     /// <summary>
@@ -316,7 +316,7 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnRegisterSuccess()
     {
-        //跳转至开始界面
+        //1.跳转至开始界面
         RegisterScale.SetActive(false);
         StartScale.SetActive(true);
     }
