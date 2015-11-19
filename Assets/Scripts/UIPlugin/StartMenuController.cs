@@ -70,7 +70,7 @@ public class StartMenuController : MonoBehaviour
         RoleController.OnSelectRole += OnSelectRole;
     }
 
-    private void Destory()
+    private void Destroy()
     {
         RoleController.OnAddRole -= OnAddRole;
         RoleController.OnGetRole -= OnGetRole;
@@ -111,6 +111,7 @@ public class StartMenuController : MonoBehaviour
     {
         CharcterSelectMove.SetActiveFalse();
         CharcterChnageMove.SetActiveFalse();
+        PhotonEngine.Instance.SetCurRole(curRole);
         var operation = Application.LoadLevelAsync(Scenes.loadLevel);
         LoadProgressBar.Show(operation);
     }
