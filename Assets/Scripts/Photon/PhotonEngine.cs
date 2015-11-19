@@ -1,24 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using ARPGCommon;
+using ARPGCommon.Model;
 using ExitGames.Client.Photon;
 using UnityEngine;
 
-public class PhotonEngine : MonoBehaviour, IPhotonPeerListener
+public class PhotonEngine : IPhotonPeerListener
 {
-    public static PhotonEngine Instance { get; private set; }
+    //实例
+    public static readonly PhotonEngine Instance =new PhotonEngine();
 
-    public ConnectionProtocol Protocol;
+    //连接配置
+    public ConnectionProtocol Protocol=ConnectionProtocol.Tcp;
     public string ServerAddress = "127.0.0.1:4530";
     public string ServerApplicationName = "ARPGServer";
-
+    //连接事件
     public delegate void OnConnectToServerEvent();
-
     public event OnConnectToServerEvent OnConnectToServer;
-
+    //连接状态
     public bool IsConnected;
+    //连接peer
     private PhotonPeer _peer;
+    //控制器的存储
     private readonly Dictionary<byte, ControllerBase> _controllers = new Dictionary<byte, ControllerBase>();
+    //选中的角色
+    public Role CurRole { get; private set; }
+    /// <summary>
+    /// 设置当前的Role
+    /// </summary>
+    /// <param name="role"></param>
+    public void SetCurRole(Role role)
+    {
+        CurRole = role;
+    }
 
     /// <summary>
     /// 每个Controller需要注册之后才能被PhotonEngine调用.
@@ -27,7 +41,7 @@ public class PhotonEngine : MonoBehaviour, IPhotonPeerListener
     /// <param name="controller"></param>
     public void RegisterController(OperationCode opCode, ControllerBase controller)
     {
-        _controllers.Add((byte) opCode, controller);
+        _controllers.Add((byte)opCode, controller);
     }
 
     /// <summary>
@@ -36,7 +50,7 @@ public class PhotonEngine : MonoBehaviour, IPhotonPeerListener
     /// <param name="opCode"></param>
     public void UnRegisterController(OperationCode opCode)
     {
-        _controllers.Remove((byte) opCode);
+        _controllers.Remove((byte)opCode);
     }
 
     public void DebugReturn(DebugLevel level, string message)
@@ -83,26 +97,31 @@ public class PhotonEngine : MonoBehaviour, IPhotonPeerListener
     public void SendOperationRequest(OperationCode opCode, Dictionary<byte, object> parameters)
     {
         print("send request to server,OperationCode:" + opCode);
-        _peer.OpCustom((byte) opCode, parameters, true);
+        _peer.OpCustom((byte)opCode, parameters, true);
     }
-
-    private void Awake()
+    /// <summary>
+    /// 构造函数,构造时就进行连接
+    /// </summary>
+    private PhotonEngine()
     {
-        Instance = this;
-
         _peer = new PhotonPeer(this, Protocol);
         _peer.Connect(ServerAddress, ServerApplicationName);
 
-        //while (!_isConnected)
+        //while (!IsConnected)
         //{
         //    _peer.Service();
-        //    Debug.Log("connected.");
+        //    //Debug.Log("connected.");
         //}
     }
 
     // Update is called once per frame
-    private void Update()
+    public void Service()
     {
         _peer.Service();
+    }
+
+    private void print(string message)
+    {
+        MonoBehaviour.print(message);
     }
 }
