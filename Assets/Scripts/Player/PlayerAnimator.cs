@@ -10,15 +10,18 @@ public class PlayerAnimator : MonoBehaviour
 
     private NavMeshAgent nav;
     private Animator animator;
+    private Rigidbody rigidbody;
 
     void Start()
     {
-        nav = transform.GetComponent<NavMeshAgent>();
+        nav = transform.GetComponentInParent<NavMeshAgent>();
+        rigidbody = transform.GetComponentInParent<Rigidbody>();
         animator = transform.GetComponent<Animator>();
     }
 
     void Update()
     {
+        
         if (nav.enabled || rigidbody.velocity.magnitude > sensitive)
             animator.SetBool("IsMove", true);
         else

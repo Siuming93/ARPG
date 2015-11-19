@@ -4,13 +4,13 @@ using System.Collections;
 public class PlayerNavigation : MonoBehaviour
 {  
     private NavMeshAgent nav;
-    private Animator animator;
+    private Animator _animator;
 
     public float MinDistance;
     void Start()
     {
         nav = transform.GetComponent<NavMeshAgent>();
-        animator = transform.GetComponent<Animator>();
+        _animator = transform.GetComponentInChildren<Animator>();
         nav.stoppingDistance = MinDistance;
     }
 
