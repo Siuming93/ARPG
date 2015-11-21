@@ -8,14 +8,15 @@ using UnityEngine;
 public class PhotonEngine : IPhotonPeerListener
 {
     //实例
-    public static readonly PhotonEngine Instance =new PhotonEngine();
+    public static readonly PhotonEngine Instance = new PhotonEngine();
 
     //连接配置
-    public ConnectionProtocol Protocol=ConnectionProtocol.Tcp;
+    public ConnectionProtocol Protocol = ConnectionProtocol.Tcp;
     public string ServerAddress = "127.0.0.1:4530";
     public string ServerApplicationName = "ARPGServer";
     //连接事件
     public delegate void OnConnectToServerEvent();
+
     public event OnConnectToServerEvent OnConnectToServer;
     //连接状态
     public bool IsConnected;
@@ -25,6 +26,7 @@ public class PhotonEngine : IPhotonPeerListener
     private readonly Dictionary<byte, ControllerBase> _controllers = new Dictionary<byte, ControllerBase>();
     //选中的角色
     public Role CurRole { get; private set; }
+
     /// <summary>
     /// 设置当前的Role
     /// </summary>
@@ -41,7 +43,7 @@ public class PhotonEngine : IPhotonPeerListener
     /// <param name="controller"></param>
     public void RegisterController(OperationCode opCode, ControllerBase controller)
     {
-        _controllers.Add((byte)opCode, controller);
+        _controllers.Add((byte) opCode, controller);
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class PhotonEngine : IPhotonPeerListener
     /// <param name="opCode"></param>
     public void UnRegisterController(OperationCode opCode)
     {
-        _controllers.Remove((byte)opCode);
+        _controllers.Remove((byte) opCode);
     }
 
     public void DebugReturn(DebugLevel level, string message)
@@ -97,8 +99,9 @@ public class PhotonEngine : IPhotonPeerListener
     public void SendOperationRequest(OperationCode opCode, Dictionary<byte, object> parameters)
     {
         print("send request to server,OperationCode:" + opCode);
-        _peer.OpCustom((byte)opCode, parameters, true);
+        _peer.OpCustom((byte) opCode, parameters, true);
     }
+
     /// <summary>
     /// 构造函数,构造时就进行连接
     /// </summary>
@@ -107,6 +110,8 @@ public class PhotonEngine : IPhotonPeerListener
         _peer = new PhotonPeer(this, Protocol);
         _peer.Connect(ServerAddress, ServerApplicationName);
 
+        //调试用的默认角色
+        CurRole = new Role {Name = "siuming", Isman = false, Level = 10};
         //while (!IsConnected)
         //{
         //    _peer.Service();
