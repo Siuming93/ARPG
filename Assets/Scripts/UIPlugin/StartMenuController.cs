@@ -92,15 +92,15 @@ public class StartMenuController : MonoBehaviour
             //1.创建过角色
             curRole = roles[0];
             UpdateCharcterSelected(curRole);
-            StartMove.MoveOut(Direction.Right);
-            CharcterSelectMove.MoveIn(Direction.Left);
+            StartMove.MoveOut(Direction.RighttoCenter);
+            CharcterSelectMove.MoveIn(Direction.LefttoCenter);
         }
         else
         {
             //2.没有创建过角色
             BackToSelectCharcterGameObject.SetActive(false);
-            StartMove.MoveOut(Direction.Right);
-            CharcterChnageMove.MoveIn(Direction.Left);
+            StartMove.MoveOut(Direction.RighttoCenter);
+            CharcterChnageMove.MoveIn(Direction.LefttoCenter);
         }
     }
 
@@ -109,6 +109,7 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnSelectRole()
     {
+        DontDestroyOnLoad(PhotonEngine.Instance);
         CharcterSelectMove.SetActiveFalse();
         CharcterChnageMove.SetActiveFalse();
         PhotonEngine.Instance.SetCurRole(curRole);
@@ -167,8 +168,8 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnChangeCharcterButtonClick()
     {
-        CharcterChnageMove.MoveIn(Direction.Right);
-        CharcterSelectMove.MoveOut(Direction.Left);
+        CharcterChnageMove.MoveIn(Direction.RighttoCenter);
+        CharcterSelectMove.MoveOut(Direction.LefttoCenter);
     }
 
     /// <summary>
@@ -176,8 +177,8 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void OnChangeCharcterBackButtonClick()
     {
-        CharcterSelectMove.MoveIn(Direction.Left);
-        CharcterChnageMove.MoveOut(Direction.Right);
+        CharcterSelectMove.MoveIn(Direction.LefttoCenter);
+        CharcterChnageMove.MoveOut(Direction.RighttoCenter);
     }
 
     /// <summary>

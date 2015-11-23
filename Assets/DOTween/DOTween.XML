@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <doc>
     <assembly>
         <name>DOTween</name>
@@ -475,14 +475,14 @@
             <summary>Sets the recycling behaviour for the tween.</summary>
             <param name="recyclable">If TRUE the tween will be recycled after being killed, otherwise it will be destroyed.</param>
         </member>
-        <member name="M:DG.Tweening.TweenSettingsExtensions.SetUpdate``1(``0,System.Boolean)">
-            <summary>Sets the update type to UpdateType.Default and lets you choose if it should be independent from Unity's Time.timeScale</summary>
-            <param name="isIndependentUpdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
+        <member name="M:DG.Tweening.TweenSettingsExtensions.SetUptoCenterdate``1(``0,System.Boolean)">
+            <summary>Sets the update type to UptoCenterdateType.Default and lets you choose if it should be independent from Unity's Time.timeScale</summary>
+            <param name="isIndependentUptoCenterdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
         </member>
-        <member name="M:DG.Tweening.TweenSettingsExtensions.SetUpdate``1(``0,DG.Tweening.UpdateType,System.Boolean)">
+        <member name="M:DG.Tweening.TweenSettingsExtensions.SetUptoCenterdate``1(``0,DG.Tweening.UptoCenterdateType,System.Boolean)">
             <summary>Sets the type of update (default or independent) for the tween</summary>
-            <param name="updateType">The type of update (defalt: UpdateType.Default)</param>
-            <param name="isIndependentUpdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
+            <param name="updateType">The type of update (defalt: UptoCenterdateType.Default)</param>
+            <param name="isIndependentUptoCenterdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnStart``1(``0,DG.Tweening.Core.TweenCallback)">
             <summary>Sets the onStart callback for the tween.
@@ -499,8 +499,8 @@
             either by calling <code>Rewind</code> or by reaching the start position while playing backwards.
             Rewinding a tween that is already rewinded will not fire this callback</summary>
         </member>
-        <member name="M:DG.Tweening.TweenSettingsExtensions.OnUpdate``1(``0,DG.Tweening.Core.TweenCallback)">
-            <summary>Sets the onUpdate callback for the tween.
+        <member name="M:DG.Tweening.TweenSettingsExtensions.OnUptoCenterdate``1(``0,DG.Tweening.Core.TweenCallback)">
+            <summary>Sets the onUptoCenterdate callback for the tween.
             Called each time the tween updates</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnStepComplete``1(``0,DG.Tweening.Core.TweenCallback)">
@@ -773,14 +773,14 @@
             <summary>Sets the recycling behaviour for the tween.</summary>
             <param name="recyclable">If TRUE the tween will be recycled after being killed, otherwise it will be destroyed.</param>
         </member>
-        <member name="M:DG.Tweening.TweenParms.SetUpdate(System.Boolean)">
-            <summary>Sets the update type to UpdateType.Default and lets you choose if it should be independent from Unity's Time.timeScale</summary>
-            <param name="isIndependentUpdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
+        <member name="M:DG.Tweening.TweenParms.SetUptoCenterdate(System.Boolean)">
+            <summary>Sets the update type to UptoCenterdateType.Default and lets you choose if it should be independent from Unity's Time.timeScale</summary>
+            <param name="isIndependentUptoCenterdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
         </member>
-        <member name="M:DG.Tweening.TweenParms.SetUpdate(DG.Tweening.UpdateType,System.Boolean)">
+        <member name="M:DG.Tweening.TweenParms.SetUptoCenterdate(DG.Tweening.UptoCenterdateType,System.Boolean)">
             <summary>Sets the type of update (default or independent) for the tween</summary>
-            <param name="updateType">The type of update (defalt: UpdateType.Default)</param>
-            <param name="isIndependentUpdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
+            <param name="updateType">The type of update (defalt: UptoCenterdateType.Default)</param>
+            <param name="isIndependentUptoCenterdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
         </member>
         <member name="M:DG.Tweening.TweenParms.OnStart(DG.Tweening.Core.TweenCallback)">
             <summary>Sets the onStart callback for the tween.
@@ -797,8 +797,8 @@
             either by calling <code>Rewind</code> or by reaching the start position while playing backwards.
             Rewinding a tween that is already rewinded will not fire this callback</summary>
         </member>
-        <member name="M:DG.Tweening.TweenParms.OnUpdate(DG.Tweening.Core.TweenCallback)">
-            <summary>Sets the onUpdate callback for the tween.
+        <member name="M:DG.Tweening.TweenParms.OnUptoCenterdate(DG.Tweening.Core.TweenCallback)">
+            <summary>Sets the onUptoCenterdate callback for the tween.
             Called each time the tween updates</summary>
         </member>
         <member name="M:DG.Tweening.TweenParms.OnStepComplete(DG.Tweening.Core.TweenCallback)">
@@ -882,7 +882,7 @@
             either by calling <code>Rewind</code> or by reaching the start position while playing backwards.
             Rewinding a tween that is already rewinded will not fire this callback</summary>
         </member>
-        <member name="F:DG.Tweening.Tween.onUpdate">
+        <member name="F:DG.Tweening.Tween.onUptoCenterdate">
             <summary>Called each time the tween updates</summary>
         </member>
         <member name="F:DG.Tweening.Tween.onStepComplete">
@@ -1221,7 +1221,7 @@
             Contains all instance-based methods
             </summary>
         </member>
-        <member name="F:DG.Tweening.Core.DOTweenComponent.inspectorUpdater">
+        <member name="F:DG.Tweening.Core.DOTweenComponent.inspectorUptoCenterdater">
             <summary>Used internally inside Unity Editor, as a trick to update DOTween's inspector at every frame</summary>
         </member>
         <member name="M:DG.Tweening.Core.DOTweenComponent.SetCapacity(System.Int32,System.Int32)">
@@ -1256,16 +1256,16 @@
         <member name="F:DG.Tweening.AutoPlay.All">
             <summary>All tweens are automatically played</summary>
         </member>
-        <member name="T:DG.Tweening.UpdateType">
+        <member name="T:DG.Tweening.UptoCenterdateType">
             <summary>
-            Update type
+            UptoCenterdate type
             </summary>
         </member>
-        <member name="F:DG.Tweening.UpdateType.Default">
-            <summary>Updates every frame during Update calls</summary>
+        <member name="F:DG.Tweening.UptoCenterdateType.Default">
+            <summary>UptoCenterdates every frame during UptoCenterdate calls</summary>
         </member>
-        <member name="F:DG.Tweening.UpdateType.Late">
-            <summary>Updates every frame during LateUpdate calls</summary>
+        <member name="F:DG.Tweening.UptoCenterdateType.Late">
+            <summary>UptoCenterdates every frame during LateUptoCenterdate calls</summary>
         </member>
         <member name="T:DG.Tweening.ShortcutExtensions">
             <summary>

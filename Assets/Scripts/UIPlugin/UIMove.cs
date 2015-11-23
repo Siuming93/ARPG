@@ -71,16 +71,16 @@ public class UIMove : MonoBehaviour
         Duration = duration;
         switch (direction)
         {
-            case Direction.Up:
+            case Direction.UptoCenter:
                 target = new Vector3(transform.position.x, Screen.height*1.5f, transform.position.z);
                 break;
-            case Direction.Bottom:
+            case Direction.BottomtoCenter:
                 target = new Vector3(transform.position.x, -Screen.height*0.5f, transform.position.z);
                 break;
-            case Direction.Left:
+            case Direction.LefttoCenter:
                 target = new Vector3(-Screen.width*0.5f, transform.position.y, transform.position.z);
                 break;
-            case Direction.Right:
+            case Direction.RighttoCenter:
                 target = new Vector3(Screen.width*1.5f, transform.position.y, transform.position.z);
                 break;
             default:
@@ -96,16 +96,16 @@ public class UIMove : MonoBehaviour
         Duration = duration;
         switch (direction)
         {
-            case Direction.Up:
+            case Direction.UptoCenter:
                 transform.position = new Vector3(transform.position.x, Screen.height*1.5f, transform.position.z);
                 break;
-            case Direction.Bottom:
+            case Direction.BottomtoCenter:
                 transform.position = new Vector3(transform.position.x, -Screen.height*0.5f, transform.position.z);
                 break;
-            case Direction.Left:
+            case Direction.LefttoCenter:
                 transform.position = new Vector3(-Screen.width*0.5f, transform.position.y, transform.position.z);
                 break;
-            case Direction.Right:
+            case Direction.RighttoCenter:
                 transform.position = new Vector3(Screen.width*1.5f, transform.position.y, transform.position.z);
                 break;
             default:
@@ -121,8 +121,8 @@ public class UIMove : MonoBehaviour
 
 public enum Direction : byte
 {
-    Up,
-    Bottom,
-    Left,
-    Right
+    UptoCenter,
+    BottomtoCenter,
+    LefttoCenter,
+    RighttoCenter
 }

@@ -10,9 +10,16 @@ public class TaskUI : MonoBehaviour
     public Button closeButton;
     public UIScale thisPanel;
 
-    void Start()
+
+    private void Start()
     {
         closeButton.onClick.AddListener(OnCloseButtonClick);
+    }
+
+    public void OnSyncTaskDbComplete()
+    {
+        print("OnSyncTaskDbComplete");
+        InitTaskListUI();
     }
 
     /// <summary>
@@ -31,7 +38,7 @@ public class TaskUI : MonoBehaviour
         }
     }
 
-    void OnCloseButtonClick()
+    private void OnCloseButtonClick()
     {
         thisPanel.SetActive(false);
     }

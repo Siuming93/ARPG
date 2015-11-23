@@ -14,9 +14,9 @@ public class LoginController : ControllerBase
     public void LoginRequest(string username, string password)
     {
         //1.初始化参数
-        var json = JsonMapper.ToJson(new User {Username = username, Password = password});
-        var parameters = new Dictionary<byte, object> {{(byte) ParameterCode.UserCheckInfo, json}};
-
+        var parameters = new Dictionary<byte, object>();
+        ParameterTool.AddParameter(parameters, ParameterCode.UserCheckInfo,
+            new User {Username = username, Password = password});
         //2.发送登录请求与帐号密码
         PhotonEngine.Instance.SendOperationRequest(OperationCode.Login, parameters);
     }

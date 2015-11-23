@@ -19,15 +19,15 @@ public class TaskItemUI : MonoBehaviour
     {
         this.task=task;
 
-        nameText.text = task._name;
-        descriptionText.text = task._description;
-        coinText.text = task._coin.ToString();
-        diamondText.text = task._diamond.ToString();
+        nameText.text = task.Name;
+        descriptionText.text = task.Description;
+        coinText.text = task.Coin.ToString();
+        diamondText.text = task.Diamond.ToString();
 
-        GameObject iconSpritePre = Resources.Load<GameObject>(AssetPath + task._icon);
+        GameObject iconSpritePre = Resources.Load<GameObject>(AssetPath + task.Icon);
         icon.sprite = iconSpritePre.GetComponent<SpriteRenderer>().sprite;
 
-        GameObject typeSpritePre = Resources.Load<GameObject>(AssetPath + task._taskType.ToString());
+        GameObject typeSpritePre = Resources.Load<GameObject>(AssetPath + task.TaskType.ToString());
         taskType.sprite = typeSpritePre.GetComponent<SpriteRenderer>().sprite;
 
         button.onClick.AddListener(OnButtonClick);

@@ -5,17 +5,18 @@ using ARPGCommon.Model;
 using ExitGames.Client.Photon;
 using UnityEngine;
 
-public class PhotonEngine : IPhotonPeerListener
+public class PhotonEngine : MonoBehaviour, IPhotonPeerListener
 {
     //实例
-    public static readonly PhotonEngine Instance =new PhotonEngine();
+    public static PhotonEngine Instance { get; private set; }
 
     //连接配置
-    public ConnectionProtocol Protocol=ConnectionProtocol.Tcp;
+    public ConnectionProtocol Protocol = ConnectionProtocol.Tcp;
     public string ServerAddress = "127.0.0.1:4530";
     public string ServerApplicationName = "ARPGServer";
     //连接事件
     public delegate void OnConnectToServerEvent();
+
     public event OnConnectToServerEvent OnConnectToServer;
     //连接状态
     public bool IsConnected;
@@ -25,6 +26,7 @@ public class PhotonEngine : IPhotonPeerListener
     private readonly Dictionary<byte, ControllerBase> _controllers = new Dictionary<byte, ControllerBase>();
     //选中的角色
     public Role CurRole { get; private set; }
+
     /// <summary>
     /// 设置当前的Role
     /// </summary>
@@ -41,7 +43,7 @@ public class PhotonEngine : IPhotonPeerListener
     /// <param name="controller"></param>
     public void RegisterController(OperationCode opCode, ControllerBase controller)
     {
-        _controllers.Add((byte)opCode, controller);
+        _controllers.Add((byte) opCode, controller);
     }
 
     /// <summary>
@@ -50,12 +52,12 @@ public class PhotonEngine : IPhotonPeerListener
     /// <param name="opCode"></param>
     public void UnRegisterController(OperationCode opCode)
     {
-        _controllers.Remove((byte)opCode);
+        _controllers.Remove((byte) opCode);
     }
 
     public void DebugReturn(DebugLevel level, string message)
     {
-        //throw new NotImplementedException();
+        print("DebugReturn:" + message);
     }
 
     public void OnEvent(EventData eventData)
@@ -66,7 +68,7 @@ public class PhotonEngine : IPhotonPeerListener
     public void OnOperationResponse(OperationResponse operationResponse)
     {
         ControllerBase controller;
-        print("OnOpertaionResponse,OperationCode:" + operationResponse.OperationCode);
+        print("OnOpertaionResponse,OperationCode:" + (OperationCode) operationResponse.OperationCode);
         if (_controllers.TryGetValue(operationResponse.OperationCode, out controller))
         {
             controller.OnOperationResponse(operationResponse);
@@ -97,16 +99,33 @@ public class PhotonEngine : IPhotonPeerListener
     public void SendOperationRequest(OperationCode opCode, Dictionary<byte, object> parameters)
     {
         print("send request to server,OperationCode:" + opCode);
-        _peer.OpCustom((byte)opCode, parameters, true);
+        _peer.OpCustom((byte) opCode, parameters, true);
     }
+
+    /// <summary>
+    /// 发送带子操作的请求.
+    /// </summary>
+    /// <param name="opCode"></param>
+    /// <param name="subCode"></param>
+    /// <param name="parameters"></param>
+    public void SendOperationRequest(OperationCode opCode, SubCode subCode, Dictionary<byte, object> parameters)
+    {
+        print("send request to server,OperationCode:" + opCode + ",SubCode:" + subCode);
+        ParameterTool.AddParameter(parameters, ParameterCode.SubCode, subCode, false);
+        _peer.OpCustom((byte) opCode, parameters, true);
+    }
+
     /// <summary>
     /// 构造函数,构造时就进行连接
     /// </summary>
-    private PhotonEngine()
+    private void Awake()
     {
+        Instance = this;
         _peer = new PhotonPeer(this, Protocol);
         _peer.Connect(ServerAddress, ServerApplicationName);
 
+        //调试用的默认角色
+        CurRole = new Role {Name = "siuming", Isman = false, Level = 10};
         //while (!IsConnected)
         //{
         //    _peer.Service();
@@ -115,7 +134,7 @@ public class PhotonEngine : IPhotonPeerListener
     }
 
     // Update is called once per frame
-    public void Service()
+    public void Update()
     {
         _peer.Service();
     }

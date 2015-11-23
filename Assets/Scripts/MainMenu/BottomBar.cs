@@ -6,11 +6,9 @@ public class BottomBar : MonoBehaviour
     public UIScale TaskUIScale;
     public UIScale KnapscakUIScale;
 
-    public TaskUI taskUI;
 
-    void Start()
+    private void Start()
     {
-        taskUI.InitTaskListUI();
     }
 
     public void OnTaskButtonClick()
