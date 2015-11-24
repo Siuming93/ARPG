@@ -19,22 +19,24 @@ public class TaskUI : MonoBehaviour
     public void OnSyncTaskDbComplete()
     {
         print("OnSyncTaskDbComplete");
-        InitTaskListUI();
+        InitTaskListUi();
     }
 
     /// <summary>
     /// 初始化任务列表
     /// </summary>
-    public void InitTaskListUI()
+    public void InitTaskListUi()
     {
-        Dictionary<int, Task> taskDic = TaskManager.Instance.TaskDic;
+        var taskDic = TaskManager.Instance.TaskDic;
 
-        foreach (Task task in taskDic.Values)
+        foreach (var task in taskDic.Values)
         {
-            GameObject obj = GameObject.Instantiate(TaskItemUI) as GameObject;
+            var obj = Instantiate(TaskItemUI) as GameObject;
             obj.transform.parent = TaskGridUI.transform;
-            TaskItemUI taskUI = obj.GetComponent<TaskItemUI>();
-            taskUI.SetTask(task);
+            var taskUi = obj.GetComponent<TaskItemUI>();
+            //初始化,不初始化不能用
+            taskUi.TaskUiScale = thisPanel;
+            taskUi.SetTask(task);
         }
     }
 

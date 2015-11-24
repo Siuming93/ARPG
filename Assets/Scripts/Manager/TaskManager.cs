@@ -38,19 +38,33 @@ public class TaskManager : MonoBehaviour
     public void Excute(Task task)
     {
         _curTask = task;
-        var targetPos = NPCManager.Instance.GetNpc(task.NpcId).transform.position;
-        PlayerNavigation.SetDestination(targetPos);
+        switch (task.TaskState)
+        {
+            case TaskState.UnStarted:
+                var targetPos = NPCManager.Instance.GetNpc(task.NpcId).transform.position;
+                PlayerNavigation.SetDestination(targetPos);
+                break;
+            case TaskState.Accepted:
+                PlayerNavigation.SetDestination(TranscriptEnterTransform.position);
+                break;
+            case TaskState.Accomplished:
+                break;
+            case TaskState.Achieved:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public void OnArriveDestination()
     {
         var taskDb = _curTask.GetTaskDb();
-        switch (_curTask.TaskProgress)
+        switch (_curTask.TaskState)
         {
-            case TaskProgress.UnStarted:
+            case TaskState.UnStarted:
                 TaskDbController.AddTaskDb(taskDb);
                 break;
-            case TaskProgress.Accepted:
+            case TaskState.Accepted:
                 break;
         }
     }
@@ -65,7 +79,8 @@ public class TaskManager : MonoBehaviour
         for (var i = 0; taskDbs != null && i < taskDbs.Count; i++)
         {
             Task task = null;
-            if (TaskDic.TryGetValue(taskDbs[i].Id, out task))
+            var key = taskDbs[i].TaskId;
+            if (TaskDic.TryGetValue(key, out task))
             {
                 task.SyncTaskDb(taskDbs[i]);
             }
@@ -87,15 +102,15 @@ public class TaskManager : MonoBehaviour
         task.SyncTaskDb(taskDb);
         switch (taskDb.TaskState)
         {
-            case TaskState.UnStarted:
+            case (byte) TaskState.UnStarted:
                 break;
-            case TaskState.Accepted:
+            case (byte) TaskState.Accepted:
                 PlayerNavigation.SetDestination(TranscriptEnterTransform.position);
                 NpcTalkPanelScale.SetActive(false);
                 break;
-            case TaskState.Accomplished:
+            case (byte) TaskState.Accomplished:
                 break;
-            case TaskState.Achieved:
+            case (byte) TaskState.Achieved:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -155,7 +170,7 @@ public class TaskManager : MonoBehaviour
             task.TalkContent = infos[7];
             task.NpcId = int.Parse(infos[8]);
             task.TranscriptId = int.Parse(infos[9]);
-            task.TaskProgress = TaskProgress.UnStarted;
+            task.TaskState = TaskState.UnStarted;
 
             TaskDic.Add(task.Id, task);
         }

@@ -1,16 +1,7 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 using ARPGCommon;
 using ARPGCommon.Model;
 
-public enum TaskProgress : byte
-{
-    UnStarted,
-    Accepted,
-    Accomplished,
-    Achieved
-}
 
 public class Task
 {
@@ -35,39 +26,23 @@ public class Task
     //副本id
     public int TranscriptId;
     //任务的状态
-    public TaskProgress TaskProgress;
+    public TaskState TaskState;
     //任务的数据库记录
     public TaskDb TaskDb = new TaskDb();
 
     public void SyncTaskDb(TaskDb taskDb)
     {
         TaskDb = taskDb;
-        switch (taskDb.TaskState)
-        {
-            case TaskState.UnStarted:
-                TaskProgress = TaskProgress.UnStarted;
-                break;
-            case TaskState.Accepted:
-                TaskProgress = TaskProgress.Accepted;
-                break;
-            case TaskState.Accomplished:
-                TaskProgress = TaskProgress.Accomplished;
-                break;
-            case TaskState.Achieved:
-                TaskProgress = TaskProgress.Achieved;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        TaskState = (TaskState) taskDb.TaskState;
     }
 
     public TaskDb GetTaskDb()
     {
-        TaskDb.TaskType = TaskType;
+        TaskDb.TaskType = (byte) TaskType;
         TaskDb.TaskId = Id;
         TaskDb.Role = PhotonEngine.Instance.CurRole;
         TaskDb.LastUpdateTime = new DateTime();
-        TaskDb.TaskState = (TaskState) TaskProgress;
+        TaskDb.TaskState = (byte) TaskState;
         return TaskDb;
     }
 }

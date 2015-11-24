@@ -92,13 +92,13 @@
      <Compile Include="Assets\Scripts\UIPlugin\UIScreenFade.cs" />
      <None Include="Assets\Scripts\MainMenu\Task\TaskInfoList.txt" />
      <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
-     <None Include="Assets\DOTween\readme.txt" />
+     <None Include="Assets\Plugins\DOTween\readme.txt" />
      <None Include="Assets\Scripts\MainMenu\InventoryInfoList.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>D:/practice/TaiDouARPG/Assets/DOTween/DOTween.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="ARPGCommon">
  <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/ARPGCommon.dll</HintPath>

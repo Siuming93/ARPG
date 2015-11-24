@@ -11,13 +11,16 @@ public class TaskItemUI : MonoBehaviour
     public Image icon;
     public Image taskType;
     public Button button;
+    //任务面板缩放
+    [HideInInspector] public UIScale TaskUiScale;
 
     private string AssetPath = "ItemPrefabs/";
     private Task task;
 
+
     public void SetTask(Task task)
     {
-        this.task=task;
+        this.task = task;
 
         nameText.text = task.Name;
         descriptionText.text = task.Description;
@@ -33,8 +36,9 @@ public class TaskItemUI : MonoBehaviour
         button.onClick.AddListener(OnButtonClick);
     }
 
-    void OnButtonClick()
+    private void OnButtonClick()
     {
         TaskManager.Instance.Excute(task);
+        TaskUiScale.ScaleOut();
     }
 }
