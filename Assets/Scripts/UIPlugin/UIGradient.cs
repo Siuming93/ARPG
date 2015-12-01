@@ -4,12 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 [AddComponentMenu("UI/Effects/Gradient")]
-public class UIGradient :BaseVertexEffect
+public class UIGradient : BaseVertexEffect
 {
-    [SerializeField]
-    public Color32 topColor=Color.white;
-    [SerializeField]
-    public Color32 bottomColor = Color.black;
+    [SerializeField] public Color32 topColor = Color.white;
+    [SerializeField] public Color32 bottomColor = Color.black;
 
     public override void ModifyVertices(List<UIVertex> verts)
     {
@@ -27,12 +25,12 @@ public class UIGradient :BaseVertexEffect
                 bottomY = y;
         }
 
-        float uiElementHeight=topY-bottomY;
+        float uiElementHeight = topY - bottomY;
 
         for (int i = 0; i < verts.Count; i++)
         {
             UIVertex vert = verts[i];
-            vert.color = Color32.Lerp(bottomColor, topColor, (vert.position.y - bottomY) / uiElementHeight);
+            vert.color = Color32.Lerp(bottomColor, topColor, (vert.position.y - bottomY)/uiElementHeight);
             verts[i] = vert;
         }
     }

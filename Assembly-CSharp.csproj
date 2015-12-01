@@ -48,66 +48,68 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Assemblies\Scenes.cs" />
      <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
-     <Compile Include="Assets\Scripts\Camera\CmeraRenderTexture.cs" />
      <Compile Include="Assets\Scripts\Common\DelegateEventDeline.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\BottomBar.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Inventory.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\InventoryItem.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\InventoryManger.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\KnapsackItem.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\KnapscakCharcter.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\KnapscakUISprite.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\PlayerBar.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\PlayerStatus.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Task\Task.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Task\TaskItemUI.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Task\TaskUI.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\TopBar.cs" />
-     <Compile Include="Assets\Scripts\Manager\GameManger.cs" />
-     <Compile Include="Assets\Scripts\Manager\NPCManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\PlayerInfo.cs" />
-     <Compile Include="Assets\Scripts\Manager\TaskManager.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\ControllerBase.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\LoginController.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\RegisterController.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\RoleController.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\ServerController.cs" />
-     <Compile Include="Assets\Scripts\Photon\Controller\TaskDbController.cs" />
-     <Compile Include="Assets\Scripts\Photon\PhotonEngine.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerNavigation.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\LoadProgressBar.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\LoginServerController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\PlayerStatusController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\RegisterServerController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\RoleServerController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\ServerControllerBase.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\ServerListServerController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\Controller\TaskDbServerController.cs" />
+     <Compile Include="Assets\Scripts\Model\Photon\PhotonEngine.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\GameManger.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\InventoryManger.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\NPCManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\PlayerStatusManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\TaskManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Start\StartMenuController.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\MessageManger.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\ServerUiProperty.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\StartMenuController.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIGradient.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIRenderTexture.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\UIScreenFade.cs" />
-     <None Include="Assets\Scripts\MainMenu\Task\TaskInfoList.txt" />
+     <Compile Include="Assets\Scripts\View\Camera\CmeraRenderTexture.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\BottomBar.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\Inventory.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapsackItem.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapscakCharcter.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapscakUiSprite.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\MainMenuManager.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerBar.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerStatusUi.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Task\Task.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskItemUI.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskUI.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\TopBar.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\UIScreenFade.cs" />
+     <Compile Include="Assets\Scripts\View\Player\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\View\Player\PlayerAnimator.cs" />
+     <Compile Include="Assets\Scripts\View\Player\PlayerMove.cs" />
+     <Compile Include="Assets\Scripts\View\Player\PlayerNavigation.cs" />
+     <Compile Include="Assets\Scripts\View\Start\LoadProgressBar.cs" />
+     <Compile Include="Assets\Scripts\View\Start\ServerUiProperty.cs" />
+     <None Include="Assets\Scripts\View\MainMenu\Task\TaskInfoList.txt" />
      <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
-     <None Include="Assets\Plugins\DOTween\readme.txt" />
-     <None Include="Assets\Scripts\MainMenu\InventoryInfoList.txt" />
+     <None Include="Assets\Model\Transcript\Plugins\DOTween\readme.txt" />
+     <None Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryInfoList.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="DOTween">
- <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/DOTween/DOTween.dll</HintPath>
- </Reference>
  <Reference Include="ARPGCommon">
- <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/ARPGCommon.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/ARPGCommon.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/LitJson.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/Photon3Unity3D.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/DOTween/DOTween.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
