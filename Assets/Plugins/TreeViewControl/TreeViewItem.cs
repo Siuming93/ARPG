@@ -12,6 +12,9 @@ public class TreeViewItem
     public bool IsHover = false;
     public bool IsSelected = false;
     public List<TreeViewItem> Items = new List<TreeViewItem>();
+    public int ChildItemCount {
+        get { return Items.Count; }
+    }
 
     public TreeViewControl ParentControl = null;
     public TreeViewItem Parent = null;
