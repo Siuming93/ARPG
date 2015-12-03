@@ -9,12 +9,14 @@ namespace Assets.Scripts.View.Skill
     {
         public int Id;
         public string Name;
-        public Animator Animator;
-
-        private readonly List<ActionBase> Actions = new List<ActionBase>();
+        public List<ActionBase> Actions = new List<ActionBase>();
 
         public void Init(GameObject player)
         {
+            for (int i = 0; i < Actions.Count; i++)
+            {
+                Actions[i].Init(player);
+            }
         }
 
         public void Update()

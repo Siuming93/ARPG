@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.View.Skill.Action
 {
-    internal class AnimationAction : ActionBase
+    public class AnimationAction : ActionBase
     {
         public string TriggerName;
 
