@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Assets.Scripts.View.Skill.Action;
 using UnityEditor;
 using UnityEngine;
@@ -48,6 +51,7 @@ namespace Assets.Editor
             wantsMouseMove = true;
         }
 
+        private int _index = 0;
         private void OnGUI()
         {
             if (_treeViewControl == null)
@@ -72,21 +76,24 @@ namespace Assets.Editor
                 case SelectedType.Root:
                     if (GUILayout.Button("AddSkill"))
                     {
-                        SkillEditorManager.CreateSkill(0);
+                        SkillEditorManager.CreateSkill();
                     }
                     break;
                 case SelectedType.Skill:
 
                     GUILayout.BeginHorizontal();
                     //1.获得当前的种类
-                    GUILayout.Label("Choice ActionType");
-                    GUIContent[] content = new GUIContent[]
-                    {new GUIContent() {text = "ff"}, new GUIContent() {text = "ff"}, new GUIContent() {text = "ff"},};
-                    GUILayout.SelectionGrid(0, content, 1);
+
+                    var list = GetActionTypes();
+                    _index = EditorGUILayout.Popup("Choice Action", _index, list.ToArray());
                     GUILayout.EndHorizontal();
                     if (GUILayout.Button("AddAction"))
                     {
-                        SkillEditorManager.CreateAction(typeof (AnimationAction));
+                        var actionType = (from type in Assembly.GetAssembly(typeof (ActionBase)).GetTypes()
+                            where type.Name == list[_index]
+                            select type).ToList()[0];
+
+                        SkillEditorManager.CreateAction(actionType);
                     }
                     break;
                 case SelectedType.Action:
@@ -94,6 +101,13 @@ namespace Assets.Editor
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        List<string> GetActionTypes()
+        {
+            var types = Assembly.GetAssembly(typeof(ActionBase)).GetTypes();
+
+            return (from type in types where type.BaseType == typeof(ActionBase) select type.Name).ToList();
         }
     }
 }

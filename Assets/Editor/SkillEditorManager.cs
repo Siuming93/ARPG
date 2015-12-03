@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Assets.Scripts.View.Skill;
 using Assets.Scripts.View.Skill.Action;
 using UnityEditor;
@@ -16,8 +17,9 @@ namespace Assets.Editor
             Debug.Log(string.Format("{0} detected: {1}", args.GetType().Name, (sender as TreeViewItem).Header));
         }
 
-        public static void CreateSkill(int id)
+        public static void CreateSkill()
         {
+            var id = SelectedItem.ChildItemCount;
             var skill = ScriptableObject.CreateInstance<Skill>();
             skill.Id = id;
 
@@ -34,33 +36,50 @@ namespace Assets.Editor
             newItem.IsSelected = true;
             AddEvents(newItem);
 
-            AssetDatabase.CreateFolder(Path, skill.Id.ToString());
+            CreateFolder(Path, skill.Id.ToString());
             AssetDatabase.CreateAsset(skill, path);
         }
 
         public static void CreateActionAsset(TreeViewItem parentItem, ActionBase action)
         {
-            var newItem = parentItem.AddItem(action.GetType().ToString());
+            var newItem = parentItem.AddItem(action.GetType().Name + (parentItem.ChildItemCount + 1));
             var data = parentItem.DataContext as ItemData;
             var path = Path + "/" + data.Name;
+            var Skill = data.Data as Skill;
 
-            newItem.DataContext = new ItemData() {SelectedType = SelectedType.Skill, Path = path};
+            Skill.Actions.Add(action);
+
+            newItem.DataContext = new ItemData() { SelectedType = SelectedType.Action, Path = path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset" };
             newItem.IsSelected = true;
             AddEvents(newItem);
 
-            AssetDatabase.CreateFolder(path, "Actions");
-            AssetDatabase.CreateAsset(action, path + "/Actions/" + action.GetType() + ".asset");
+            CreateFolder(path, "Actions");
+            AssetDatabase.CreateAsset(action, path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset");
+        }
+
+        /// <summary>
+        /// 想要创建的文件夹存在时,则不创建
+        /// </summary>
+        /// <param name="parentPath"></param>
+        /// <param name="name"></param>
+        /// <param name="allwaysCreateNew"></param>
+        private static void CreateFolder(string parentPath, string name, bool allwaysCreateNew = false)
+        {
+            if (Directory.Exists(parentPath + "/" + name) && !allwaysCreateNew)
+                return;
+
+            AssetDatabase.CreateFolder(parentPath, name);
         }
 
         public static void CreateAction(Type actionType)
         {
-            var action = ScriptableObject.CreateInstance<AnimationAction>();
+            var action = ScriptableObject.CreateInstance(actionType) as ActionBase;
             CreateActionAsset(SelectedItem, action);
         }
 
         public static void SelectedHanlder(object sender, System.EventArgs args)
         {
-            var data = (ItemData) (sender as TreeViewItem).DataContext;
+            var data = (ItemData)(sender as TreeViewItem).DataContext;
             SelectedItem = sender as TreeViewItem;
 
             switch (data.SelectedType)
@@ -68,9 +87,10 @@ namespace Assets.Editor
                 case SelectedType.Root:
                     break;
                 case SelectedType.Skill:
-                    //选择操作
+                    Selection.activeObject = Resources.Load(data.Path.Substring(17, data.Path.Length - 23));
                     break;
                 case SelectedType.Action:
+                    Selection.activeObject = Resources.Load(data.Path.Substring(17, data.Path.Length - 23));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -97,11 +117,7 @@ namespace Assets.Editor
             item.Height = 500;
             item.Header = "Skill List";
             AddEvents(item.RootItem);
-            var item1 = item.RootItem.AddItem("skill1");
-
-            AddEvents(item1);
-            item.DataContext = new ItemData() {SelectedType = SelectedType.Root};
-            item1.DataContext = new ItemData() {SelectedType = SelectedType.Skill};
+            item.DataContext = new ItemData() { SelectedType = SelectedType.Root };
         }
     }
 
