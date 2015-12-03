@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.View.Skill.Action
 {
-    public  class BattleEffectActionBase : ActionBase
+    public  class BattleEffectAction : ActionBase
     {
         public GameObject EffectPrefabGameObject;
         private string _tag;
