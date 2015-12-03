@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class Example : MonoBehaviour {
-
+public class Example : MonoBehaviour
+{
     public TreeViewControl m_myTreeView = null;
 
-	// Use this for initialization
-	public void Start () {
-
+    // Use this for initialization
+    public void Start()
+    {
 //         m_myTreeView = gameObject.GetComponent<TreeViewControl>();
         if (null == m_myTreeView)
         {
@@ -23,12 +23,12 @@ public class Example : MonoBehaviour {
         Debug.Log(string.Format("{0} detected: {1}", args.GetType().Name, (sender as TreeViewItem).Header));
     }
 
-    static void AddHandlerEvent(out System.EventHandler handler)
+    private static void AddHandlerEvent(out System.EventHandler handler)
     {
-        handler = new System.EventHandler(Handler);
+        handler = Handler;
     }
 
-    static void AddEvents(TreeViewItem item)
+    private static void AddEvents(TreeViewItem item)
     {
         AddHandlerEvent(out item.Click);
         AddHandlerEvent(out item.Checked);
@@ -53,9 +53,9 @@ public class Example : MonoBehaviour {
         AddEvents(games.AddItem("You can also drag and drop the"));
         AddEvents(games.AddItem("TreeViewControl script onto a"));
         AddEvents(games.AddItem("game object."));
-		AddEvents(games.AddItem("New checked and", false, true));
-		AddEvents(games.AddItem("unchecked checkboxes", false, false));
-	}
+        AddEvents(games.AddItem("New checked and", false, true));
+        AddEvents(games.AddItem("unchecked checkboxes", false, false));
+    }
 
     public void OnGUI()
     {
