@@ -24,7 +24,7 @@ namespace Assets.Scripts.View.Skill.Action
         protected override void Play()
         {
             _animator.SetTrigger(TriggerName);
-
+            _animator.SetFloat("float", 32f);
             Finish();
         }
     }

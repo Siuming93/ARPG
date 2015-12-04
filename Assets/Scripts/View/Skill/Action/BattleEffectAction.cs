@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Presenter.Manager;
 using UnityEngine;
 
 namespace Assets.Scripts.View.Skill.Action
 {
-    public  class BattleEffectAction : ActionBase
+    public class BattleEffectAction : ActionBase
     {
         public GameObject EffectPrefabGameObject;
-        private string _tag;
+        public string Tag;
+        public Vector3 Position;
+        public Quaternion Rotaion;
         private Transform _playerTransform;
 
         public override ActionType ActionType
@@ -19,13 +22,18 @@ namespace Assets.Scripts.View.Skill.Action
 
         public override void Init(GameObject playerGameObject)
         {
-            _tag = playerGameObject.tag;
             _playerTransform = playerGameObject.transform;
         }
 
         protected override void Play()
         {
-            Instantiate(EffectPrefabGameObject, _playerTransform.position, _playerTransform.rotation);
+            var effect = Instantiate(EffectPrefabGameObject) as GameObject;
+            var Transform = GameObject.FindGameObjectWithTag(Tag).transform;
+            effect.transform.parent = Transform;
+            effect.transform.localPosition = Position;
+            effect.transform.localRotation = Rotaion;
+
+            Finish();
         }
     }
 

@@ -42,6 +42,7 @@ namespace Assets.Editor
             _treeViewControl = TreeViewInspector.AddTreeView();
             _treeViewControl.DisplayInInspector = false;
             _treeViewControl.DisplayOnScene = false;
+            _treeViewControl.DisplayOnGame = false;
 
             SkillEditorManager.InitTree(_treeViewControl);
         }
@@ -52,6 +53,7 @@ namespace Assets.Editor
         }
 
         private int _index = 0;
+
         private void OnGUI()
         {
             if (_treeViewControl == null)
@@ -103,11 +105,11 @@ namespace Assets.Editor
             }
         }
 
-        List<string> GetActionTypes()
+        private List<string> GetActionTypes()
         {
-            var types = Assembly.GetAssembly(typeof(ActionBase)).GetTypes();
+            var types = Assembly.GetAssembly(typeof (ActionBase)).GetTypes();
 
-            return (from type in types where type.BaseType == typeof(ActionBase) select type.Name).ToList();
+            return (from type in types where type.BaseType == typeof (ActionBase) select type.Name).ToList();
         }
     }
 }

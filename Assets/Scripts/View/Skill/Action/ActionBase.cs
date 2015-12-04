@@ -16,7 +16,10 @@ namespace Assets.Scripts.View.Skill.Action
 
         public virtual void Update()
         {
-            if (_excute && _timer <= WaitTime)
+            if (!_excute)
+                return;
+
+            if (_timer <= WaitTime)
             {
                 _timer += Time.deltaTime;
             }

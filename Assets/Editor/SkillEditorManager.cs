@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts.View.Skill;
 using Assets.Scripts.View.Skill.Action;
@@ -12,6 +13,8 @@ namespace Assets.Editor
         public static TreeViewItem SelectedItem;
         public static string Path = "Assets/Resources/SkillData";
 
+        private static List<Skill> _skills;
+
         public static void Handler(object sender, System.EventArgs args)
         {
             Debug.Log(string.Format("{0} detected: {1}", args.GetType().Name, (sender as TreeViewItem).Header));
@@ -24,7 +27,7 @@ namespace Assets.Editor
             skill.Id = id;
 
             var newItem = SelectedItem.AddItem(id.ToString());
-            var path = Path + "/" + skill.Id + "/" + "Skill" + skill.Id + ".asset";
+            var path = Path + "/" + skill.Id + "/" + "Skill" + ".asset";
 
             newItem.DataContext = new ItemData()
             {
@@ -33,7 +36,6 @@ namespace Assets.Editor
                 Name = skill.Id.ToString(),
                 Data = skill
             };
-            newItem.IsSelected = true;
             AddEvents(newItem);
 
             CreateFolder(Path, skill.Id.ToString());
@@ -49,12 +51,16 @@ namespace Assets.Editor
 
             Skill.Actions.Add(action);
 
-            newItem.DataContext = new ItemData() { SelectedType = SelectedType.Action, Path = path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset" };
-            newItem.IsSelected = true;
+            newItem.DataContext = new ItemData()
+            {
+                SelectedType = SelectedType.Action,
+                Path = path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset"
+            };
             AddEvents(newItem);
 
             CreateFolder(path, "Actions");
-            AssetDatabase.CreateAsset(action, path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset");
+            AssetDatabase.CreateAsset(action,
+                path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset");
         }
 
         /// <summary>
@@ -79,7 +85,7 @@ namespace Assets.Editor
 
         public static void SelectedHanlder(object sender, System.EventArgs args)
         {
-            var data = (ItemData)(sender as TreeViewItem).DataContext;
+            var data = (ItemData) (sender as TreeViewItem).DataContext;
             SelectedItem = sender as TreeViewItem;
 
             switch (data.SelectedType)
@@ -97,17 +103,8 @@ namespace Assets.Editor
             }
         }
 
-        private static void AddHandlerEvent(out System.EventHandler handler)
-        {
-            handler = Handler;
-        }
-
         private static void AddEvents(TreeViewItem item)
         {
-            AddHandlerEvent(out item.Click);
-            AddHandlerEvent(out item.Checked);
-            AddHandlerEvent(out item.Unchecked);
-            AddHandlerEvent(out item.Unselected);
             item.Selected = SelectedHanlder;
         }
 
@@ -115,9 +112,52 @@ namespace Assets.Editor
         {
             item.Width = 600;
             item.Height = 500;
+            item.m_roomItem = null;
             item.Header = "Skill List";
             AddEvents(item.RootItem);
-            item.DataContext = new ItemData() { SelectedType = SelectedType.Root };
+            item.DataContext = new ItemData() {SelectedType = SelectedType.Root};
+
+            InitSkillList();
+
+            foreach (var skill in _skills)
+            {
+                var skillItem = item.RootItem.AddItem(skill.Id.ToString());
+                skillItem.DataContext = new ItemData()
+                {
+                    SelectedType = SelectedType.Skill,
+                    Path = Path + "/" + skill.Id + "/" + "Skill" + ".asset",
+                    Name = skill.Id.ToString(),
+                    Data = skill
+                };
+
+                AddEvents(skillItem);
+
+                foreach (var action in skill.Actions)
+                {
+                    var newItem = skillItem.AddItem(action.GetType().Name + (skillItem.ChildItemCount + 1));
+                    var data = skillItem.DataContext as ItemData;
+                    var path = Path + "/" + data.Name;
+
+                    newItem.DataContext = new ItemData()
+                    {
+                        SelectedType = SelectedType.Action,
+                        Path = path + "/Actions/" + action.GetType().Name + skillItem.ChildItemCount + ".asset"
+                    };
+
+                    AddEvents(newItem);
+                }
+            }
+        }
+
+        private static void InitSkillList()
+        {
+            _skills = new List<Skill>();
+            var path = "Assets/Resources/SkillData/";
+            var parentFloader = new DirectoryInfo(path);
+            foreach (var directory in parentFloader.GetDirectories())
+            {
+                _skills.Add(Resources.Load<Skill>("SkillData/" + directory.Name + "/Skill"));
+            }
         }
     }
 
