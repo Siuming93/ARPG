@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Scripts.Model;
 using Assets.Scripts.Presenter.Manager;
 
 public class TopBar : MonoBehaviour
@@ -19,7 +20,7 @@ public class TopBar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        PlayerInfo.Instance.OnInfoChange += OnInfoChange;
+        PlayerManager.Instance.OnInfoChange += OnInfoChange;
     }
 
     /// <summary>
@@ -27,7 +28,7 @@ public class TopBar : MonoBehaviour
     /// </summary>
     private void Destory()
     {
-        PlayerInfo.Instance.OnInfoChange -= OnInfoChange;
+        PlayerManager.Instance.OnInfoChange -= OnInfoChange;
     }
 
     /// <summary>

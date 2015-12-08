@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Presenter.Manager;
+﻿using Assets.Scripts.Model;
+using Assets.Scripts.Presenter.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         /// </summary>
         private void Start()
         {
-            PlayerInfo.Instance.OnInfoChange += OnInfoChange;
+            PlayerManager.Instance.OnInfoChange += OnInfoChange;
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         /// </summary>
         private void Destory()
         {
-            PlayerInfo.Instance.OnInfoChange -= OnInfoChange;
+            PlayerManager.Instance.OnInfoChange -= OnInfoChange;
         }
 
         /// <summary>

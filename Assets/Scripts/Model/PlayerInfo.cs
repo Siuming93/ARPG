@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.IO;
-using ARPGCommon.Model;
-using Assets.Scripts.Model.Photon;
+﻿using Assets.Scripts.Model.Photon;
 using Assets.Scripts.Model.Photon.Controller;
+using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.View.MainMenu.Knapscak;
 using UnityEngine;
 
-namespace Assets.Scripts.Presenter.Manager
+namespace Assets.Scripts.Model
 {
-    public class PlayerInfo : MonoBehaviour
+    public class PlayerInfo : CharctorInfo
+
     {
         public static PlayerInfo Instance { get; private set; }
 
         public delegate void OnInfoChangeEvent();
 
-        public event OnInfoChangeEvent OnInfoChange;
 
         public RoleServerController RoleServerController;
 
@@ -349,7 +347,7 @@ namespace Assets.Scripts.Presenter.Manager
 
         private void OnPlayerInfoSet()
         {
-            //Tip:不能访问访问其以防止出现调用堆栈错误
+            //Tip:不能调用访问器以防止出现调用堆栈错误
             //1.检测经验,若经验高了则升级.
             if (_exp >= _maxExp)
             {
@@ -377,7 +375,6 @@ namespace Assets.Scripts.Presenter.Manager
             this._maxToughen = 50;
 
             InitPropertiesBaseOnLevel();
-            if (OnInfoChange != null) OnInfoChange();
         }
 
         private void UpdatePlayerInfo()
@@ -395,7 +392,6 @@ namespace Assets.Scripts.Presenter.Manager
 
         private void OnUpdatePlayerInfo()
         {
-            if (OnInfoChange != null) OnInfoChange();
         }
 
         private void InitPropertiesBaseOnLevel()
@@ -425,6 +421,11 @@ namespace Assets.Scripts.Presenter.Manager
             InventoryManger.Instrance.InventoryDict.TryGetValue(id, out inventory);
             this.HP -= inventory.HP;
             this.Damage -= inventory.Damage;
+        }
+
+        public override void TakeDamage(int value)
+        {
+            _hp -= value;
         }
     }
 }

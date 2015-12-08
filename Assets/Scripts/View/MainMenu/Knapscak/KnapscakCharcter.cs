@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Presenter.Manager;
+﻿using Assets.Scripts.Model;
+using Assets.Scripts.Presenter.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ namespace Assets.Scripts.View.MainMenu.Knapscak
         private void Start()
         {
             UpdateInfoShow();
-            PlayerInfo.Instance.OnInfoChange += OnInfoChanged;
+            PlayerManager.Instance.OnInfoChange += OnInfoChanged;
         }
 
         private void OnInfoChanged()
