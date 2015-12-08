@@ -9,7 +9,10 @@ namespace Assets.Scripts.View.Skill
     {
         public int Id;
         public string Name;
+        public float CDTime;
+        public string Description;
         public List<ActionBase> Actions = new List<ActionBase>();
+
 
         public void Init(GameObject player)
         {

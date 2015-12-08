@@ -49,7 +49,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
             //受到伤害
             for (var i = 0; i < enemyToTakeDamage.Count; i++)
             {
-                enemyToTakeDamage[i].PlayAnimation("BeHit");
+                enemyToTakeDamage[i].TakeDamage("BeHit");
             }
         }
     }

@@ -8,4 +8,6 @@ namespace Assets.Scripts.Presenter.Manager
     public delegate void OnDeadEvent();
 
     public delegate void OnInfoChangeEvent();
+
+    public delegate void OnTakeDamageEvent();
 }
