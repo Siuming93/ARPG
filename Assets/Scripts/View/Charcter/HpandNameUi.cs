@@ -32,6 +32,8 @@ namespace Assets.Scripts.View.Charcter.Enemy
             //直接显示在目标位置
             Vector2 screenPosition = _camera.WorldToScreenPoint(Fellow.position + DelVector3);
             transform.position = screenPosition;
+
+            _nameText.text = Name;
         }
 
 
@@ -43,6 +45,11 @@ namespace Assets.Scripts.View.Charcter.Enemy
 
             //显示血量
             _slider.value = HpPercent;
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -13,6 +13,13 @@ namespace Assets.Scripts.View.Skill
         public string Description;
         public List<ActionBase> Actions = new List<ActionBase>();
 
+        public float CDTimePercent
+        {
+            get { return CDTime == 0f ? 0f : 1 - timer/CDTime; }
+        }
+
+
+        private float timer = 0;
 
         public void Init(GameObject player)
         {
@@ -32,10 +39,23 @@ namespace Assets.Scripts.View.Skill
 
         public void Excute()
         {
+            timer = 0;
             for (var i = 0; i < Actions.Count; i++)
             {
                 Actions[i].Excute();
             }
+
+            SkillManager.Instance.StartCoroutine(CalculateCDTime());
+        }
+
+        private IEnumerator CalculateCDTime()
+        {
+            while (timer < CDTime)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            timer = CDTime;
         }
 
         public void Finish()

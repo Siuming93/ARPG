@@ -13,6 +13,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
 
         public List<EnemyState> EnemyList = new List<EnemyState>();
         public float Distance;
+        public GameObject Player;
 
         private void Awake()
         {
@@ -35,7 +36,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
                         case AttackDirection.Forward:
                             var angleCos = Vector3.Dot(transform.forward,
                                 (enemystate.transform.position - transform.position).normalized);
-                            if (angleCos > 0.5f)
+                            if (angleCos > -0.5f)
                                 enemyToTakeDamage.Add(enemystate);
                             break;
                         case AttackDirection.Around:
@@ -49,8 +50,16 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
             //受到伤害
             for (var i = 0; i < enemyToTakeDamage.Count; i++)
             {
-                enemyToTakeDamage[i].TakeDamage("BeHit");
+                enemyToTakeDamage[i].TakeDamage(Player, 10, "BeHit");
+                if (OnComboAddEvent != null) OnComboAddEvent();
             }
         }
+
+        public void EnemyDead(EnemyState enemyState)
+        {
+            EnemyList.Remove(enemyState);
+        }
+
+        public event OnComboAddEvent OnComboAddEvent;
     }
 }

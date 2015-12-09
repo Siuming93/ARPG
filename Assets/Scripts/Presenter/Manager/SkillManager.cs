@@ -20,6 +20,17 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    public float GetSkillCdPercent(int id)
+    {
+        Skill skill = null;
+        if (PlayerSkills.TryGetValue(id, out skill))
+        {
+            return skill.CDTimePercent;
+        }
+
+        return 0f;
+    }
+
     private void Update()
     {
         if (CurSkill != null) CurSkill.Update();
