@@ -8,6 +8,8 @@ namespace Assets.Scripts.Presenter.Manager
     {
         //单例实例
         public static GameManger Instance { get; private set; }
+        public LoadProgressBar LoadProgressBar;
+        public UIScale SuccessUiScale;
 
         //Player模型的父物体
         public Transform PlayerTransform;
@@ -34,6 +36,13 @@ namespace Assets.Scripts.Presenter.Manager
         public void PassTranscript(string name)
         {
             OnPassTranscriptEvent();
+        }
+
+        public void OnEnterButtonClick()
+        {
+            SuccessUiScale.ScaleOut();
+            var operation = Application.LoadLevelAsync(Scenes.loadLevel);
+            LoadProgressBar.Show(operation);
         }
 
         public event OnPassTranscriptEvent OnPassTranscriptEvent;
