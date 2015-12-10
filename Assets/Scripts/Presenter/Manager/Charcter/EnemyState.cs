@@ -25,7 +25,7 @@ public class EnemyState : MonoBehaviour
         if (_curHp < 0)
         {
             trigger = "Death";
-            EnemyManager.Instance.EnemyDead(this);
+            OnDeadEvent(this);
         }
         else
 
@@ -43,4 +43,6 @@ public class EnemyState : MonoBehaviour
     public event OnTakeDamageEvent OnTakeDamageEvent;
 
     public event OnInfoChangeEvent OnInfoChangeEvent;
+
+    public event OnDeadEvent OnDeadEvent;
 }

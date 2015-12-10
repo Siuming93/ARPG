@@ -26,7 +26,7 @@ namespace Assets.Scripts.Presenter.Manager
             OnInfoChange();
             if (PlayerInfo.HP < 0)
             {
-                OnDeadEvent();
+                OnDeadEvent(new EnemyState());
             }
         }
 

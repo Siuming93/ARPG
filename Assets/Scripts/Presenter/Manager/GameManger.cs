@@ -30,5 +30,12 @@ namespace Assets.Scripts.Presenter.Manager
                 PlayerTransform.position, PlayerTransform.rotation) as GameObject;
             playerModel.transform.parent = PlayerTransform;
         }
+
+        public void PassTranscript(string name)
+        {
+            OnPassTranscriptEvent();
+        }
+
+        public event OnPassTranscriptEvent OnPassTranscriptEvent;
     }
 }

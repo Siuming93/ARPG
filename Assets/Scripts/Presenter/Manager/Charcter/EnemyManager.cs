@@ -11,13 +11,21 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
     {
         public static EnemyManager Instance { get; private set; }
 
-        public List<EnemyState> EnemyList = new List<EnemyState>();
+        public List<EnemyAutoBorn> EnemyBornPointList = new List<EnemyAutoBorn>();
         public float Distance;
         public GameObject Player;
+
+        private List<EnemyState> EnemyList = new List<EnemyState>();
 
         private void Awake()
         {
             Instance = this;
+        }
+
+        public void AddEnemy(EnemyState enemyState)
+        {
+            EnemyList.Add(enemyState);
+            enemyState.OnDeadEvent += EnemyDead;
         }
 
         public void TakeDamanage(Transform transform, int value, AttackDirection attackDirection)
@@ -36,7 +44,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
                         case AttackDirection.Forward:
                             var angleCos = Vector3.Dot(transform.forward,
                                 (enemystate.transform.position - transform.position).normalized);
-                            if (angleCos > -0.5f)
+                            if (angleCos > 0.5f)
                                 enemyToTakeDamage.Add(enemystate);
                             break;
                         case AttackDirection.Around:
@@ -61,5 +69,15 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         }
 
         public event OnComboAddEvent OnComboAddEvent;
+
+        public void RemoveEnemyBornPoint(EnemyAutoBorn enemyAutoBorn)
+        {
+            EnemyBornPointList.Remove(enemyAutoBorn);
+
+            if (EnemyBornPointList.Count == 0)
+            {
+                GameManger.Instance.PassTranscript("1");
+            }
+        }
     }
 }

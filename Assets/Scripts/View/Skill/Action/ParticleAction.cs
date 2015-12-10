@@ -19,5 +19,10 @@ namespace Assets.Scripts.View.Skill.Action
         {
             throw new NotImplementedException();
         }
+
+        protected override void Play()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

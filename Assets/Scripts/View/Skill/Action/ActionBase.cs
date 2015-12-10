@@ -9,14 +9,14 @@ namespace Assets.Scripts.View.Skill.Action
         public float WaitTime;
         public abstract ActionType ActionType { get; }
 
-        private float _timer = 0f;
-        private bool _excute = false;
 
+        protected float _timer = 0f;
+        public bool IsExcute { get; private set; }
         public abstract void Init(GameObject playerGameObject);
 
         public virtual void Update()
         {
-            if (!_excute)
+            if (!IsExcute)
                 return;
 
             if (_timer <= WaitTime)
@@ -31,17 +31,14 @@ namespace Assets.Scripts.View.Skill.Action
 
         public virtual void Excute()
         {
-            _excute = true;
+            IsExcute = true;
         }
 
-        protected virtual void Play()
-        {
-            Finish();
-        }
+        protected abstract void Play();
 
         public virtual void Finish()
         {
-            _excute = false;
+            IsExcute = false;
             _timer = 0f;
         }
     }

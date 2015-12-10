@@ -24,6 +24,7 @@ namespace Assets.Scripts.View.Skill.Action
         protected override void Play()
         {
             _animator.SetTrigger(TriggerName);
+
             Finish();
         }
     }

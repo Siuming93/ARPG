@@ -17,26 +17,35 @@ namespace Assets.Scripts.View.Charcter.Enemy
         public EnemyState EnemyState;
         public Transform HpandNameUiParenTransform;
         public GameObject HpandNameUiPerfab;
+        public GameObject BloodSplatEffectPerfab;
         public float DisapearTime;
+        public Vector3 BooldEffectVector3;
 
         private Animator _animator;
         private HpandNameUi _hpandNameUi;
         private AudioSource _audioSource;
+        private bool _isDying = false;
 
         private static int count = 0;
 
-        private void Start()
+        private void Awake()
         {
+            EnemyState.OnTakeDamageEvent += OnTakeDamage;
+            EnemyState.OnInfoChangeEvent += OnUpdateShowInfo;
+            HpandNameUiParenTransform = GameObject.Find("HpandNamePanel").transform;
+
             _hpandNameUi =
                 ((GameObject) Instantiate(HpandNameUiPerfab)).GetComponent<HpandNameUi>();
             _hpandNameUi.transform.parent = HpandNameUiParenTransform;
             _hpandNameUi.Fellow = transform;
             _hpandNameUi.Name = EnemyState.Name;
+
             _animator = transform.GetComponentInChildren<Animator>();
             _audioSource = transform.GetComponent<AudioSource>();
+        }
 
-            EnemyState.OnTakeDamageEvent += OnTakeDamage;
-            EnemyState.OnInfoChangeEvent += OnUpdateShowInfo;
+        private void Start()
+        {
         }
 
 
@@ -59,12 +68,8 @@ namespace Assets.Scripts.View.Charcter.Enemy
 
         private void OnTakeDamage(GameObject source, string trigger)
         {
-            //若死亡,要挪到底下去
-            if (trigger == "Death")
-            {
-                StartCoroutine(Dead());
+            if (_isDying)
                 return;
-            }
 
             //1.播放动画
             _animator.SetTrigger(trigger);
@@ -76,6 +81,17 @@ namespace Assets.Scripts.View.Charcter.Enemy
                 _audioSource.Play();
                 count++;
             }
+            //4.放血
+            var effect = Instantiate(BloodSplatEffectPerfab, transform.position, transform.rotation) as GameObject;
+            effect.transform.parent = transform;
+            effect.transform.localPosition += BooldEffectVector3;
+
+            //若死亡,要挪到底下去
+            if (trigger == "Death")
+            {
+                _isDying = true;
+                StartCoroutine(Dead());
+            }
         }
 
         private void LateUpdate()
@@ -86,13 +102,7 @@ namespace Assets.Scripts.View.Charcter.Enemy
         private IEnumerator Dead()
         {
             float timer = 0;
-            _animator.SetTrigger("Death");
             _hpandNameUi.DestroySelf();
-            if (count < 1)
-            {
-                _audioSource.Play();
-                count++;
-            }
 
             while (timer < DisapearTime)
             {
@@ -103,7 +113,6 @@ namespace Assets.Scripts.View.Charcter.Enemy
                 transform.position -= 3*transform.up*Time.deltaTime;
                 yield return null;
             }
-
 
             Destroy(gameObject);
         }

@@ -12,8 +12,26 @@ public class SkillManager : MonoBehaviour
     public readonly Dictionary<int, Skill> PlayerSkills = new Dictionary<int, Skill>();
     public Skill CurSkill;
 
+    private List<int> SkillToExcuteList = new List<int>();
+
+    public bool IsCurSkillExcute
+    {
+        get
+        {
+            if (CurSkill != null)
+                return CurSkill.IsExcute;
+
+            return false;
+        }
+    }
+
     public void ExcuteSkill(int id)
     {
+        if (CurSkill != null && CurSkill.IsExcute)
+        {
+            SkillToExcuteList.Add(id);
+            return;
+        }
         if (PlayerSkills.TryGetValue(id, out CurSkill))
         {
             CurSkill.Excute();
