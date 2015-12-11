@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Model.Photon;
+﻿using System.Collections;
+using Assets.Scripts.Model.Photon;
 using Assets.Scripts.Model.Photon.Controller;
 using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.View.MainMenu.Knapscak;
@@ -11,10 +12,9 @@ namespace Assets.Scripts.Model
     {
         public static PlayerInfo Instance { get; private set; }
 
-        public delegate void OnInfoChangeEvent();
-
 
         public RoleServerController RoleServerController;
+        public event OnInfoChangeEvent OnInfoChangeEvent;
 
         #region 主角属性
 
@@ -296,6 +296,7 @@ namespace Assets.Scripts.Model
 
         #endregion
 
+        //计时变化的属性
         public float EnergyTimer { get; private set; }
         public float ToughenTimer { get; private set; }
 
@@ -309,6 +310,13 @@ namespace Assets.Scripts.Model
 
         private void Start()
         {
+            StartCoroutine(DelayInit());
+        }
+
+        private IEnumerator DelayInit()
+        {
+            yield return new WaitForEndOfFrame();
+
             Init();
         }
 
@@ -343,8 +351,13 @@ namespace Assets.Scripts.Model
             {
                 ToughenTimer = 0f;
             }
+
+            // OnInfoChangeEvent();
         }
 
+        /// <summary>
+        /// 信息变化的时候,广播信息变化
+        /// </summary>
         private void OnPlayerInfoSet()
         {
             //Tip:不能调用访问器以防止出现调用堆栈错误
@@ -355,9 +368,17 @@ namespace Assets.Scripts.Model
                 _exp -= _maxExp;
                 InitPropertiesBaseOnLevel();
             }
-            UpdatePlayerInfo();
+
+            //2.同步服务器信息
+            SyncPlayerInfoInServer();
+
+            //Init完也要广播啊
+            OnInfoChangeEvent();
         }
 
+        /// <summary>
+        /// 根据当前的角色初始化玩家信息
+        /// </summary>
         private void Init()
         {
             var role = PhotonEngine.Instance.CurRole;
@@ -375,9 +396,15 @@ namespace Assets.Scripts.Model
             this._maxToughen = 50;
 
             InitPropertiesBaseOnLevel();
+
+            //Init完也要广播啊
+            OnInfoChangeEvent();
         }
 
-        private void UpdatePlayerInfo()
+        /// <summary>
+        /// 同步服务器信息
+        /// </summary>
+        private void SyncPlayerInfoInServer()
         {
             var role = PhotonEngine.Instance.CurRole;
             role.Coin = this.Coin;
@@ -390,10 +417,16 @@ namespace Assets.Scripts.Model
             RoleServerController.UpdateRole(role);
         }
 
+        /// <summary>
+        /// 当服务器信息发生了变化
+        /// </summary>
         private void OnUpdatePlayerInfo()
         {
         }
 
+        /// <summary>
+        /// 根据当前等级计算的属性
+        /// </summary>
         private void InitPropertiesBaseOnLevel()
         {
             this._hp = 100*this.Level;
@@ -404,6 +437,10 @@ namespace Assets.Scripts.Model
             this._helmID = 1013;
         }
 
+        /// <summary>
+        /// 穿装备
+        /// </summary>
+        /// <param name="id"></param>
         private void PutonEquip(int id)
         {
             Inventory inventory = null;
@@ -412,6 +449,10 @@ namespace Assets.Scripts.Model
             this.Damage += inventory.Damage;
         }
 
+        /// <summary>
+        /// 卸下装备
+        /// </summary>
+        /// <param name="id"></param>
         private void PutoffEquip(int id)
         {
             if (id == 0)
@@ -423,6 +464,10 @@ namespace Assets.Scripts.Model
             this.Damage -= inventory.Damage;
         }
 
+        /// <summary>
+        /// 受到伤害
+        /// </summary>
+        /// <param name="value"></param>
         public override void TakeDamage(int value)
         {
             _hp -= value;

@@ -1,15 +1,15 @@
 ﻿using ARPGCommon.Model;
 using Assets.Scripts.Model.Photon;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Presenter.Manager
 {
-    public class GameManger : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         //单例实例
-        public static GameManger Instance { get; private set; }
+        public static GameManager Instance { get; private set; }
         public LoadProgressBar LoadProgressBar;
-        public UIScale SuccessUiScale;
 
         //Player模型的父物体
         public Transform PlayerTransform;
@@ -38,10 +38,10 @@ namespace Assets.Scripts.Presenter.Manager
             OnPassTranscriptEvent();
         }
 
-        public void OnEnterButtonClick()
+        public void LoadScene(string name)
         {
-            SuccessUiScale.ScaleOut();
-            var operation = Application.LoadLevelAsync(Scenes.loadLevel);
+            DontDestroyOnLoad(PhotonEngine.Instance);
+            var operation = Application.LoadLevelAsync(name);
             LoadProgressBar.Show(operation);
         }
 

@@ -37,7 +37,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         private void Start()
         {
             UpdateInfoShow();
-            PlayerManager.Instance.OnInfoChange += OnInfoChange;
+            PlayerManager.Instance.AddInfoChangeEventToState(OnInfoChange);
         }
 
         private void Update()
@@ -50,7 +50,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         /// </summary>
         private void Destory()
         {
-            PlayerManager.Instance.OnInfoChange -= OnInfoChange;
+            PlayerManager.Instance.DeleteInfoChangeEventToState(OnInfoChange);
         }
 
         /// <summary>

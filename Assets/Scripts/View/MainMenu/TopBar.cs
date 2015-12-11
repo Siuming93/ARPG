@@ -20,7 +20,7 @@ public class TopBar : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        PlayerManager.Instance.OnInfoChange += OnInfoChange;
+        PlayerManager.Instance.AddInfoChangeEventToState(OnInfoChange);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class TopBar : MonoBehaviour
     /// </summary>
     private void Destory()
     {
-        PlayerManager.Instance.OnInfoChange -= OnInfoChange;
+        PlayerManager.Instance.DeleteInfoChangeEventToState(OnInfoChange);
     }
 
     /// <summary>

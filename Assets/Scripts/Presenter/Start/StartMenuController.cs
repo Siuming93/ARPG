@@ -157,7 +157,7 @@ namespace Assets.Scripts.Presenter.Start
         private void UpdateCharcterSelected(Role role)
         {
             //1.将之前的模型销毁
-            Destroy(CharcterSelectedParent.GetComponentInChildren<Animation>().gameObject);
+            Destroy(CharcterSelectedParent.GetComponentInChildren<Animator>().gameObject);
 
             //2.创建新的角色模型
             var index = role.Isman ? 0 : 1;

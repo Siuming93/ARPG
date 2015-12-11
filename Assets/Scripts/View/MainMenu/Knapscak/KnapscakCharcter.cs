@@ -25,7 +25,7 @@ namespace Assets.Scripts.View.MainMenu.Knapscak
         private void Start()
         {
             UpdateInfoShow();
-            PlayerManager.Instance.OnInfoChange += OnInfoChanged;
+            PlayerManager.Instance.AddInfoChangeEventToState(OnInfoChanged);
         }
 
         private void OnInfoChanged()

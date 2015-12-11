@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (SkillManager.Instance.IsCurSkillExcute ||
+        if (SkillManager.Instance != null && SkillManager.Instance.IsCurSkillExcute ||
             !_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
             !_animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
             return;

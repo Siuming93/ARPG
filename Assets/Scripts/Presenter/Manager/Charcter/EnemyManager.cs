@@ -76,7 +76,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
 
             if (EnemyBornPointList.Count == 0)
             {
-                GameManger.Instance.PassTranscript("1");
+                GameManager.Instance.PassTranscript("1");
             }
         }
     }

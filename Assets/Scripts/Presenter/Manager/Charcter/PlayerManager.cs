@@ -23,14 +23,22 @@ namespace Assets.Scripts.Presenter.Manager
         private void TakeDamage(int value)
         {
             PlayerInfo.TakeDamage(value);
-            OnInfoChange();
             if (PlayerInfo.HP < 0)
             {
                 OnDeadEvent(new EnemyState());
             }
         }
 
-        public event OnInfoChangeEvent OnInfoChange;
+        public void AddInfoChangeEventToState(OnInfoChangeEvent onInfoChangeEvent)
+        {
+            PlayerInfo.OnInfoChangeEvent += onInfoChangeEvent;
+        }
+
+        public void DeleteInfoChangeEventToState(OnInfoChangeEvent onInfoChangeEvent)
+        {
+            PlayerInfo.OnInfoChangeEvent -= onInfoChangeEvent;
+        }
+
         public event OnDeadEvent OnDeadEvent;
     }
 }

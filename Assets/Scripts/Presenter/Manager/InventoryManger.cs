@@ -107,31 +107,31 @@ namespace Assets.Scripts.Presenter.Manager
             //TODO
 
             //2.暂时随机生成
-            for (int i = 0; i < 20; i++)
-            {
-                int id = Random.Range(1001, 1020);
-                Inventory inventroy;
-                InventoryDict.TryGetValue(id, out inventroy);
-                InventoryItem it = new InventoryItem();
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    int id = Random.Range(1001, 1020);
+            //    Inventory inventroy;
+            //    InventoryDict.TryGetValue(id, out inventroy);
+            //    InventoryItem it = new InventoryItem();
 
-                if (inventroy.InventoryType == InventoryType.Equip)
-                {
-                    it.Inventory = inventroy;
-                    it.Level = Random.Range(1, 10);
-                    it.Count = 1;
-                    InventoryItemDict.Add(it);
-                }
-                else
-                {
-                    //判断背包里面是否已经存在,存在则+1
-                    it.Inventory = inventroy;
-                    InventoryItemDict.Add(it);
-                    it.Level = 0;
-                    it.Count = Random.Range(1, 20);
-                }
+            //    if (inventroy.InventoryType == InventoryType.Equip)
+            //    {
+            //        it.Inventory = inventroy;
+            //        it.Level = Random.Range(1, 10);
+            //        it.Count = 1;
+            //        InventoryItemDict.Add(it);
+            //    }
+            //    else
+            //    {
+            //        //判断背包里面是否已经存在,存在则+1
+            //        it.Inventory = inventroy;
+            //        InventoryItemDict.Add(it);
+            //        it.Level = 0;
+            //        it.Count = Random.Range(1, 20);
+            //    }
 
-                Items[i].SetItem(it);
-            }
+            //    Items[i].SetItem(it);
+            //}
         }
     }
 }

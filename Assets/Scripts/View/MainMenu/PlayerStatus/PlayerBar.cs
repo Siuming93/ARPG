@@ -29,7 +29,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         /// </summary>
         private void Start()
         {
-            PlayerManager.Instance.OnInfoChange += OnInfoChange;
+            PlayerManager.Instance.AddInfoChangeEventToState(OnInfoChange);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Assets.Scripts.View.MainMenu.PlayerStatus
         /// </summary>
         private void Destory()
         {
-            PlayerManager.Instance.OnInfoChange -= OnInfoChange;
+            PlayerManager.Instance.DeleteInfoChangeEventToState(OnInfoChange);
         }
 
         /// <summary>

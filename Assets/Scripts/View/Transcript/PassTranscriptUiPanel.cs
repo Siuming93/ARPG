@@ -9,7 +9,7 @@ public class PassTranscriptUiPanel : MonoBehaviour
 
     private void Start()
     {
-        GameManger.Instance.OnPassTranscriptEvent += ShowPanel;
+        GameManager.Instance.OnPassTranscriptEvent += ShowPanel;
         gameObject.SetActive(false);
     }
 

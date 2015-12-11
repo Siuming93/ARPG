@@ -43,7 +43,7 @@ namespace Assets.Scripts.View.MainMenu.Task
         {
             TaskDb.TaskType = (byte) TaskType;
             TaskDb.TaskId = Id;
-            TaskDb.Role = GameManger.Instance.CurRole;
+            TaskDb.Role = GameManager.Instance.CurRole;
             TaskDb.LastUpdateTime = new DateTime();
             TaskDb.TaskState = (byte) TaskState;
             return TaskDb;
