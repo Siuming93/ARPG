@@ -7,13 +7,30 @@ using UnityEngine;
 
 namespace Assets.Scripts.View.Skill.Action
 {
+    /// <summary>
+    /// 特效行为
+    /// </summary>
     public class BattleEffectAction : ActionBase
     {
+        /// <summary>
+        /// 特效球
+        /// </summary>
         public GameObject EffectPrefabGameObject;
+
+        /// <summary>
+        /// 所绑定的Tag
+        /// </summary>
         public string Tag;
+
+        /// <summary>
+        /// 相对位置
+        /// </summary>
         public Vector3 Position;
+
+        /// <summary>
+        /// 相对旋转
+        /// </summary>
         public Quaternion Rotaion;
-        private Transform _playerTransform;
 
         public override ActionType ActionType
         {
@@ -22,7 +39,6 @@ namespace Assets.Scripts.View.Skill.Action
 
         public override void Init(GameObject playerGameObject)
         {
-            _playerTransform = playerGameObject.transform;
         }
 
         protected override void Play()

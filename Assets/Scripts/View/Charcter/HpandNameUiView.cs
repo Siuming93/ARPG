@@ -1,28 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.View.Charcter.Enemy
+namespace Assets.Scripts.View.Charcter
 {
     /// <summary>
     /// 把血条显示在屏幕上
     /// </summary>
-    public class HpandNameUi : MonoBehaviour
+    public class HpandNameUiView : MonoBehaviour
     {
         public string Name;
         public float HpPercent = 1f;
+
+        /// <summary>
+        /// 父对象
+        /// </summary>
         public Transform Fellow;
+
+        /// <summary>
+        /// 显示的相对位置
+        /// </summary>
         public Vector3 DelVector3;
+
+        /// <summary>
+        /// 跟随速度
+        /// </summary>
         public float FellowSpeed;
 
         private Slider _slider;
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
         private Text _nameText;
 
         private void Start()
         {
             _slider = transform.GetComponentInChildren<Slider>();
             _nameText = transform.GetComponentInChildren<Text>();
-            _camera = GameObject.FindGameObjectWithTag(Tags.MainCamera).GetComponent<Camera>();
+            _camera = GameObject.FindGameObjectWithTag(Tags.MainCamera).GetComponent<UnityEngine.Camera>();
 
             //初始化自己的大小,防止显示错误
             var rectTransform = transform as RectTransform;

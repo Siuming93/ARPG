@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿/// <summary>
+/// 记录Tag配置信息
+/// </summary>
 public class Tags
 {
     public const string MainCamera = "MainCamera";

@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*与服务器相连的PeerListener*/
+
+using System;
 using System.Collections.Generic;
 using ARPGCommon;
 using ARPGCommon.Model;
@@ -70,8 +72,13 @@ namespace Assets.Scripts.Model.Photon
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 当服务器响应了请求
+        /// </summary>
+        /// <param name="operationResponse"></param>
         public void OnOperationResponse(OperationResponse operationResponse)
         {
+            //根据响应的Code找到相应的Controller,并将请求数据转送
             ServerControllerBase serverController;
             print("OnOpertaionResponse,OperationCode:" + (OperationCode) operationResponse.OperationCode);
             if (_controllers.TryGetValue(operationResponse.OperationCode, out serverController))
@@ -84,6 +91,10 @@ namespace Assets.Scripts.Model.Photon
             }
         }
 
+        /// <summary>
+        /// 当连接状态发生更改
+        /// </summary>
+        /// <param name="statusCode"></param>
         public void OnStatusChanged(StatusCode statusCode)
         {
             print("OnStatusChanged:" + statusCode);
@@ -144,6 +155,10 @@ namespace Assets.Scripts.Model.Photon
             _peer.Service();
         }
 
+        /// <summary>
+        /// 将信息发送的到控制台
+        /// </summary>
+        /// <param name="message"></param>
         private void print(string message)
         {
             MonoBehaviour.print(message);

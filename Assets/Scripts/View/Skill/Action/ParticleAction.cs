@@ -6,10 +6,21 @@ using UnityEngine;
 
 namespace Assets.Scripts.View.Skill.Action
 {
-    class ParticleAction:ActionBase
+    /// <summary>
+    /// 粒子特效
+    /// </summary>
+    internal class ParticleAction : ActionBase
     {
+        /// <summary>
+        /// 粒子特效的父类
+        /// </summary>
         public Transform ParenTransform;
+
+        /// <summary>
+        /// 粒子预制
+        /// </summary>
         public GameObject EffectGameObject;
+
         public override ActionType ActionType
         {
             get { throw new NotImplementedException(); }

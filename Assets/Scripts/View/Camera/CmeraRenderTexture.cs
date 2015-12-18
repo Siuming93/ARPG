@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
-public class CmeraRenderTexture : MonoBehaviour
+namespace Assets.Scripts.View.Camera
 {
-    private RenderTexture rtt;
-
-    /// <summary>
-    /// 将相机渲染到renderTexture上
-    /// </summary>
-    void Awake()
+    public class CmeraRenderTexture : MonoBehaviour
     {
-        //设定rtt的depth为24bit;
-        rtt = new RenderTexture(1024, 768, 24);
-        camera.targetTexture = rtt;
+        private RenderTexture rtt;
+
+        /// <summary>
+        /// 将相机渲染到renderTexture上
+        /// </summary>
+        void Awake()
+        {
+            //设定rtt的depth为24bit;
+            rtt = new RenderTexture(1024, 768, 24);
+            camera.targetTexture = rtt;
+        }
     }
 }

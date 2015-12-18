@@ -1,44 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Assets.Scripts.Model.Charcter;
+using Assets.Scripts.View;
 using Assets.Scripts.View.Skill.Action;
 using UnityEngine;
 
 namespace Assets.Scripts.Presenter.Manager.Charcter
 {
+    /// <summary>
+    /// 场景中所有敌人的管理器
+    /// </summary>
     public class EnemyManager : MonoBehaviour
     {
+        /// <summary>
+        /// 实例
+        /// </summary>
         public static EnemyManager Instance { get; private set; }
 
-        public List<EnemyAutoBorn> EnemyBornPointList = new List<EnemyAutoBorn>();
+        /// <summary>
+        /// 生成点
+        /// </summary>
+        public List<EnemyAutoBornView> EnemyBornPointList = new List<EnemyAutoBornView>();
+
+        /// <summary>
+        /// 暂定的攻击距离
+        /// </summary>
         public float Distance;
+
+        /// <summary>
+        /// 玩家
+        /// </summary>
         public GameObject Player;
 
-        private List<EnemyState> EnemyList = new List<EnemyState>();
+        /// <summary>
+        /// 所有敌人列表
+        /// </summary>
+        private List<EnemyState> _enemyList = new List<EnemyState>();
 
         private void Awake()
         {
             Instance = this;
         }
 
+        /// <summary>
+        /// 生成了敌人
+        /// </summary>
+        /// <param name="enemyState"></param>
         public void AddEnemy(EnemyState enemyState)
         {
-            EnemyList.Add(enemyState);
+            _enemyList.Add(enemyState);
             enemyState.OnDeadEvent += EnemyDead;
         }
 
+        /// <summary>
+        /// 寻找所有可以被攻击的敌人,并进行攻击逻辑判断
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <param name="value"></param>
+        /// <param name="attackDirection"></param>
         public void TakeDamanage(Transform transform, int value, AttackDirection attackDirection)
         {
             //找到所有要受到攻击的怪物v
             var enemyToTakeDamage = new List<EnemyState>();
-            for (var i = 0; i < EnemyList.Count; i++)
+            for (var i = 0; i < _enemyList.Count; i++)
             {
-                var enemystate = EnemyList[i];
+                var enemystate = _enemyList[i];
                 //在距离内
                 if (Vector3.Distance(transform.position, enemystate.transform.position) < Distance)
                 {
-                    //在方向内
+                    //判断攻击方向
                     switch (attackDirection)
                     {
                         case AttackDirection.Forward:
@@ -63,16 +93,27 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
             }
         }
 
+        /// <summary>
+        /// 敌人死亡
+        /// </summary>
+        /// <param name="enemyState"></param>
         public void EnemyDead(EnemyState enemyState)
         {
-            EnemyList.Remove(enemyState);
+            _enemyList.Remove(enemyState);
         }
 
+        /// <summary>
+        /// 连击增加
+        /// </summary>
         public event OnComboAddEvent OnComboAddEvent;
 
-        public void RemoveEnemyBornPoint(EnemyAutoBorn enemyAutoBorn)
+        /// <summary>
+        /// 将清空的怪物生成点移除
+        /// </summary>
+        /// <param name="enemyAutoBornView"></param>
+        public void RemoveEnemyBornPoint(EnemyAutoBornView enemyAutoBornView)
         {
-            EnemyBornPointList.Remove(enemyAutoBorn);
+            EnemyBornPointList.Remove(enemyAutoBornView);
 
             if (EnemyBornPointList.Count == 0)
             {

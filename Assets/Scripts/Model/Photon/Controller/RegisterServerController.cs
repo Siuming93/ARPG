@@ -2,14 +2,17 @@
 using ARPGCommon;
 using ARPGCommon.Model;
 using Assets.Scripts.Presenter.Start;
+using Assets.Scripts.UIPlugin;
 using ExitGames.Client.Photon;
 using LitJson;
 
 namespace Assets.Scripts.Model.Photon.Controller
 {
+    /// <summary>
+    /// 注册操作处理器
+    /// </summary>
     public class RegisterServerController : ServerControllerBase
     {
-        // Use this for initialization
         protected override OperationCode OpCode
         {
             get { return OperationCode.Register; }
@@ -30,12 +33,12 @@ namespace Assets.Scripts.Model.Photon.Controller
             switch (response.ReturnCode)
             {
                 case (short) ReturnCode.Success:
-                    //1.登录
+                    //1.注册成功后直接登录
                     StartMenuController.Instance.OnRegisterSuccess();
                     break;
                 case (short) ReturnCode.Fail:
                     //2.提示
-                    MessageManger.Instance.SetMessage(response.DebugMessage);
+                    MessageUiManger.Instance.SetMessage(response.DebugMessage);
                     break;
             }
         }

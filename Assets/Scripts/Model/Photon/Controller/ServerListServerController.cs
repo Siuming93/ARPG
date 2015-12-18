@@ -1,26 +1,23 @@
 ﻿using System.Collections.Generic;
 using ARPGCommon;
 using ARPGCommon.Model;
-using Assets.Scripts.Presenter.Start;
-using Assets.Scripts.View.Start;
-using LitJson;
-using UnityEngine;
+using Assets.Scripts.Common;
 
 namespace Assets.Scripts.Model.Photon.Controller
 {
+    /// <summary>
+    /// 获得服务器列表
+    /// </summary>
     public class ServerListServerController : ServerControllerBase
     {
+        /// <summary>
+        /// 在场景开始时即进行服务器列表的请求
+        /// </summary>
         public override void Start()
         {
             base.Start();
             PhotonEngine.Instance.OnConnectToServer += GetServerListRequest;
             GetServerListRequest();
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-            PhotonEngine.Instance.OnConnectToServer -= GetServerListRequest;
         }
 
         /// <summary>
@@ -51,6 +48,9 @@ namespace Assets.Scripts.Model.Photon.Controller
             get { return OperationCode.GetServer; }
         }
 
+        /// <summary>
+        /// 获得了服务器中的服务器列表
+        /// </summary>
         public event OnGetServerListEvent OnGetServerList;
     }
 }

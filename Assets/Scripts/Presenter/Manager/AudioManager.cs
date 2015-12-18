@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class AudioManager : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+namespace Assets.Scripts.Presenter.Manager
+{
+    /// <summary>
+    /// 音频管理器
+    /// </summary>
+    public class AudioManager : MonoBehaviour
+    {
+    }
 }

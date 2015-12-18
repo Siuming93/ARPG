@@ -1,13 +1,30 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.View.Skill
+namespace Assets.Scripts.View.Skill.Action
 {
+    /// <summary>
+    /// 特效球的运动
+    /// </summary>
     public class RotateAroundParent : MonoBehaviour
     {
+        /// <summary>
+        /// 父对象
+        /// </summary>
         public Transform Parent;
+
+        /// <summary>
+        /// 运动速度
+        /// </summary>
         public float Speed;
+
+        /// <summary>
+        /// 旋转半径
+        /// </summary>
         public float Distance;
+
+        /// <summary>
+        /// 高度
+        /// </summary>
         public float Height;
 
         public Vector3 DirectionVector3;
@@ -47,6 +64,14 @@ namespace Assets.Scripts.View.Skill
         {
         }
 
+        /// <summary>
+        /// 计算旋转xy
+        /// </summary>
+        /// <param name="curPoint"></param>
+        /// <param name="centerPoint"></param>
+        /// <param name="axis"></param>
+        /// <param name="angle"></param>
+        /// <returns></returns>
         private static Vector3 RotationAround(Vector3 curPoint, Vector3 centerPoint, Vector3 axis, float angle)
         {
             var s = Mathf.Cos(angle/360);

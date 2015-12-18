@@ -1,108 +1,127 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public enum CameraState
+namespace Assets.Scripts.View.Charcter.Player
 {
-    Player = 1,
-    NPC = 2,
-    SkillAnim = 3,
-    Null = -1
-}
-
-public class CameraMovement : MonoBehaviour
-{
-    public float Speed;
-
-    private CameraState cameraState = CameraState.Player;
-    Vector3[] points;
-    protected Transform player;
-    Vector3 aboveVector;
-
-    public CameraState CameraState
+    public enum CameraState
     {
-        get { return cameraState; }
-        set { cameraState = value; }
+        Player = 1,
+        NPC = 2,
+        SkillAnim = 3,
+        Null = -1
     }
 
     /// <summary>
-    /// 找到玩家,并初始化相机的几个位置点
+    /// 相机移动
     /// </summary>
-    void Start()
+    public class CameraMovement : MonoBehaviour
     {
-        player = GameObject.FindWithTag(Tags.Player).transform;
-        points = new Vector3[5];
-        aboveVector = player.transform.position + new Vector3(0f, transform.position.y, 0f);
+        public float Speed;
 
-        Vector3 v = transform.position - new Vector3(player.position.x, aboveVector.y, player.position.z);
+        /// <summary>
+        /// 相机状态
+        /// </summary>
+        private CameraState cameraState = CameraState.Player;
 
-        for (int i = 0; i < points.Length; i++)
+        /// <summary>
+        /// 相机可以移动的点
+        /// </summary>
+        private Vector3[] points;
+
+        /// <summary>
+        /// 玩家位置
+        /// </summary>
+        protected Transform player;
+
+        /// <summary>
+        /// 头顶的相对位置
+        /// </summary>
+        private Vector3 aboveVector;
+
+        public CameraState CameraState
         {
-            points[i] = (i * 0.25f) * v;
+            get { return cameraState; }
+            set { cameraState = value; }
         }
-    }
 
-    /// <summary>
-    /// 实时更新相机位置
-    /// </summary>
-    void Update()
-    {
-        switch (CameraState)
+        /// <summary>
+        /// 找到玩家,并初始化相机的几个位置点
+        /// </summary>
+        private void Start()
         {
-            case CameraState.Player:
-                SmoothMovement();
-                SmoothLookAt();
-                break;
-        }
-    }
+            player = GameObject.FindWithTag(Tags.Player).transform;
+            points = new Vector3[5];
+            aboveVector = player.transform.position + new Vector3(0f, transform.position.y, 0f);
 
-    /// <summary>
-    /// 让相机平滑的跟随主角
-    /// </summary>
-    void SmoothMovement()
-    {
-        Vector3 targetPoint = points[4];
-        for (int i = points.Length - 1; i >= 0; i--)
-        {
-            Vector3 point = new Vector3(player.position.x, aboveVector.y, player.position.z) + points[i];
-            if (CanSeePlayer(point))
+            Vector3 v = transform.position - new Vector3(player.position.x, aboveVector.y, player.position.z);
+
+            for (int i = 0; i < points.Length; i++)
             {
-                targetPoint = point;
-                break;
+                points[i] = (i*0.25f)*v;
             }
         }
 
-        transform.position = Vector3.Lerp(transform.position, targetPoint, Time.deltaTime * Speed);
-    }
-
-    /// <summary>
-    /// 让相机视角平滑的跟随主角
-    /// </summary>
-    void SmoothLookAt()
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position, Vector3.up);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * Speed);
-    }
-
-    /// <summary>
-    /// 通过射线检测判断所给位置是否能够看到主角
-    /// </summary>
-    /// <param name="position"></param>
-    /// <returns></returns>
-    bool CanSeePlayer(Vector3 position)
-    {
-        bool b = false;
-        RaycastHit raycastHit = new RaycastHit();
-        Vector3 direction = player.position - position;
-
-        if (Physics.Raycast(position, direction, out raycastHit))
+        /// <summary>
+        /// 实时更新相机位置
+        /// </summary>
+        private void Update()
         {
-            if (raycastHit.collider.gameObject.tag == Tags.Player)
-                return true;
+            switch (CameraState)
+            {
+                case CameraState.Player:
+                    SmoothMovement();
+                    SmoothLookAt();
+                    break;
+            }
         }
 
-        return b;
+        /// <summary>
+        /// 让相机平滑的跟随主角
+        /// </summary>
+        private void SmoothMovement()
+        {
+            Vector3 targetPoint = points[4];
+            for (int i = points.Length - 1; i >= 0; i--)
+            {
+                Vector3 point = new Vector3(player.position.x, aboveVector.y, player.position.z) + points[i];
+                if (CanSeePlayer(point))
+                {
+                    targetPoint = point;
+                    break;
+                }
+            }
+
+            transform.position = Vector3.Lerp(transform.position, targetPoint, Time.deltaTime*Speed);
+        }
+
+        /// <summary>
+        /// 让相机视角平滑的跟随主角
+        /// </summary>
+        private void SmoothLookAt()
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*Speed);
+        }
+
+        /// <summary>
+        /// 通过射线检测判断所给位置是否能够看到主角
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        private bool CanSeePlayer(Vector3 position)
+        {
+            bool b = false;
+            RaycastHit raycastHit = new RaycastHit();
+            Vector3 direction = player.position - position;
+
+            if (Physics.Raycast(position, direction, out raycastHit))
+            {
+                if (raycastHit.collider.gameObject.tag == Tags.Player)
+                    return true;
+            }
+
+            return b;
+        }
     }
 }
-
-

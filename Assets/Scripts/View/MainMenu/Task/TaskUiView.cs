@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.Presenter.Manager;
+using Assets.Scripts.UIPlugin;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.View.MainMenu.Task
 {
-    public class TaskUI : MonoBehaviour
+    public class TaskUiView : MonoBehaviour
     {
         public GameObject TaskGridUI;
         public GameObject TaskItemUI;
@@ -34,7 +35,7 @@ namespace Assets.Scripts.View.MainMenu.Task
             {
                 var obj = Instantiate(TaskItemUI) as GameObject;
                 obj.transform.parent = TaskGridUI.transform;
-                var taskUi = obj.GetComponent<TaskItemUI>();
+                var taskUi = obj.GetComponent<TaskItemUIView>();
                 //初始化,不初始化不能用
                 taskUi.TaskUiScale = thisPanel;
                 taskUi.SetTask(task);

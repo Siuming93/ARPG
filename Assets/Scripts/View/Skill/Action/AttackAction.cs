@@ -3,10 +3,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.View.Skill.Action
 {
+    /// <summary>
+    /// 攻击行为
+    /// </summary>
     public class AttackAction : ActionBase
     {
+        /// <summary>
+        /// 伤害的数值
+        /// </summary>
         public int Value;
+
+        /// <summary>
+        /// 攻击的方向
+        /// </summary>
         public AttackDirection AttackDirection;
+
+        /// <summary>
+        /// 攻击起始点
+        /// </summary>
         private Transform _playerTransform;
 
         public override ActionType ActionType

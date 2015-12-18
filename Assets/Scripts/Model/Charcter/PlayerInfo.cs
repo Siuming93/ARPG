@@ -5,15 +5,21 @@ using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.View.MainMenu.Knapscak;
 using UnityEngine;
 
-namespace Assets.Scripts.Model
+namespace Assets.Scripts.Model.Charcter
 {
     public class PlayerInfo : CharctorInfo
 
     {
         public static PlayerInfo Instance { get; private set; }
 
-
+        /// <summary>
+        /// 用来请求角色信息
+        /// </summary>
         public RoleServerController RoleServerController;
+
+        /// <summary>
+        /// 角色信息改变事件
+        /// </summary>
         public event OnInfoChangeEvent OnInfoChangeEvent;
 
         #region 主角属性
@@ -296,20 +302,28 @@ namespace Assets.Scripts.Model
 
         #endregion
 
-        //计时变化的属性
+        /// <summary>
+        /// 计时变化的体力
+        /// </summary>
         public float EnergyTimer { get; private set; }
+
+        /// <summary>
+        /// 计时变化的历练
+        /// </summary>
         public float ToughenTimer { get; private set; }
 
 
         public void Awake()
         {
             Instance = this;
+            //注册角色信息更改事件
             RoleServerController.OnUpdateRole += OnUpdatePlayerInfo;
         }
 
 
         private void Start()
         {
+            //延迟初始化
             StartCoroutine(DelayInit());
         }
 
@@ -351,8 +365,6 @@ namespace Assets.Scripts.Model
             {
                 ToughenTimer = 0f;
             }
-
-            // OnInfoChangeEvent();
         }
 
         /// <summary>

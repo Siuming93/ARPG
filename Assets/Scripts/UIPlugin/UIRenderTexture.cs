@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class UIRenderTexture : MonoBehaviour
+namespace Assets.Scripts.UIPlugin
 {
-    public Camera OriginCamera;
-
-    void Start()
+    /// <summary>
+    /// 设定图片为相机的渲染结果
+    /// </summary>
+    public class UIRenderTexture : MonoBehaviour
     {
-        this.GetComponent<RawImage>().texture = OriginCamera.targetTexture;
-    }
+        /// <summary>
+        /// 源相机
+        /// </summary>
+        public Camera OriginCamera;
 
+        private void Start()
+        {
+            this.GetComponent<RawImage>().texture = OriginCamera.targetTexture;
+        }
+    }
 }

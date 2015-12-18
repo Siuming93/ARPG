@@ -1,39 +1,53 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class NPCManager : MonoBehaviour
+namespace Assets.Scripts.Presenter.Manager
 {
-    public List<GameObject> NPCList;
-
-    private static NPCManager _instance;
-
-    public static NPCManager Instance
+    /// <summary>
+    /// NPC的管理器
+    /// </summary>
+    public class NpcManager : MonoBehaviour
     {
-        get { return _instance; }
-    }
+        /// <summary>
+        /// NpcGameObject的列表
+        /// </summary>
+        public List<GameObject> NpcList;
 
-    private Dictionary<int, GameObject> npcDic = new Dictionary<int, GameObject>();
+        public static NpcManager Instance { get; private set; }
 
-    void Awake()
-    {
-        _instance = this;
-        Init();
-    }
+        /// <summary>
+        /// NpcGameObject的字典
+        /// </summary>
+        private readonly Dictionary<int, GameObject> _npcDic = new Dictionary<int, GameObject>();
 
-    public void Init()
-    {
-        for (int i = 0; i < NPCList.Count; i++)
+        private void Awake()
         {
-            int id = int.Parse(NPCList[i].name);
-            npcDic[id] = NPCList[i];
+            Instance = this;
+            Init();
         }
-    }
 
-    public GameObject GetNpc(int id)
-    {
-        GameObject obj;
-        npcDic.TryGetValue(id, out obj);
-        return obj;
+        /// <summary>
+        /// 将列表中数据挪到字典中,方便查找
+        /// </summary>
+        public void Init()
+        {
+            for (int i = 0; i < NpcList.Count; i++)
+            {
+                int id = int.Parse(NpcList[i].name);
+                _npcDic[id] = NpcList[i];
+            }
+        }
+
+        /// <summary>
+        /// 根据id获得NPC的GameObject
+        /// </summary>
+        /// <param name="id">Npc的id</param>
+        /// <returns></returns>
+        public GameObject GetNpc(int id)
+        {
+            GameObject obj;
+            _npcDic.TryGetValue(id, out obj);
+            return obj;
+        }
     }
 }

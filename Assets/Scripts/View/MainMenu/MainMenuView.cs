@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.UIPlugin;
+using UnityEngine;
 
 namespace Assets.Scripts.View.MainMenu
 {
-    public class MainMenuManager : MonoBehaviour
+    /// <summary>
+    /// UI总管理器
+    /// </summary>
+    public class MainMenuView : MonoBehaviour
     {
         public UIScale PlayerStatusScale;
 

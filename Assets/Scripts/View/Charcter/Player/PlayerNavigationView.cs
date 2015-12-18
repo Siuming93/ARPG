@@ -1,24 +1,26 @@
 ﻿using Assets.Scripts.Presenter.Manager;
 using UnityEngine;
 
-namespace Assets.Scripts.View.Player
+namespace Assets.Scripts.View.Charcter.Player
 {
-    public class PlayerNavigation : MonoBehaviour
+    /// <summary>
+    /// 角色导航
+    /// </summary>
+    public class PlayerNavigationView : MonoBehaviour
     {
         private NavMeshAgent nav;
-        private Animator _animator;
 
         public float MinDistance;
 
         private void Start()
         {
             nav = transform.GetComponent<NavMeshAgent>();
-            _animator = transform.GetComponentInChildren<Animator>();
             nav.stoppingDistance = MinDistance;
         }
 
         private void Update()
         {
+            //到达位置
             if (nav.enabled)
             {
                 if (nav.remainingDistance != 0 && nav.remainingDistance < MinDistance)
@@ -27,7 +29,7 @@ namespace Assets.Scripts.View.Player
                     TaskManager.Instance.OnArriveDestination();
                 }
             }
-
+            ///手动移动了,则停止导航
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
             if (h != 0f || v != 0f)
@@ -36,6 +38,10 @@ namespace Assets.Scripts.View.Player
             }
         }
 
+        /// <summary>
+        /// 开始导航
+        /// </summary>
+        /// <param name="targPos"></param>
         public void SetDestination(Vector3 targPos)
         {
             nav.enabled = true;

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/*逻辑层与UI层的回调事件*/
+
+using Assets.Scripts.Model.Charcter;
 using UnityEngine;
 
 namespace Assets.Scripts.Presenter.Manager

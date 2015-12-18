@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.UIPlugin;
+using UnityEngine;
 
 namespace Assets.Scripts.View.MainMenu
 {
-    public class BottomBar : MonoBehaviour
+    /// <summary>
+    /// 底部按钮组
+    /// </summary>
+    public class BottomBarView : MonoBehaviour
     {
         public UIScale TaskUiScale;
         public UIScale KnapscakUiScale;

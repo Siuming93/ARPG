@@ -2,6 +2,7 @@
 using ARPGCommon.Model;
 using Assets.Scripts.Model.Photon;
 using Assets.Scripts.Model.Photon.Controller;
+using Assets.Scripts.UIPlugin;
 using Assets.Scripts.View.Start;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Presenter.Start
         public Text ServerShowButtonText; //显示服务器的按钮
         public Text UserNameButtonText; //显示用户名称的按钮
         //加载场景的进度条
-        public LoadProgressBar LoadProgressBar;
+        public LoadProgressBarView LoadProgressBarView;
         //加载服务器列表的位置
         public GameObject ServerItem;
         public Transform ServerGridVerticalCell1;
@@ -61,7 +62,7 @@ namespace Assets.Scripts.Presenter.Start
         //当前可用的角色模型
         public GameObject[] CharcterArray;
         //私有属性
-        private ServerUiProperty _curServerUiInfo; //已选择的服务器
+        private ServerUiViewProperty _curServerUiViewInfo; //已选择的服务器
         private UIScale _choiceCharcterUiScale;
         private int _index = -1; //创建角色时所选中的角色的索引
         //选择的角色
@@ -88,6 +89,10 @@ namespace Assets.Scripts.Presenter.Start
             RoleController.OnSelectRole -= OnSelectRole;
         }
 
+        /// <summary>
+        /// 添加角色成功
+        /// </summary>
+        /// <param name="role"></param>
         public void OnAddRole(Role role)
         {
             //1.设定角色
@@ -96,6 +101,10 @@ namespace Assets.Scripts.Presenter.Start
             RoleController.SelectRole(CurRole);
         }
 
+        /// <summary>
+        /// 请求服务器列表成功
+        /// </summary>
+        /// <param name="serverList"></param>
         public void OnGetServerList(List<ServerProperty> serverList)
         {
             for (var i = 0; i < serverList.Count; i++)
@@ -107,12 +116,16 @@ namespace Assets.Scripts.Presenter.Start
                 curServerItem.transform.parent = i%2 == 0 ? ServerGridVerticalCell1 : ServerGridVerticalCell2;
 
                 //设置名称和ip
-                var sp = curServerItem.GetComponent<ServerUiProperty>();
+                var sp = curServerItem.GetComponent<ServerUiViewProperty>();
                 sp.Set(ip, serverName, count);
                 OnServerButtonClick(sp);
             }
         }
 
+        /// <summary>
+        /// 成功得到角色列表
+        /// </summary>
+        /// <param name="roles"></param>
         public void OnGetRole(List<Role> roles)
         {
             if (roles != null && roles.Count > 0)
@@ -142,7 +155,7 @@ namespace Assets.Scripts.Presenter.Start
             CharcterChnageMove.SetActiveFalse();
             PhotonEngine.Instance.SetCurRole(CurRole);
             var operation = Application.LoadLevelAsync(Scenes.loadLevel);
-            LoadProgressBar.Show(operation);
+            LoadProgressBarView.Show(operation);
         }
 
         /// <summary>
@@ -154,6 +167,10 @@ namespace Assets.Scripts.Presenter.Start
             RoleController.SelectRole(CurRole);
         }
 
+        /// <summary>
+        /// 更换角色型
+        /// </summary>
+        /// <param name="role"></param>
         private void UpdateCharcterSelected(Role role)
         {
             //1.将之前的模型销毁
@@ -179,12 +196,12 @@ namespace Assets.Scripts.Presenter.Start
             //1.本地验证
             if (_index == -1)
             {
-                MessageManger.Instance.SetMessage("请选择一个角色!");
+                MessageUiManger.Instance.SetMessage("请选择一个角色!");
                 return;
             }
             if (CharcterNameInputField.text == "" || CharcterNameInputField.text.Length > 20)
             {
-                MessageManger.Instance.SetMessage("昵称不合法!");
+                MessageUiManger.Instance.SetMessage("昵称不合法!");
                 return;
             }
             //2.连接服务器,验证昵称
@@ -321,19 +338,19 @@ namespace Assets.Scripts.Presenter.Start
             //1.本地校验
             if (RegisterUsernameInputField.text.Length < 3)
             {
-                MessageManger.Instance.SetMessage("用户名不能少于三个字符");
+                MessageUiManger.Instance.SetMessage("用户名不能少于三个字符");
                 return;
             }
 
             if (RegisterUsernameInputField.text.Length < 3)
             {
-                MessageManger.Instance.SetMessage("密码不能少于三个字符");
+                MessageUiManger.Instance.SetMessage("密码不能少于三个字符");
                 return;
             }
 
             if (RegisterPasswordInputField.text != RegisterPasswordConfirmInputField.text)
             {
-                MessageManger.Instance.SetMessage("两次输入密码不同");
+                MessageUiManger.Instance.SetMessage("两次输入密码不同");
                 return;
             }
 
@@ -365,18 +382,18 @@ namespace Assets.Scripts.Presenter.Start
         /// <summary>
         /// 服务器选择按钮点击事件
         /// </summary>
-        public void OnServerButtonClick(ServerUiProperty serverUi)
+        public void OnServerButtonClick(ServerUiViewProperty serverUiView)
         {
             //1.记录
-            _curServerUiInfo = serverUi;
+            _curServerUiViewInfo = serverUiView;
 
             //2.设置已选择的服务器
             ServerSelectedButton.SetActive(true);
-            var serverButtonSelectedSp = ServerSelectedButton.GetComponent<ServerUiProperty>();
-            serverButtonSelectedSp.Set(_curServerUiInfo.Ip, _curServerUiInfo.Name, _curServerUiInfo.Count);
+            var serverButtonSelectedSp = ServerSelectedButton.GetComponent<ServerUiViewProperty>();
+            serverButtonSelectedSp.Set(_curServerUiViewInfo.Ip, _curServerUiViewInfo.Name, _curServerUiViewInfo.Count);
 
             //3.设置开始面板上的服务器名称
-            ServerShowButtonText.text = _curServerUiInfo.Name;
+            ServerShowButtonText.text = _curServerUiViewInfo.Name;
         }
 
         /// <summary>

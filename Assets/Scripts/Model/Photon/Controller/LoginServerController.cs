@@ -2,10 +2,14 @@
 using ARPGCommon;
 using ARPGCommon.Model;
 using Assets.Scripts.Presenter.Start;
+using Assets.Scripts.UIPlugin;
 using ExitGames.Client.Photon;
 
 namespace Assets.Scripts.Model.Photon.Controller
 {
+    /// <summary>
+    /// 登录的请求发送和响应处理器
+    /// </summary>
     public class LoginServerController : ServerControllerBase
     {
         protected override OperationCode OpCode
@@ -35,7 +39,7 @@ namespace Assets.Scripts.Model.Photon.Controller
 
                 case (short) ReturnCode.Fail:
                     //登录失败,提示
-                    MessageManger.Instance.SetMessage(response.DebugMessage);
+                    MessageUiManger.Instance.SetMessage(response.DebugMessage);
                     break;
             }
         }

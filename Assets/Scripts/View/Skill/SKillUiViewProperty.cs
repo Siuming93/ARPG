@@ -1,15 +1,20 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Presenter.Manager;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.View.Skill
 {
-    public class SKillUiProperty : MonoBehaviour
+    /// <summary>
+    /// 挂在GameObject的Button上,来连接BUtton与技能
+    /// </summary>
+    public class SKillUiViewProperty : MonoBehaviour
     {
+        //技能信息
         public string Name;
         public int Id;
         public string Description;
         public string ImageName;
-
+        //组件信息
         public Image MaskChild;
         public Button Button;
 

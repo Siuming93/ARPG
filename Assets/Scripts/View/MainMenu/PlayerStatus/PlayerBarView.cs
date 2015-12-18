@@ -1,11 +1,14 @@
-﻿using Assets.Scripts.Model;
-using Assets.Scripts.Presenter.Manager;
+﻿using Assets.Scripts.Model.Charcter;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.View.MainMenu.PlayerStatus
 {
-    public class PlayerBar : MonoBehaviour
+    /// <summary>
+    /// 左上方角色信息Ui组
+    /// </summary>
+    public class PlayerBarView : MonoBehaviour
     {
         #region 控件
 

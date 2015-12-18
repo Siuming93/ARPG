@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Model;
-using Assets.Scripts.Presenter.Manager;
+﻿using Assets.Scripts.Model.Charcter;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using UnityEngine;
 using UnityEngine.UI;
 

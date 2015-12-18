@@ -1,20 +1,26 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class DestoryAuto : MonoBehaviour
+namespace Assets.Scripts.UIPlugin
 {
-    public float WaitTime;
-    // Use this for initialization
-    private void Start()
+    /// <summary>
+    /// 自动销毁
+    /// </summary>
+    public class DestoryAuto : MonoBehaviour
     {
-        StartCoroutine(DelayDestory());
-    }
+        public float WaitTime;
+        // Use this for initialization
+        private void Start()
+        {
+            StartCoroutine(DelayDestory());
+        }
 
 
-    private IEnumerator DelayDestory()
-    {
-        yield return new WaitForSeconds(WaitTime);
+        private IEnumerator DelayDestory()
+        {
+            yield return new WaitForSeconds(WaitTime);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

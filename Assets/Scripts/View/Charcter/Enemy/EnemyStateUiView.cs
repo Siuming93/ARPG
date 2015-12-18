@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
+using Assets.Scripts.Model.Charcter;
 using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.Presenter.Manager.Charcter;
 using UnityEngine;
@@ -11,18 +12,40 @@ namespace Assets.Scripts.View.Charcter.Enemy
     /// <summary>
     /// 负责动画的播放,血量的显示
     /// </summary>
-    public class EnemyStateUi : MonoBehaviour
+    public class EnemyStateUiView : MonoBehaviour
     {
-        //绑定一个p层的状态
+        /// <summary>
+        /// 绑定一个的状态
+        /// </summary>
         public EnemyState EnemyState;
+
+        /// <summary>
+        /// UI中放血条和名称的父Tranform
+        /// </summary>
         public Transform HpandNameUiParenTransform;
+
+        /// <summary>
+        /// 血条和名称的Prefab
+        /// </summary>
         public GameObject HpandNameUiPerfab;
+
+        /// <summary>
+        /// 受伤时的出血特效
+        /// </summary>
         public GameObject BloodSplatEffectPerfab;
+
+        /// <summary>
+        /// 死亡消失时间
+        /// </summary>
         public float DisapearTime;
+
+        /// <summary>
+        /// 出血特效的位置
+        /// </summary>
         public Vector3 BooldEffectVector3;
 
         private Animator _animator;
-        private HpandNameUi _hpandNameUi;
+        private HpandNameUiView _hpandNameUiView;
         private AudioSource _audioSource;
         private bool _isDying = false;
 
@@ -30,16 +53,21 @@ namespace Assets.Scripts.View.Charcter.Enemy
 
         private void Awake()
         {
+            //添加状态改变事件监视
             EnemyState.OnTakeDamageEvent += OnTakeDamage;
             EnemyState.OnInfoChangeEvent += OnUpdateShowInfo;
+
+            //找到血条的父object
             HpandNameUiParenTransform = GameObject.Find("HpandNamePanel").transform;
 
-            _hpandNameUi =
-                ((GameObject) Instantiate(HpandNameUiPerfab)).GetComponent<HpandNameUi>();
-            _hpandNameUi.transform.parent = HpandNameUiParenTransform;
-            _hpandNameUi.Fellow = transform;
-            _hpandNameUi.Name = EnemyState.Name;
+            //在预制中找到hp和nameui类,并设定值
+            _hpandNameUiView =
+                ((GameObject) Instantiate(HpandNameUiPerfab)).GetComponent<HpandNameUiView>();
+            _hpandNameUiView.transform.parent = HpandNameUiParenTransform;
+            _hpandNameUiView.Fellow = transform;
+            _hpandNameUiView.Name = EnemyState.Name;
 
+            //初始化动画控制
             _animator = transform.GetComponentInChildren<Animator>();
             _audioSource = transform.GetComponent<AudioSource>();
         }
@@ -63,9 +91,14 @@ namespace Assets.Scripts.View.Charcter.Enemy
 
         private void OnUpdateShowInfo()
         {
-            _hpandNameUi.HpPercent = EnemyState.GetHpPercet();
+            _hpandNameUiView.HpPercent = EnemyState.GetHpPercet();
         }
 
+        /// <summary>
+        /// 受到伤害后的响应
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="trigger"></param>
         private void OnTakeDamage(GameObject source, string trigger)
         {
             if (_isDying)
@@ -96,13 +129,18 @@ namespace Assets.Scripts.View.Charcter.Enemy
 
         private void LateUpdate()
         {
+            //播放声音数清零
             count = 0;
         }
 
+        /// <summary>
+        /// 延时destroy
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Dead()
         {
             float timer = 0;
-            _hpandNameUi.DestroySelf();
+            _hpandNameUiView.DestroySelf();
 
             while (timer < DisapearTime)
             {

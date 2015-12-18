@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.Presenter.Manager;
+using Assets.Scripts.UIPlugin;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.View.MainMenu.Task
 {
-    public class TaskItemUI : MonoBehaviour
+    public class TaskItemUIView : MonoBehaviour
     {
         public Text nameText;
         public Text descriptionText;

@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.IO;
-using ARPGCommon.Model;
-using Assets.Scripts.Model;
-using Assets.Scripts.Model.Photon;
-using Assets.Scripts.Model.Photon.Controller;
-using Assets.Scripts.View.MainMenu.Knapscak;
+﻿using Assets.Scripts.Model.Charcter;
 using UnityEngine;
 
-namespace Assets.Scripts.Presenter.Manager
+namespace Assets.Scripts.Presenter.Manager.Charcter
 {
+    /// <summary>
+    /// 玩家角色管理器
+    /// </summary>
     public class PlayerManager : MonoBehaviour
     {
+        /// <summary>
+        /// 角色信息
+        /// </summary>
         public PlayerInfo PlayerInfo;
 
         public static PlayerManager Instance { get; private set; }
@@ -20,6 +20,10 @@ namespace Assets.Scripts.Presenter.Manager
             Instance = this;
         }
 
+        /// <summary>
+        /// 接受伤害
+        /// </summary>
+        /// <param name="value"></param>
         private void TakeDamage(int value)
         {
             PlayerInfo.TakeDamage(value);
@@ -29,16 +33,27 @@ namespace Assets.Scripts.Presenter.Manager
             }
         }
 
+        /// <summary>
+        /// 注册角色信息改变事件
+        /// </summary>
+        /// <param name="onInfoChangeEvent"></param>
         public void AddInfoChangeEventToState(OnInfoChangeEvent onInfoChangeEvent)
         {
             PlayerInfo.OnInfoChangeEvent += onInfoChangeEvent;
         }
 
+        /// <summary>
+        /// 取消角色信息改变事件注册
+        /// </summary>
+        /// <param name="onInfoChangeEvent"></param>
         public void DeleteInfoChangeEventToState(OnInfoChangeEvent onInfoChangeEvent)
         {
             PlayerInfo.OnInfoChangeEvent -= onInfoChangeEvent;
         }
 
+        /// <summary>
+        /// 角色死亡事件
+        /// </summary>
         public event OnDeadEvent OnDeadEvent;
     }
 }

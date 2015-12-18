@@ -1,15 +1,19 @@
 ﻿using ARPGCommon.Model;
 using Assets.Scripts.Model.Photon;
+using Assets.Scripts.View.Start;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Presenter.Manager
 {
+    /// <summary>
+    /// 游戏管理器,控制场景加载等
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
         //单例实例
         public static GameManager Instance { get; private set; }
-        public LoadProgressBar LoadProgressBar;
+        public LoadProgressBarView LoadProgressBarView;
 
         //Player模型的父物体
         public Transform PlayerTransform;
@@ -24,6 +28,9 @@ namespace Assets.Scripts.Presenter.Manager
             SetPlayerModel();
         }
 
+        /// <summary>
+        /// 根据角色信息,为角色加载模型
+        /// </summary>
         private void SetPlayerModel()
         {
             var playerMoelName = CurRole.Isman ? "Boy" : "Girl";
@@ -33,18 +40,29 @@ namespace Assets.Scripts.Presenter.Manager
             playerModel.transform.parent = PlayerTransform;
         }
 
+        /// <summary>
+        /// 选择副本加载场景
+        /// </summary>
+        /// <param name="name"></param>
         public void PassTranscript(string name)
         {
             OnPassTranscriptEvent();
         }
 
+        /// <summary>
+        /// 加载目标场景
+        /// </summary>
+        /// <param name="name"></param>
         public void LoadScene(string name)
         {
             DontDestroyOnLoad(PhotonEngine.Instance);
             var operation = Application.LoadLevelAsync(name);
-            LoadProgressBar.Show(operation);
+            LoadProgressBarView.Show(operation);
         }
 
+        /// <summary>
+        /// 通关副本事件
+        /// </summary>
         public event OnPassTranscriptEvent OnPassTranscriptEvent;
     }
 }
