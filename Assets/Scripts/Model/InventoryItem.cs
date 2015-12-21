@@ -1,31 +1,15 @@
-﻿using System.Collections;
-using Assets.Scripts.Presenter.Manager;
-using UnityEngine;
-
-namespace Assets.Scripts.View.MainMenu.Knapscak
+﻿namespace Assets.Scripts.Model
 {
-    public enum InventoryType
+    public class InventoryItem
     {
-        Equip,
-        Drug,
-        Box
-    }
+        //道具附加属性
+        public int Index { get; set; }
 
-    public enum EquipType
-    {
-        Helm,
-        Cloth,
-        Weapon,
-        Shoes,
-        Necklace,
-        Bracelet,
-        Ring,
-        Wing
-    }
+        public int Level { get; set; }
 
-    public class Inventory
-    {
-        #region 属性
+        public int Count { get; set; }
+
+        #region 道具自带属性
 
         //ID
         private int _id;
@@ -137,5 +121,24 @@ namespace Assets.Scripts.View.MainMenu.Knapscak
         }
 
         #endregion
+    }
+
+    public enum InventoryType
+    {
+        Equip,
+        Drug,
+        Box
+    }
+
+    public enum EquipType
+    {
+        Helm,
+        Cloth,
+        Weapon,
+        Shoes,
+        Necklace,
+        Bracelet,
+        Ring,
+        Wing
     }
 }

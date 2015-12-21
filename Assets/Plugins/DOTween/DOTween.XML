@@ -9,12 +9,12 @@
             Path control point
             </summary>
         </member>
-        <member name="T:DG.Tweening.IDOTweenInit">
+        <member name="T:DG.Tweening.idOTweenInit">
             <summary>
             Used to allow method chaining with DOTween.Init
             </summary>
         </member>
-        <member name="M:DG.Tweening.IDOTweenInit.SetCapacity(System.Int32,System.Int32)">
+        <member name="M:DG.Tweening.idOTweenInit.SetCapacity(System.Int32,System.Int32)">
             <summary>
             Directly sets the current max capacity of Tweeners and Sequences
             (meaning how many Tweeners and Sequences can be running at the same time),
@@ -331,7 +331,7 @@
             (meaning tweens that don't have infinite loops and were not already complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Complete(System.Object)">
-            <summary>Completes all tweens with the given ID or target and returns the number of actual tweens completed
+            <summary>Completes all tweens with the given id or target and returns the number of actual tweens completed
             (meaning the tweens that don't have infinite loops and were not already complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Flip">
@@ -339,27 +339,27 @@
             then returns the number of actual tweens flipped</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Flip(System.Object)">
-            <summary>Flips the tweens with the given ID or target (changing their direction to forward if it was backwards and viceversa),
+            <summary>Flips the tweens with the given id or target (changing their direction to forward if it was backwards and viceversa),
             then returns the number of actual tweens flipped</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Goto(System.Single,System.Boolean)">
             <summary>Sends all tweens to the given position (calculating also eventual loop cycles) and returns the actual tweens involved</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Goto(System.Object,System.Single,System.Boolean)">
-            <summary>Sends all tweens with the given ID or target to the given position (calculating also eventual loop cycles)
+            <summary>Sends all tweens with the given id or target to the given position (calculating also eventual loop cycles)
             and returns the actual tweens involved</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Kill">
             <summary>Kills all tweens and returns the number of actual tweens killed</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Kill(System.Object)">
-            <summary>Kills all tweens with the given ID or target and returns the number of actual tweens killed</summary>
+            <summary>Kills all tweens with the given id or target and returns the number of actual tweens killed</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Pause">
             <summary>Pauses all tweens and returns the number of actual tweens paused</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Pause(System.Object)">
-            <summary>Pauses all tweens with the given ID or target and returns the number of actual tweens paused
+            <summary>Pauses all tweens with the given id or target and returns the number of actual tweens paused
             (meaning the tweens that were actually playing and have been paused)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Play">
@@ -367,7 +367,7 @@
             (meaning tweens that were not already playing or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Play(System.Object)">
-            <summary>Plays all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays all tweens with the given id or target and returns the number of actual tweens played
             (meaning the tweens that were not already playing or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayBackwards">
@@ -375,7 +375,7 @@
             (meaning tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayBackwards(System.Object)">
-            <summary>Plays backwards all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays backwards all tweens with the given id or target and returns the number of actual tweens played
             (meaning the tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayForward">
@@ -383,21 +383,21 @@
             (meaning tweens that were not already playing forward or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayForward(System.Object)">
-            <summary>Plays forward all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays forward all tweens with the given id or target and returns the number of actual tweens played
             (meaning the tweens that were not already playing forward or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Restart(System.Boolean)">
             <summary>Restarts all tweens, then returns the number of actual tweens restarted</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Boolean)">
-            <summary>Restarts all tweens with the given ID or target, then returns the number of actual tweens restarted</summary>
+            <summary>Restarts all tweens with the given id or target, then returns the number of actual tweens restarted</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Rewind(System.Boolean)">
             <summary>Rewinds and pauses all tweens, then returns the number of actual tweens rewinded
             (meaning tweens that were not already rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Rewind(System.Object,System.Boolean)">
-            <summary>Rewinds and pauses all tweens with the given ID or target, then returns the number of actual tweens rewinded
+            <summary>Rewinds and pauses all tweens with the given id or target, then returns the number of actual tweens rewinded
             (meaning the tweens that were not already rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.TogglePause">
@@ -405,12 +405,12 @@
             (meaning tweens that could be played or paused, depending on the toggle state)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.TogglePause(System.Object)">
-            <summary>Toggles the play state of all tweens with the given ID or target and returns the number of actual tweens toggled
+            <summary>Toggles the play state of all tweens with the given id or target and returns the number of actual tweens toggled
             (meaning the tweens that could be played or paused, depending on the toggle state)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.IsTweening(System.Object)">
             <summary>
-            Returns TRUE if a tween with the given ID or target is active (regardless if it's playing or not).
+            Returns TRUE if a tween with the given id or target is active (regardless if it's playing or not).
             <para>You can also use this to know if a shortcut tween is active for a given target.</para>
             <para>Example:</para>
             <para><code>transform.DOMoveX(45, 1); // transform is automatically added as the tween target</code></para>
@@ -447,12 +447,12 @@
             <param name="autoKillOnCompletion">If TRUE the tween will be automatically killed when complete</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.Object)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="id">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an id for the tween, which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="id">The id to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetTarget``1(``0,System.Object)">
             <summary>Sets the target for the tween, which can then be used as a filter with DOTween's static methods.
-            <para>IMPORTANT: use it with caution. If you just want to set an ID for the tween use <code>SetId</code> instead.</para>
+            <para>IMPORTANT: use it with caution. If you just want to set an id for the tween use <code>SetId</code> instead.</para>
             When using shorcuts the shortcut target is already assigned as the tween's target,
             so using this method will overwrite it and prevent shortcut-operations like myTarget.DOPause from working correctly.</summary>
             <param name="target">The target to assign to this tween. Can be an int, a string, an object or anything else.</param>
@@ -753,12 +753,12 @@
             <param name="autoKillOnCompletion">If TRUE the tween will be automatically killed when complete</param>
         </member>
         <member name="M:DG.Tweening.TweenParms.SetId(System.Object)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="id">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an id for the tween, which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="id">The id to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenParms.SetTarget(System.Object)">
             <summary>Sets the target for the tween, which can then be used as a filter with DOTween's static methods.
-            <para>IMPORTANT: use it with caution. If you just want to set an ID for the tween use <code>SetId</code> instead.</para>
+            <para>IMPORTANT: use it with caution. If you just want to set an id for the tween use <code>SetId</code> instead.</para>
             When using shorcuts the shortcut target is already assigned as the tween's target,
             so using this method will overwrite it and prevent shortcut-operations like myTarget.DOPause from working correctly.</summary>
             <param name="target">The target to assign to this tween. Can be an int, a string, an object or anything else.</param>

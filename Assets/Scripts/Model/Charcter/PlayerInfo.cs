@@ -455,7 +455,7 @@ namespace Assets.Scripts.Model.Charcter
         /// <param name="id"></param>
         private void PutonEquip(int id)
         {
-            Inventory inventory = null;
+            InventoryItem inventory = null;
             InventoryManger.Instrance.InventoryDict.TryGetValue(id, out inventory);
             this.HP += inventory.HP;
             this.Damage += inventory.Damage;
@@ -470,7 +470,7 @@ namespace Assets.Scripts.Model.Charcter
             if (id == 0)
                 return;
 
-            Inventory inventory = null;
+            InventoryItem inventory = null;
             InventoryManger.Instrance.InventoryDict.TryGetValue(id, out inventory);
             this.HP -= inventory.HP;
             this.Damage -= inventory.Damage;

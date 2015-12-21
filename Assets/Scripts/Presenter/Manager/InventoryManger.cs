@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Assets.Scripts.Model;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using Assets.Scripts.View.MainMenu.Knapscak;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Presenter.Manager
 {
@@ -16,17 +21,12 @@ namespace Assets.Scripts.Presenter.Manager
         /// <summary>
         /// 所有物品的字典
         /// </summary>
-        public Dictionary<int, Inventory> InventoryDict = new Dictionary<int, Inventory>();
+        public Dictionary<int, InventoryItem> InventoryDict = new Dictionary<int, InventoryItem>();
 
         /// <summary>
         /// 记录了当前角色拥有的物品
         /// </summary>
-        public List<InventoryItem> InventoryItemDict = new List<InventoryItem>();
-
-        /// <summary>
-        /// 背包Item列表
-        /// </summary>
-        public List<KnapsackItem> Items = new List<KnapsackItem>();
+        public List<InventoryItem> InventoryItemList = new List<InventoryItem>();
 
 
         private void Awake()
@@ -34,6 +34,12 @@ namespace Assets.Scripts.Presenter.Manager
             Instrance = this;
 
             ReadInventroyInfo();
+            StartCoroutine(DelayExcute());
+        }
+
+        private IEnumerator DelayExcute()
+        {
+            yield return new WaitForEndOfFrame();
             ReadInventroyItem();
         }
 
@@ -50,7 +56,7 @@ namespace Assets.Scripts.Presenter.Manager
                 string itemStr = itemStrArray[i];
 
                 string[] proArray = itemStr.Split('|');
-                Inventory inventory = new Inventory();
+                InventoryItem inventory = new InventoryItem();
                 inventory.ID = int.Parse(proArray[0]);
                 inventory.Name = proArray[1];
                 inventory.Icon = proArray[2];
@@ -127,27 +133,65 @@ namespace Assets.Scripts.Presenter.Manager
             for (int i = 0; i < 20; i++)
             {
                 int id = Random.Range(1001, 1020);
-                Inventory inventroy;
+                InventoryItem inventroy;
                 InventoryDict.TryGetValue(id, out inventroy);
-                InventoryItem it = new InventoryItem();
 
                 if (inventroy.InventoryType == InventoryType.Equip)
                 {
-                    it.Inventory = inventroy;
-                    it.Level = Random.Range(1, 10);
-                    it.Count = 1;
-                    InventoryItemDict.Add(it);
+                    inventroy.Level = Random.Range(1, 10);
+                    inventroy.Count = 1;
+                    InventoryItemList.Add(inventroy);
                 }
                 else
                 {
                     //判断背包里面是否已经存在,存在则+1
-                    it.Inventory = inventroy;
-                    InventoryItemDict.Add(it);
-                    it.Level = 0;
-                    it.Count = Random.Range(1, 20);
+                    if (InventoryItemList.Contains(inventroy))
+                    {
+                        KanpsackView.Instance.DeleteInventoryItem(inventroy.Index);
+                        inventroy.Count++;
+                    }
+                    else
+                    {
+                        inventroy.Count = 1;
+                        InventoryItemList.Add(inventroy);
+                    }
                 }
 
-                Items[i].SetItem(it);
+                inventroy.Index = i;
+                if (AddPlayerInventoryItem != null) AddPlayerInventoryItem(inventroy);
+            }
+        }
+
+        public void InventoryTrim()
+        {
+            InventoryItemList.Sort((x, y) => x.ID > y.ID ? -1 : 1);
+            for (int i = 0; i < InventoryItemList.Count; i++)
+            {
+                var item = InventoryItemList[i];
+                KanpsackView.Instance.DeleteInventoryItem(item.Index);
+            }
+            for (int i = 0; i < InventoryItemList.Count; i++)
+            {
+                var item = InventoryItemList[i];
+                item.Index = i;
+                KanpsackView.Instance.OnAddPlayerInventoryItem(item);
+            }
+        }
+
+        public event OnAddPlayerInventoryItem AddPlayerInventoryItem;
+
+        public void UseItem(InventoryItem item)
+        {
+            //根据道具属性,改变人物状态
+            item.Count--;
+            print("增加了一点金币");
+            if (item.Count > 0)
+            {
+                KanpsackView.Instance.OnAddPlayerInventoryItem(item);
+            }
+            else
+            {
+                KanpsackView.Instance.DeleteInventoryItem(item.Index);
             }
         }
     }

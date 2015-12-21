@@ -13,14 +13,14 @@ namespace Assets.Scripts.View.MainMenu.Knapscak
         public Text ExpText;
         public Slider ExpSlider;
 
-        public KnapscakUiSprite helmEquip;
-        public KnapscakUiSprite clothEquip;
-        public KnapscakUiSprite weaponEquip;
-        public KnapscakUiSprite shoesEquip;
-        public KnapscakUiSprite necklaceEquip;
-        public KnapscakUiSprite braceletEquip;
-        public KnapscakUiSprite ringEquip;
-        public KnapscakUiSprite wingEquip;
+        public KnapsackItemUi helmEquip;
+        public KnapsackItemUi clothEquip;
+        public KnapsackItemUi weaponEquip;
+        public KnapsackItemUi shoesEquip;
+        public KnapsackItemUi necklaceEquip;
+        public KnapsackItemUi braceletEquip;
+        public KnapsackItemUi ringEquip;
+        public KnapsackItemUi wingEquip;
 
         private void Start()
         {
@@ -46,14 +46,14 @@ namespace Assets.Scripts.View.MainMenu.Knapscak
             ExpSlider.value = (float) info.Exp/info.MaxExp;
 
             //更新装备显示
-            helmEquip.SetID(info.HelmID);
-            clothEquip.SetID(info.ClothID);
-            weaponEquip.SetID(info.WeaponID);
-            shoesEquip.SetID(info.ShoesID);
-            necklaceEquip.SetID(info.NecklaceID);
-            braceletEquip.SetID(info.BraceletID);
-            ringEquip.SetID(info.RingID);
-            wingEquip.SetID(info.WingID);
+            helmEquip.SetItemById(info.HelmID);
+            clothEquip.SetItemById(info.ClothID);
+            weaponEquip.SetItemById(info.WeaponID);
+            shoesEquip.SetItemById(info.ShoesID);
+            necklaceEquip.SetItemById(info.NecklaceID);
+            braceletEquip.SetItemById(info.BraceletID);
+            ringEquip.SetItemById(info.RingID);
+            wingEquip.SetItemById(info.WingID);
         }
     }
 }

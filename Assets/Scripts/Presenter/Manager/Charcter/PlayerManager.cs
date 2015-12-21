@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Model.Charcter;
+﻿using Assets.Scripts.Model;
+using Assets.Scripts.Model.Charcter;
 using UnityEngine;
 
 namespace Assets.Scripts.Presenter.Manager.Charcter
@@ -55,5 +56,11 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         /// 角色死亡事件
         /// </summary>
         public event OnDeadEvent OnDeadEvent;
+
+        public void UseItem(InventoryItem item)
+        {
+            //根据道具属性,改变人物状态
+            //TODO
+        }
     }
 }
