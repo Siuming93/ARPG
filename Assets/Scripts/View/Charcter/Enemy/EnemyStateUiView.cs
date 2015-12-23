@@ -147,6 +147,9 @@ namespace Assets.Scripts.View.Charcter.Enemy
                 //取消刚体
                 if (rigidbody != null)
                     Destroy(rigidbody);
+                var cc = GetComponent<CharacterController>();
+                if (cc != null)
+                    cc.enabled = false;
                 timer += Time.deltaTime;
                 transform.position -= 3*transform.up*Time.deltaTime;
                 yield return null;

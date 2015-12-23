@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.View.Charcter.Player
+namespace Assets.Scripts.View.Camera
 {
     public enum CameraState
     {
