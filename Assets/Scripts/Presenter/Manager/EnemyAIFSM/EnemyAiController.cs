@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.Presenter.Manager.EnemyAIFSM;
+using Assets.Scripts.View.Skill;
 
 public class EnemyAiController : FSM
 {
@@ -8,6 +11,8 @@ public class EnemyAiController : FSM
     /// 玩家
     /// </summary>
     private Transform _player;
+
+    public SkillManager SkillManager;
 
 
     private void Start()

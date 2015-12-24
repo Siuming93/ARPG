@@ -94,6 +94,40 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         }
 
         /// <summary>
+        /// 对玩家进行攻击
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <param name="value"></param>
+        /// <param name="attackDirection"></param>
+        public void Attack(Transform transform, int value, AttackDirection attackDirection)
+        {
+            //1.判断玩家是不是在范围内
+            var distrance = Vector3.Distance(transform.position, Player.transform.position);
+            //在距离内
+            if (distrance < Distance)
+            {
+                //判断攻击方向
+                switch (attackDirection)
+                {
+                    case AttackDirection.Forward:
+                        var angleCos = Vector3.Dot(transform.forward,
+                            (Player.transform.position - transform.position).normalized);
+                        //计算角度
+                        if (angleCos > 0.5f)
+                        {
+                            //2.计算伤害
+                            PlayerManager.Instance.TakeDamage(value);
+                        }
+                        break;
+                    case AttackDirection.Around:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException("attackDirection", attackDirection, null);
+                }
+            }
+        }
+
+        /// <summary>
         /// 敌人死亡
         /// </summary>
         /// <param name="enemyState"></param>

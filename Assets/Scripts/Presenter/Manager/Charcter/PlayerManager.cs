@@ -25,7 +25,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         /// 接受伤害
         /// </summary>
         /// <param name="value"></param>
-        private void TakeDamage(int value)
+        public void TakeDamage(int value)
         {
             PlayerInfo.TakeDamage(value);
             if (PlayerInfo.HP < 0)
