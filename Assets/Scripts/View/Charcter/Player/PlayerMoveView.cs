@@ -14,10 +14,25 @@ namespace Assets.Scripts.View.Charcter.Player
         public float Speed;
 
         private Animator _animator;
+        private float v, h;
 
         private void Start()
         {
             _animator = transform.GetComponentInChildren<Animator>();
+            Joystick.Instance.OnJoystickMovement += GetMoveAxis;
+            Joystick.Instance.OnEndJoystickMovement += EndJoyMove;
+        }
+
+        private void GetMoveAxis(Joystick joystick, Vector2 axis)
+        {
+            h = axis.x;
+            v = axis.y;
+        }
+
+        private void EndJoyMove(Joystick joystick)
+        {
+            h = 0;
+            v = 0;
         }
 
         private void Update()
@@ -27,9 +42,6 @@ namespace Assets.Scripts.View.Charcter.Player
                 !_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
                 !_animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
                 return;
-            //1.获得移动方向
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
 
             Vector3 ve = new Vector3(-v, 0f, h)*Speed;
 
