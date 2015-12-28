@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using Assets.Scripts.UIPlugin;
 using Assets.Scripts.View.Skill;
 using UnityEngine;
 
@@ -99,7 +102,7 @@ namespace Assets.Scripts.Presenter.Manager
         private void Start()
         {
             //初始化所有技能
-            InitAllSkill();
+            StartCoroutine(InitAllSkill());
             //初始化玩家技能
             InitPlayerSkill();
         }
@@ -107,19 +110,19 @@ namespace Assets.Scripts.Presenter.Manager
         /// <summary>
         /// 根据序列化初始化当前的所有技能
         /// </summary>
-        private void InitAllSkill()
+        private IEnumerator InitAllSkill()
         {
-            //读取SkillData下的所有Asset数据
-            var path = "Assets/Resources/SkillData";
-            var parentDirectory = new DirectoryInfo(path);
-            var player = GameObject.FindGameObjectWithTag(Tags.Player);
+            var bundle = new WWW("file://" + Application.dataPath + "/name.unity3D");
+            yield return bundle;
 
-            var childDirectories = parentDirectory.GetDirectories();
-            for (int i = 0; i < childDirectories.Length; i++)
+            var player = GameObject.FindGameObjectWithTag(Tags.Player);
+            var skill = bundle.assetBundle.LoadAll(typeof (Skill));
+            foreach (var o in skill)
             {
-                var skill = Resources.Load<Skill>("SkillData/" + childDirectories[i].Name + "/Skill");
-                _skills.Add(int.Parse(childDirectories[i].Name), skill);
-                skill.Init(player);
+                var s = o as Skill;
+                print(s);
+                PlayerSkills.Add(s.Id, s);
+                s.Init(player);
             }
         }
 
@@ -129,7 +132,12 @@ namespace Assets.Scripts.Presenter.Manager
         private void InitPlayerSkill()
         {
             //TODO
-            PlayerSkills = _skills;
+            //PlayerSkills = _skills;
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.Label(_skills.Count.ToString());
         }
     }
 }
