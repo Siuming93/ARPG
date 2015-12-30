@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +14,18 @@ namespace Assets.Scripts.UIPlugin
 
         public static MessageUiManger Instance { get; private set; }
 
+        private List<string> _printList = new List<string>();
+
         private void Awake()
         {
             Instance = this;
         }
+
+        public void Print(string message)
+        {
+            _printList.Add(message);
+        }
+
         /// <summary>
         /// 设定通知信息
         /// </summary>
@@ -27,6 +36,7 @@ namespace Assets.Scripts.UIPlugin
             MessageText.text = message;
             StartCoroutine(ClearMessage(timer));
         }
+
         /// <summary>
         /// 到时间后清空信息
         /// </summary>
@@ -37,6 +47,18 @@ namespace Assets.Scripts.UIPlugin
             yield return new WaitForSeconds(timer);
 
             MessageText.text = "";
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.BeginScrollView(new Vector2(Screen.width/4, Screen.height));
+            GUILayout.BeginVertical();
+            for (int i = 0; i < _printList.Count; i++)
+            {
+                GUILayout.Label(_printList[i]);
+            }
+            GUILayout.EndVertical();
+            GUILayout.EndScrollView();
         }
     }
 }

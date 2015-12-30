@@ -43,9 +43,11 @@ public class AssetBundle : Editor
         }
 
         //打包
-        BuildPipeline.BuildAssetBundle(waitForBundleList[0], waitForBundleList.ToArray(),
-            Application.dataPath + "/" + "name.unity3D");
-
-        MonoBehaviour.print(Application.dataPath + "/" + "name.unity3D");
+        if (BuildPipeline.BuildAssetBundle(waitForBundleList[0], waitForBundleList.ToArray(),
+            Application.streamingAssetsPath + "/" + "name.assetbundle", BuildAssetBundleOptions.CollectDependencies,
+            BuildTarget.Android))
+        {
+            AssetDatabase.Refresh();
+        }
     }
 }

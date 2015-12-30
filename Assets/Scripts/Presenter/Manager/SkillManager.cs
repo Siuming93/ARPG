@@ -13,6 +13,19 @@ namespace Assets.Scripts.Presenter.Manager
     /// </summary>
     public class SkillManager : MonoBehaviour
     {
+        //不同平台下StreamingAssets的路径是不同的，这里需要注意一下。
+        public static readonly string PathURL =
+#if UNITY_ANDROID
+            "jar:file://" + Application.dataPath + "!/assets/";
+#elif UNITY_IPHONE
+		Application.dataPath + "/Raw/";
+#elif UNITY_ANDROID||UNITY_STANDALONE_WIN || UNITY_EDITOR
+            "file://" + Application.dataPath + "/StreamingAssets/";
+#else
+        string.Empty;
+#endif
+
+
         /// <summary>
         /// 实例
         /// </summary>
@@ -112,17 +125,29 @@ namespace Assets.Scripts.Presenter.Manager
         /// </summary>
         private IEnumerator InitAllSkill()
         {
-            var bundle = new WWW("file://" + Application.dataPath + "/name.unity3D");
+            WWW bundle = null;
+
+            bundle = new WWW(PathURL + "name.unity3D");
+            MessageUiManger.Instance.Print("Path:" + PathURL + "name.unity3D");
+            MessageUiManger.Instance.Print("Bundle.error:" + bundle.error);
+            MessageUiManger.Instance.Print("bundle.assetBundle" + bundle.assetBundle);
             yield return bundle;
 
-            var player = GameObject.FindGameObjectWithTag(Tags.Player);
-            var skill = bundle.assetBundle.LoadAll(typeof (Skill));
-            foreach (var o in skill)
+            try
             {
-                var s = o as Skill;
-                print(s);
-                PlayerSkills.Add(s.Id, s);
-                s.Init(player);
+                var player = GameObject.FindGameObjectWithTag(Tags.Player);
+                var skill = bundle.assetBundle.LoadAll(typeof (Skill));
+                foreach (var o in skill)
+                {
+                    var s = o as Skill;
+                    MessageUiManger.Instance.Print(s.ToString());
+                    PlayerSkills.Add(s.Id, s);
+                    s.Init(player);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageUiManger.Instance.Print(e.Message);
             }
         }
 
@@ -133,11 +158,6 @@ namespace Assets.Scripts.Presenter.Manager
         {
             //TODO
             //PlayerSkills = _skills;
-        }
-
-        private void OnGUI()
-        {
-            GUILayout.Label(_skills.Count.ToString());
         }
     }
 }
