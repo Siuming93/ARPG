@@ -46,9 +46,41 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Effects\Scripts\Demo\MyGuiV2.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Balls\AddMaterialOnHit.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Balls\AnimatorBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Balls\LazyLoad.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Balls\ProjectileCollisionBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Balls\SetRandomStartPoint.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Buffs\ShieldCollisionBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Objects\MoveOnGround.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Shots\LineRendererBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Waves\ClothGridCollisionBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Prefabs\Waves\InstanceMaterial.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\Billboard.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\CollisionActiveBehaviour.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\DeadTime.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\EffectSettings.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutLight.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutParticles.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutScale.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutShaderColor.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutShaderFloat.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\FadeInOutStatus.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\InvokeInterval.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\OnStartSendCollision.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\RandomRotateOnStart.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\SetPositionOnHit.cs" />
+     <Compile Include="Assets\Effects\Scripts\Share\UVTextureAnimator.cs" />
+     <Compile Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\ImageEffectBase.cs" />
+     <Compile Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\ImageEffects.cs" />
      <Compile Include="Assets\Scripts\Assemblies\Scenes.cs" />
      <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
      <Compile Include="Assets\Scripts\Common\DelegateEventDeline.cs" />
+     <Compile Include="Assets\Scripts\Model\Charcter\CharctorInfo.cs" />
+     <Compile Include="Assets\Scripts\Model\Charcter\EnemyState.cs" />
+     <Compile Include="Assets\Scripts\Model\Charcter\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\Model\InventoryItem.cs" />
      <Compile Include="Assets\Scripts\Model\Photon\Controller\LoginServerController.cs" />
      <Compile Include="Assets\Scripts\Model\Photon\Controller\PlayerStatusController.cs" />
      <Compile Include="Assets\Scripts\Model\Photon\Controller\RegisterServerController.cs" />
@@ -57,59 +89,94 @@
      <Compile Include="Assets\Scripts\Model\Photon\Controller\ServerListServerController.cs" />
      <Compile Include="Assets\Scripts\Model\Photon\Controller\TaskDbServerController.cs" />
      <Compile Include="Assets\Scripts\Model\Photon\PhotonEngine.cs" />
-     <Compile Include="Assets\Scripts\Presenter\Manager\GameManger.cs" />
+     <Compile Include="Assets\Scripts\Model\Task.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\Charcter\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\Charcter\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\Charcter\SkillManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\AttackState.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\ChaseState.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\DeadState.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\EnemyAiController.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\FSM.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\FSMStateBase.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\EnemyAIFSM\PatrolState.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Presenter\Manager\InventoryManger.cs" />
-     <Compile Include="Assets\Scripts\Presenter\Manager\NPCManager.cs" />
-     <Compile Include="Assets\Scripts\Presenter\Manager\PlayerInfo.cs" />
-     <Compile Include="Assets\Scripts\Presenter\Manager\PlayerStatusManager.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\ManagerDelegate.cs" />
+     <Compile Include="Assets\Scripts\Presenter\Manager\NpcManager.cs" />
      <Compile Include="Assets\Scripts\Presenter\Manager\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Presenter\Start\StartMenuController.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\MessageManger.cs" />
+     <Compile Include="Assets\Scripts\UIPlugin\DestoryAuto.cs" />
+     <Compile Include="Assets\Scripts\UIPlugin\MessageUiManger.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\PlaySound.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIGradient.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIMove.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIRenderTexture.cs" />
-     <Compile Include="Assets\Scripts\UIPlugin\UIRotateRenderText.cs" />
      <Compile Include="Assets\Scripts\UIPlugin\UIScale.cs" />
+     <Compile Include="Assets\Scripts\UIPlugin\UiDrag.cs" />
+     <Compile Include="Assets\Scripts\UIPlugin\UiRotateRenderText.cs" />
+     <Compile Include="Assets\Scripts\View\Camera\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\View\Camera\CmeraRenderTexture.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\BottomBar.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\Inventory.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryItem.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapsackItem.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\AnimationView.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\Enemy\EnemyStateUiView.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\HpandNameUiView.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\Player\PlayerMoveView.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\Player\PlayerNavigationView.cs" />
+     <Compile Include="Assets\Scripts\View\EnemyAutoBornView.cs" />
+     <Compile Include="Assets\Scripts\View\Joystick.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\BottomBarView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KanpsackView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapsackItemUi.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapsackMessageBoxView.cs" />
      <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapscakCharcter.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Knapscak\KnapscakUiSprite.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\MainMenuManager.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerBar.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerStatusUi.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Task\Task.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskItemUI.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskUI.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\TopBar.cs" />
-     <Compile Include="Assets\Scripts\View\MainMenu\UIScreenFade.cs" />
-     <Compile Include="Assets\Scripts\View\Player\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\View\Player\PlayerAnimator.cs" />
-     <Compile Include="Assets\Scripts\View\Player\PlayerMove.cs" />
-     <Compile Include="Assets\Scripts\View\Player\PlayerNavigation.cs" />
-     <Compile Include="Assets\Scripts\View\Start\LoadProgressBar.cs" />
-     <Compile Include="Assets\Scripts\View\Start\ServerUiProperty.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\MainMenuView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerBarView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\PlayerStatus\PlayerStatusUiView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskItemUIView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\Task\TaskUiView.cs" />
+     <Compile Include="Assets\Scripts\View\MainMenu\TopBarView.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\ActionBase.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\AnimationAction.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\AttackAction.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\BattleEffectAction.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\ParticleAction.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\RotateAroundParent.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Action\SoundAction.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\SKillUiViewProperty.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\Skill.cs" />
+     <Compile Include="Assets\Scripts\View\Skill\SkillUiView.cs" />
+     <Compile Include="Assets\Scripts\View\Start\LoadProgressBarView.cs" />
+     <Compile Include="Assets\Scripts\View\Start\ServerUiViewProperty.cs" />
+     <Compile Include="Assets\Scripts\View\Transcript\ComboUiView.cs" />
+     <Compile Include="Assets\Scripts\View\Transcript\EnterTranscript.cs" />
+     <Compile Include="Assets\Scripts\View\Transcript\PassTranscriptUiView.cs" />
+     <Compile Include="Assets\TranscriptUiManager.cs" />
      <None Include="Assets\Scripts\View\MainMenu\Task\TaskInfoList.txt" />
      <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
-     <None Include="Assets\Model\Transcript\Plugins\DOTween\readme.txt" />
+     <None Include="Assets\Textures\005-number combo\number_font.fnt" />
+     <None Include="Assets\Model\Enemy\Masked Orc\Read Me.txt" />
+     <None Include="Assets\Plugins\DOTween\readme.txt" />
+     <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryInfoList.txt" />
+     <None Include="Assets\Editor\TreeViewControl\Readme.txt" />
+     <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="ARPGCommon">
- <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/ARPGCommon.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/ARPGCommon.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/LitJson.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>D:/practice/TaiDouARPG/Assets/Model/Transcript/Plugins/DOTween/DOTween.dll</HintPath>
+ <HintPath>D:/practice/TaiDouARPG/Assets/Plugins/DOTween/DOTween.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

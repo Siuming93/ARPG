@@ -99,8 +99,8 @@ namespace Assets.Scripts.View.Skill
         /// </summary>
         public void Excute()
         {
-            PlayerManager.Instance.StartCoroutine(CalculateExcute());
-            PlayerManager.Instance.StartCoroutine(CalculateCDTime());
+            GameManager.Instance.StartCoroutine(CalculateExcute());
+            GameManager.Instance.StartCoroutine(CalculateCDTime());
         }
 
         /// <summary>

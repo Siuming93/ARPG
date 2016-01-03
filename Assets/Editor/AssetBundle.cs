@@ -44,8 +44,8 @@ public class AssetBundle : Editor
 
         //打包
         if (BuildPipeline.BuildAssetBundle(waitForBundleList[0], waitForBundleList.ToArray(),
-            Application.streamingAssetsPath + "/" + "name.assetbundle", BuildAssetBundleOptions.CollectDependencies,
-            BuildTarget.Android))
+            Application.streamingAssetsPath + "/" + "name.assetbundle", BuildAssetBundleOptions.CollectDependencies
+            ))
         {
             AssetDatabase.Refresh();
         }

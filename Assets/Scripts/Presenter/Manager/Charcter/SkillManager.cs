@@ -106,7 +106,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
 
         private void Start()
         {
-            if (_skills == null)
+            if (_skills.Count == 0)
             {
                 //初始化所有技能
                 StartCoroutine(InitAllSkill());
@@ -122,8 +122,8 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         {
             WWW bundle = null;
 
-            bundle = new WWW(PathURL + "name.unity3D");
-            MessageUiManger.Instance.Print("Path:" + PathURL + "name.unity3D");
+            bundle = new WWW(PathURL + "name.assetbundle");
+            MessageUiManger.Instance.Print("Path:" + PathURL + "name.assetbundle");
             MessageUiManger.Instance.Print("Bundle.error:" + bundle.error);
             MessageUiManger.Instance.Print("bundle.assetBundle" + bundle.assetBundle);
             yield return bundle;

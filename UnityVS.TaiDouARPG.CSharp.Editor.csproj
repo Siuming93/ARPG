@@ -7,35 +7,37 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{33466F69-E4D3-9DB8-6291-78D477357371}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
-    <UnityVersion>4.6.1f1</UnityVersion>
+    <UnityVersion>4.6.8f1</UnityVersion>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_8;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <DefineConstants>TRACE;UNITY_4_6_8;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -44,13 +46,14 @@
     <Reference Include="System.Core" />
     <Reference Include="Boo.Lang" />
     <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -59,6 +62,21 @@
     </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="ARPGCommon">
+      <HintPath>Assets\Plugins\ARPGCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>Assets\Plugins\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Plugins\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
@@ -69,6 +87,9 @@
     <Reference Include="UnityVS.VersionSpecific">
       <HintPath>Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityVS.TaiDouARPG.CSharp.csproj">
@@ -77,217 +98,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\TaiDouARPG\.git\objects\info\" />
-    <Folder Include="Assets\TaiDouARPG\.git\refs\tags\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\01\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\04\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\05\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\06\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\07\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\08\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\09\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\0b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\0c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\0d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\0e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\0f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\11\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\13\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\14\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\15\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\16\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\17\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\18\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\19\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\1d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\1e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\1f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\20\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\21\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\23\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\25\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\26\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\27\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\28\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\2b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\2c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\2d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\2e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\2f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\30\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\31\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\32\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\33\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\35\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\36\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\37\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\39\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\3a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\3b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\3c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\3e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\3f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\40\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\42\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\44\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\45\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\46\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\48\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\49\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\4c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\4e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\4f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\50\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\52\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\53\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\54\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\57\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\58\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\59\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\5f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\60\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\61\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\63\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\64\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\65\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\66\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\67\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\69\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\6a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\6c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\70\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\71\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\72\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\73\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\74\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\75\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\76\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\77\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\78\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\79\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\7a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\7b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\7e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\7f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\81\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\83\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\84\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\85\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\86\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\87\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\89\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\8a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\8b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\8c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\8e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\8f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\90\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\91\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\92\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\93\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\95\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\96\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\98\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\99\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\9a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\9b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\9c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\9d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\9f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a5\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\a8\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\aa\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ab\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ad\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ae\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\af\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b8\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\b9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ba\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\bd\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\be\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c7\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\c9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ca\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\cc\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\cd\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\cf\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d7\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d8\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\d9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\da\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\db\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\dd\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\de\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\df\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e5\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e7\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e8\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\e9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\eb\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ec\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ed\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ef\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f0\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f7\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\f9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\fd\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\fe\" />
-    <Folder Include="Assets\TaiDouARPG\Library\metadata\ff\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\1\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\2\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\3\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\4\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\5\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\6\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\7\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\8\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\9\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\a\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\b\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\c\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\d\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\e\" />
-    <Folder Include="Assets\TaiDouARPG\Library\ShaderCache\f\" />
-    <Folder Include="Assets\TaiDouARPG\Library\UnityAssemblies\" />
-    <Folder Include="Assets\TaiDouARPG\obj\" />
-    <Folder Include="Assets\TaiDouARPG\ProjectSettings\" />
-    <Folder Include="Assets\TaiDouARPG\Temp\" />
+    <Compile Include="Assets\Editor\AssetBundle.cs" />
+    <Compile Include="Assets\Editor\SkillEditorManager.cs" />
+    <Compile Include="Assets\Editor\SkillEditorWindow.cs" />
+    <Compile Include="Assets\Editor\TreeViewControl\Editor\ExampleTreeViewPanel.cs" />
+    <Compile Include="Assets\Editor\TreeViewControl\Editor\TreeViewInspector.cs" />
+    <Compile Include="Assets\Editor\TreeViewControl\Example.cs" />
+    <Compile Include="Assets\Editor\TreeViewControl\TreeViewControl.cs" />
+    <Compile Include="Assets\Editor\TreeViewControl\TreeViewItem.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
+  <ItemGroup>
+    <None Include="Assets\Editor\TreeViewControl\Readme.txt" />
+    <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+    <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+    <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+    <None Include="Assets\Model\Enemy\Masked Orc\Read Me.txt" />
+    <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
+    <None Include="Assets\Plugins\DOTween\DOTween.XML" />
+    <None Include="Assets\Plugins\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\Plugins\DOTween\readme.txt" />
+    <None Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryInfoList.txt" />
+    <None Include="Assets\Scripts\View\MainMenu\Task\TaskInfoList.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
