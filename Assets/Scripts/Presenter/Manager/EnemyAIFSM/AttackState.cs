@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using Assets.Scripts.View.Charcter.Player;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Assets.Scripts.Presenter.Manager.EnemyAIFSM
 {
     internal class AttackState : FSMStateBase
     {
+        public SkillManager SkillManager;
+
         public override FSMStateId StateId
         {
             get { return FSMStateId.Attacking; }
@@ -30,7 +33,7 @@ namespace Assets.Scripts.Presenter.Manager.EnemyAIFSM
         {
             //播放动画
             var animation = npc.GetComponent<AnimationView>();
-            animation.PlayAnimation("Attack");
+            SkillManager.ExcuteSkill(SkillManager.PlayerSkills[0]);
         }
     }
 }

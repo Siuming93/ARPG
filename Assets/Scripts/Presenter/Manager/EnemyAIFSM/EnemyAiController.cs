@@ -12,7 +12,6 @@ public class EnemyAiController : FSM
 
     public SkillManager SkillManager;
 
-
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
@@ -30,7 +29,7 @@ public class EnemyAiController : FSM
         chase.AddTransition(Transition.ReachPlayer, FSMStateId.Attacking);
         chase.AddTransition(Transition.NoHealth, FSMStateId.Dead);
 
-        var attack = new AttackState();
+        var attack = new AttackState() {SkillManager = SkillManager};
         attack.AddTransition(Transition.LostPlayer, FSMStateId.Chasing);
         attack.AddTransition(Transition.NoHealth, FSMStateId.Dead);
 
