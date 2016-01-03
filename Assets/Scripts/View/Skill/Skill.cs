@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Presenter.Manager;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using Assets.Scripts.View.Skill.Action;
 using UnityEngine;
 
@@ -98,8 +99,8 @@ namespace Assets.Scripts.View.Skill
         /// </summary>
         public void Excute()
         {
-            SkillManager.Instance.StartCoroutine(CalculateExcute());
-            SkillManager.Instance.StartCoroutine(CalculateCDTime());
+            PlayerManager.Instance.StartCoroutine(CalculateExcute());
+            PlayerManager.Instance.StartCoroutine(CalculateCDTime());
         }
 
         /// <summary>

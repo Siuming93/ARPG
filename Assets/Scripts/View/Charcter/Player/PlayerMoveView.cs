@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Presenter.Manager;
+﻿using Assets.Scripts.Presenter.Manager.Charcter;
 using UnityEngine;
 
 namespace Assets.Scripts.View.Charcter.Player
@@ -13,12 +13,14 @@ namespace Assets.Scripts.View.Charcter.Player
         /// </summary>
         public float Speed;
 
+        private SkillManager skillManager;
         private Animator _animator;
         private float v, h;
 
         private void Start()
         {
             _animator = transform.GetComponentInChildren<Animator>();
+            skillManager = transform.GetComponent<SkillManager>();
             Joystick.Instance.OnJoystickMovement += GetMoveAxis;
             Joystick.Instance.OnEndJoystickMovement += EndJoyMove;
         }
@@ -38,7 +40,7 @@ namespace Assets.Scripts.View.Charcter.Player
         private void Update()
         {
             //若当前不是处于移动后者Idle状态,则不移动
-            if (SkillManager.Instance != null && SkillManager.Instance.IsCurSkillExcute ||
+            if (skillManager != null && skillManager.IsCurSkillExcute ||
                 !_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
                 !_animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
                 return;

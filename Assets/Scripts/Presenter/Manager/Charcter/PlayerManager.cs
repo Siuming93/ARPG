@@ -27,6 +27,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         /// <param name="value"></param>
         public void TakeDamage(int value)
         {
+            print(value);
             PlayerInfo.TakeDamage(value);
             if (PlayerInfo.HP < 0)
             {

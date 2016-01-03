@@ -36,7 +36,7 @@ namespace Assets.Scripts.View.Skill.Action
         protected override void Play()
         {
             //1.传递位置和伤害值以及范围
-            EnemyManager.Instance.TakeDamanage(_playerTransform, Value, AttackDirection);
+            EnemyManager.Instance.Attack(_playerTransform, Value, AttackDirection);
 
             Finish();
         }

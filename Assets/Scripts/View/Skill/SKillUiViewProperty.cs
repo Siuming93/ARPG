@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Presenter.Manager;
+using Assets.Scripts.Presenter.Manager.Charcter;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ namespace Assets.Scripts.View.Skill
         public int Id;
         public string Description;
         public string ImageName;
+
+        public SkillManager PlayerSkillManager;
         //组件信息
         public Image MaskChild;
         public Button Button;
@@ -21,7 +24,7 @@ namespace Assets.Scripts.View.Skill
         private void Update()
         {
             //解决冷却问题
-            MaskChild.fillAmount = SkillManager.Instance.GetSkillCdPercent(Id);
+            MaskChild.fillAmount = PlayerSkillManager.GetSkillCdPercent(Id);
             if (MaskChild.fillAmount > 0)
             {
                 Button.enabled = false;

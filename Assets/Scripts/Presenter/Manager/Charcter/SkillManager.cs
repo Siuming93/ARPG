@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Assets.Scripts.UIPlugin;
 using Assets.Scripts.View.Skill;
 using UnityEngine;
 
-namespace Assets.Scripts.Presenter.Manager
+namespace Assets.Scripts.Presenter.Manager.Charcter
 {
     /// <summary>
     /// 技能管理器
@@ -19,27 +18,21 @@ namespace Assets.Scripts.Presenter.Manager
             "jar:file://" + Application.dataPath + "!/assets/";
 #elif UNITY_IPHONE
 		Application.dataPath + "/Raw/";
-#elif UNITY_ANDROID||UNITY_STANDALONE_WIN || UNITY_EDITOR
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
             "file://" + Application.dataPath + "/StreamingAssets/";
 #else
         string.Empty;
 #endif
 
-
-        /// <summary>
-        /// 实例
-        /// </summary>
-        public static SkillManager Instance { get; private set; }
-
         /// <summary>
         /// 所有技能的字典
         /// </summary>
-        private Dictionary<int, Skill> _skills = new Dictionary<int, Skill>();
+        private static Dictionary<int, Skill> _skills = new Dictionary<int, Skill>();
 
         /// <summary>
         /// 当前角色所拥有的技能
         /// </summary>
-        public Dictionary<int, Skill> PlayerSkills = new Dictionary<int, Skill>();
+        public List<int> PlayerSkills = new List<int>();
 
         /// <summary>
         /// 当前正在执行的技能
@@ -76,7 +69,7 @@ namespace Assets.Scripts.Presenter.Manager
                 SkillToExcuteList.Add(id);
                 return;
             }
-            if (PlayerSkills.TryGetValue(id, out CurSkill))
+            if (PlayerSkills.Contains(id) && _skills.TryGetValue(id, out CurSkill))
             {
                 CurSkill.Excute();
             }
@@ -90,7 +83,7 @@ namespace Assets.Scripts.Presenter.Manager
         public float GetSkillCdPercent(int id)
         {
             Skill skill = null;
-            if (PlayerSkills.TryGetValue(id, out skill))
+            if (PlayerSkills.Contains(id) && _skills.TryGetValue(id, out CurSkill))
             {
                 return skill.CDTimePercent;
             }
@@ -109,15 +102,17 @@ namespace Assets.Scripts.Presenter.Manager
 
         private void Awake()
         {
-            Instance = this;
         }
 
         private void Start()
         {
-            //初始化所有技能
-            StartCoroutine(InitAllSkill());
-            //初始化玩家技能
-            InitPlayerSkill();
+            if (_skills == null)
+            {
+                //初始化所有技能
+                StartCoroutine(InitAllSkill());
+                //初始化玩家技能
+                InitPlayerSkill();
+            }
         }
 
         /// <summary>
@@ -141,7 +136,7 @@ namespace Assets.Scripts.Presenter.Manager
                 {
                     var s = o as Skill;
                     MessageUiManger.Instance.Print(s.ToString());
-                    PlayerSkills.Add(s.Id, s);
+                    _skills.Add(s.Id, s);
                     s.Init(player);
                 }
             }
