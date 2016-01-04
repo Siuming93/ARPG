@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Assets.Scripts.Presenter.Manager;
 using Assets.Scripts.Presenter.Manager.Charcter;
 using Assets.Scripts.View.Skill.Action;
@@ -10,7 +13,7 @@ namespace Assets.Scripts.View.Skill
     /// <summary>
     /// 技能
     /// </summary>
-    public class Skill : ScriptableObject
+    public class Skill : ScriptableObject, ICloneable
     {
         /// <summary>
         /// 技能ID
@@ -158,6 +161,35 @@ namespace Assets.Scripts.View.Skill
             {
                 Actions[i].Finish();
             }
+        }
+
+        /// <summary>
+        /// 克隆技能
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            var newObject = Activator.CreateInstance(this.GetType());
+
+            var filds = newObject.GetType().GetFields();
+            var thisFilds = this.GetType().GetFields();
+
+            //克隆fild
+            for (var i = 0; i < thisFilds.Length; i++)
+            {
+                var fi = thisFilds[i];
+                filds[i].SetValue(newObject, fi.GetValue(this));
+            }
+
+            var list = newObject.GetType().GetField("Actions").GetValue(newObject) as List<ActionBase>;
+            //克隆list
+            for (var i = 0; i < Actions.Count; i++)
+            {
+                list[i] = Actions[i].Clone() as ActionBase;
+            }
+
+
+            return newObject;
         }
     }
 }

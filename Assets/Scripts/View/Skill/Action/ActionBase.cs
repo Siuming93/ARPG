@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Reflection;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace Assets.Scripts.View.Skill.Action
 {
     /// <summary>
     /// 所有技能action的基类
     /// </summary>
-    public abstract class ActionBase : ScriptableObject
+    public abstract class ActionBase : ScriptableObject, ICloneable
     {
         /// <summary>
         /// 等待执行时间
@@ -70,6 +71,23 @@ namespace Assets.Scripts.View.Skill.Action
         {
             IsExcute = false;
             _timer = 0f;
+        }
+
+        public object Clone()
+        {
+            var newObject = Activator.CreateInstance(this.GetType());
+
+            var fildes = GetType().GetFields();
+
+            var thisFilds = GetType().GetFields();
+
+            for (var i = 0; i < thisFilds.Length; i++)
+            {
+                var fi = thisFilds[i];
+                fildes[i].SetValue(newObject, fi.GetValue(this));
+            }
+
+            return newObject;
         }
     }
 

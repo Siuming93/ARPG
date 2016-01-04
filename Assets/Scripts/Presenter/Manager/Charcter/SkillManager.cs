@@ -30,6 +30,11 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         private static Dictionary<int, Skill> _skills = new Dictionary<int, Skill>();
 
         /// <summary>
+        /// 当前对象的Skill字典
+        /// </summary>
+        private Dictionary<int, Skill> mSkills = new Dictionary<int, Skill>();
+
+        /// <summary>
         /// 当前角色所拥有的技能
         /// </summary>
         public List<int> PlayerSkills = new List<int>();
@@ -69,7 +74,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
                 SkillToExcuteList.Add(id);
                 return;
             }
-            if (PlayerSkills.Contains(id) && _skills.TryGetValue(id, out CurSkill))
+            if (mSkills.TryGetValue(id, out CurSkill))
             {
                 CurSkill.Excute();
             }
@@ -102,17 +107,17 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
 
         private void Awake()
         {
-        }
-
-        private void Start()
-        {
             if (_skills.Count == 0)
             {
                 //初始化所有技能
                 StartCoroutine(InitAllSkill());
-                //初始化玩家技能
-                InitPlayerSkill();
             }
+        }
+
+        private void Start()
+        {
+            //初始化玩家技能
+            InitPlayerSkill();
         }
 
         /// <summary>
@@ -151,8 +156,17 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
         /// </summary>
         private void InitPlayerSkill()
         {
-            //TODO
-            //PlayerSkills = _skills;
+            for (int i = 0; i < PlayerSkills.Count; i++)
+            {
+                Skill s = null;
+
+                if (_skills.TryGetValue(PlayerSkills[i], out s))
+                {
+                    var newSkill = s.Clone() as Skill;
+                    newSkill.Init(gameObject);
+                    mSkills.Add(PlayerSkills[i], newSkill);
+                }
+            }
         }
     }
 }
