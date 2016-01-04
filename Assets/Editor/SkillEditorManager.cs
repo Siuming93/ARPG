@@ -61,6 +61,8 @@ namespace Assets.Editor
             CreateFolder(path, "Actions");
             AssetDatabase.CreateAsset(action,
                 path + "/Actions/" + action.GetType().Name + parentItem.ChildItemCount + ".asset");
+
+            EditorUtility.SetDirty(Skill);
         }
 
         /// <summary>
