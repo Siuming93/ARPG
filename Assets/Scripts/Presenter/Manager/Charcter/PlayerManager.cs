@@ -31,7 +31,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
             PlayerInfo.TakeDamage(value);
             if (PlayerInfo.HP < 0)
             {
-                OnDeadEvent(new EnemyState());
+                if (OnDeadEvent != null) OnDeadEvent(new EnemyState());
             }
         }
 
