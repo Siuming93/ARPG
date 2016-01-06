@@ -7,7 +7,7 @@ using UnityEditor;
 public class AssetBundle : Editor
 {
     //将选中目录下以及子目录下的所有的asset文件打包
-    [MenuItem("GameObject/Build AssetBundles From Directory of AssetFiles")]
+    [MenuItem("Tools/Build AssetBundles From Directory of AssetFiles")]
     private static void ExportAssetBundles()
     {
         //选中的目录
@@ -44,7 +44,8 @@ public class AssetBundle : Editor
 
         //打包
         if (BuildPipeline.BuildAssetBundle(waitForBundleList[0], waitForBundleList.ToArray(),
-            Application.streamingAssetsPath + "/" + "name.assetbundle", BuildAssetBundleOptions.CollectDependencies
+            UnityEngine.Application.streamingAssetsPath + "/" + "name.assetbundle",
+            BuildAssetBundleOptions.CollectDependencies
             ))
         {
             AssetDatabase.Refresh();

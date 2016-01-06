@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ARPGCommon;
 using ARPGCommon.Model;
 using Assets.Scripts.Presenter.Start;
@@ -24,7 +25,25 @@ namespace Assets.Scripts.Model.Photon.Controller
             ParameterTool.AddParameter(parameters, ParameterCode.UserCheckInfo,
                 new User {Username = username, Password = password});
             //2.发送登录请求与帐号密码
-            PhotonEngine.Instance.SendOperationRequest(OperationCode.Login, parameters);
+            PhotonEngine.Instance.SendOperationRequest(OperationCode.Login, SubCode.CheckUserInfoBySelfData, parameters);
+        }
+
+        public void LoginRequest(JsonData data)
+        {
+            MessageUiManger.Instance.Print("LoginRequest");
+            try
+            {
+                //1.初始化参数
+                var parameters = new Dictionary<byte, object>() {{(byte) SubCode.CheckUserInfoByChannelData, data}};
+
+                //2.发送登录请求与帐号密码
+                PhotonEngine.Instance.SendOperationRequest(OperationCode.Login, SubCode.CheckUserInfoByChannelData,
+                    parameters);
+            }
+            catch (Exception e)
+            {
+                MessageUiManger.Instance.Print(e.Message);
+            }
         }
 
         public override void OnOperationResponse(OperationResponse response)

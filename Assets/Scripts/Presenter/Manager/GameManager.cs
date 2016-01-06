@@ -56,7 +56,7 @@ namespace Assets.Scripts.Presenter.Manager
         public void LoadScene(string name)
         {
             DontDestroyOnLoad(PhotonEngine.Instance);
-            var operation = Application.LoadLevelAsync(name);
+            var operation = UnityEngine.Application.LoadLevelAsync(name);
             LoadProgressBarView.Show(operation);
         }
 

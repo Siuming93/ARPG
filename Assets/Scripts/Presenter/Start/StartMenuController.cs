@@ -154,7 +154,7 @@ namespace Assets.Scripts.Presenter.Start
             CharcterSelectMove.SetActiveFalse();
             CharcterChnageMove.SetActiveFalse();
             PhotonEngine.Instance.SetCurRole(CurRole);
-            var operation = Application.LoadLevelAsync(Scenes.loadLevel);
+            var operation = UnityEngine.Application.LoadLevelAsync(Scenes.loadLevel);
             LoadProgressBarView.Show(operation);
         }
 
@@ -283,7 +283,56 @@ namespace Assets.Scripts.Presenter.Start
         public void OnLoginButtonClick(Text text)
         {
             //1.验证用户名和密码
-            LoginController.LoginRequest(UsernameInputField.text, PasswordInputField.text);
+        }
+
+        public void OnLoginByChannelButtonClick()
+        {
+            //1.验证用户名和密码
+            //必须在调用登录之前，调用setUserCallback来设置用户回调 
+            LJSDK.Instance.setUserCallback(this.gameObject.name, "OnChannelUserCallBack");
+            LJSDK.Instance.login("login");
+
+            MessageUiManger.Instance.Print("OnLoginByChannelButtonClick");
+        }
+
+        private void OnChannelUserCallBack(string result)
+        {
+            MessageUiManger.Instance.Print("OnChannelUserCallBack");
+            Debug.Log("userCallback result:" + result);
+
+            JsonData jsonResult = JsonMapper.ToObject(result);
+            int resultCode = (int) jsonResult["resultCode"];
+            JsonData jsonData = (JsonData) jsonResult["data"];
+            if (LJSDK.SUCCESS == resultCode)
+            {
+                //登录成功
+                MessageUiManger.Instance.Print("onLoginSuccess:" + JsonMapper.ToJson(jsonData));
+
+                var userName = (string) jsonData["userName"];
+                var uid = (string) jsonData["uid"];
+                var channelCode = (string) jsonData["channelCode"];
+                var productCode = (string) jsonData["productCode"];
+                var token = (string) jsonData["token"];
+                var channelUid = (string) jsonData["channelUid"];
+                var customParams = (string) jsonData["customParams"];
+                var channelLabel = (string) jsonData["channelLabel"];
+
+                //登录成功之后需要游戏服务端进行二次验证 
+                LoginController.LoginRequest(jsonData);
+            }
+            else if (LJSDK.FAILURE == resultCode)
+            {
+                //登录失败
+                MessageUiManger.Instance.Print("onLoginFailed:" + JsonMapper.ToJson(jsonData));
+
+                string detail = (string) jsonData["detail"];
+                string customParams = (string) jsonData["customParams"];
+            }
+            else if (LJSDK.LOGOUT == resultCode)
+            {
+                //注销
+                MessageUiManger.Instance.Print("onLogout result:" + JsonMapper.ToJson(jsonData));
+            }
         }
 
         /// <summary>
@@ -291,6 +340,7 @@ namespace Assets.Scripts.Presenter.Start
         /// </summary>
         public void OnLoginSuccess()
         {
+            MessageUiManger.Instance.Print("OnLoginSuccess");
             //1.设定用户名称
             UserNameButtonText.text = UsernameInputField.text;
             //2.跳转到选择服务器

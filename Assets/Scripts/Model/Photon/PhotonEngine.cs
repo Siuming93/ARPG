@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ARPGCommon;
 using ARPGCommon.Model;
 using Assets.Scripts.Model.Photon.Controller;
+using Assets.Scripts.UIPlugin;
 using ExitGames.Client.Photon;
 using UnityEngine;
 
@@ -126,6 +127,8 @@ namespace Assets.Scripts.Model.Photon
         /// <param name="parameters"></param>
         public void SendOperationRequest(OperationCode opCode, SubCode subCode, Dictionary<byte, object> parameters)
         {
+            MessageUiManger.Instance.Print("OpCOde:" + opCode + "SubCode:" + subCode);
+
             print("send request to server,OperationCode:" + opCode + ",SubCode:" + subCode);
             ParameterTool.AddParameter(parameters, ParameterCode.SubCode, subCode, false);
             _peer.OpCustom((byte) opCode, parameters, true);

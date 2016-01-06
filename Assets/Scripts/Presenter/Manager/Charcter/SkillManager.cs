@@ -19,7 +19,7 @@ namespace Assets.Scripts.Presenter.Manager.Charcter
 #elif UNITY_IPHONE
 		Application.dataPath + "/Raw/";
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-            "file://" + Application.dataPath + "/StreamingAssets/";
+            "file://" + UnityEngine.Application.dataPath + "/StreamingAssets/";
 #else
         string.Empty;
 #endif

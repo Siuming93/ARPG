@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_8;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_8;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -74,6 +74,16 @@
      <Compile Include="Assets\Effects\Scripts\Share\UVTextureAnimator.cs" />
      <Compile Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\ImageEffectBase.cs" />
      <Compile Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\ImageEffects.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\IJsonWrapper.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\JsonData.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\JsonException.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\JsonMapper.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\JsonReader.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\JsonWriter.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\Lexer.cs" />
+     <Compile Include="Assets\LengjingUnity3D\LitJson\ParserToken.cs" />
+     <Compile Include="Assets\LengjingUnity3D\sdk\LJSDK.cs" />
+     <Compile Include="Assets\LengjingUnity3D\sdk\LJTest.cs" />
      <Compile Include="Assets\Scripts\Assemblies\Scenes.cs" />
      <Compile Include="Assets\Scripts\Assemblies\Tags.cs" />
      <Compile Include="Assets\Scripts\Common\DelegateEventDeline.cs" />
@@ -123,6 +133,7 @@
      <Compile Include="Assets\Scripts\View\Charcter\HpandNameUiView.cs" />
      <Compile Include="Assets\Scripts\View\Charcter\Player\PlayerMoveView.cs" />
      <Compile Include="Assets\Scripts\View\Charcter\Player\PlayerNavigationView.cs" />
+     <Compile Include="Assets\Scripts\View\Charcter\Player\PlayerStateUiVIew.cs" />
      <Compile Include="Assets\Scripts\View\EnemyAutoBornView.cs" />
      <Compile Include="Assets\Scripts\View\Joystick.cs" />
      <Compile Include="Assets\Scripts\View\MainMenu\BottomBarView.cs" />
@@ -153,14 +164,20 @@
      <Compile Include="Assets\Scripts\View\Transcript\PassTranscriptUiView.cs" />
      <Compile Include="Assets\TranscriptUiManager.cs" />
      <None Include="Assets\Scripts\View\MainMenu\Task\TaskInfoList.txt" />
+     <None Include="Assets\Plugins\Android\res\values-large\dimens.xml" />
+     <None Include="Assets\Plugins\Android\res\values\dimens.xml" />
      <None Include="Assets\Model\villarger_B_Boy\ReadMe [V 1.4]  02 06.txt" />
      <None Include="Assets\Textures\005-number combo\number_font.fnt" />
+     <None Include="Assets\Plugins\Android\res\layout\activity_main.xml" />
      <None Include="Assets\Model\Enemy\Masked Orc\Read Me.txt" />
      <None Include="Assets\Plugins\DOTween\readme.txt" />
+     <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Scripts\View\MainMenu\Knapscak\InventoryInfoList.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Editor\TreeViewControl\Readme.txt" />
      <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Effects\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
